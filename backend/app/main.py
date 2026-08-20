@@ -1,4 +1,5 @@
 from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,7 +18,9 @@ async def lifespan(app: FastAPI):
     # Startup: Ensure database schema is created
     logger.info("Initializing database schema...")
     Base.metadata.create_all(bind=engine)
-    logger.info(f"Starting {settings.PROJECT_NAME} in {settings.ENVIRONMENT} mode (LLM: {settings.LLM_MODE})")
+    logger.info(
+        f"Starting {settings.PROJECT_NAME} in {settings.ENVIRONMENT} mode (LLM: {settings.LLM_MODE})"
+    )
     yield
     # Shutdown
     logger.info("Shutting down Application...")

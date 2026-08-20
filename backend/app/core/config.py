@@ -1,5 +1,6 @@
 import os
 from typing import List, Union
+
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -58,6 +59,7 @@ class Settings(BaseSettings):
             return [i.strip() for i in v.split(",") if i.strip()]
         elif isinstance(v, str) and v.startswith("["):
             import json
+
             try:
                 return json.loads(v)
             except Exception:
@@ -73,6 +75,7 @@ class Settings(BaseSettings):
             return [i.strip().lower().lstrip(".") for i in v.split(",") if i.strip()]
         elif isinstance(v, str) and v.startswith("["):
             import json
+
             try:
                 return [x.lower().lstrip(".") for x in json.loads(v)]
             except Exception:
@@ -80,10 +83,7 @@ class Settings(BaseSettings):
         return v
 
     model_config = SettingsConfigDict(
-        env_file=".env",
-        env_file_encoding="utf-8",
-        case_sensitive=True,
-        extra="ignore"
+        env_file=".env", env_file_encoding="utf-8", case_sensitive=True, extra="ignore"
     )
 
 

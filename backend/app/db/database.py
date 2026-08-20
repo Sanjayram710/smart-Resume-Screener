@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+
 from app.core.config import settings
 from app.core.logging import logger
 
@@ -9,10 +10,7 @@ if settings.DATABASE_URL.startswith("sqlite"):
 
 try:
     engine = create_engine(
-        settings.DATABASE_URL,
-        connect_args=connect_args,
-        pool_pre_ping=True,
-        echo=False
+        settings.DATABASE_URL, connect_args=connect_args, pool_pre_ping=True, echo=False
     )
     logger.info(f"Database engine initialized with URL: {settings.DATABASE_URL.split('@')[-1]}")
 except Exception as e:
@@ -20,7 +18,7 @@ except Exception as e:
     engine = create_engine(
         "sqlite:///./resume_screener.db",
         connect_args={"check_same_thread": False},
-        pool_pre_ping=True
+        pool_pre_ping=True,
     )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

@@ -1,8 +1,9 @@
 import abc
-import json
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict
+
 import httpx
+
 from app.core.config import settings
 from app.core.exceptions import LLMServiceException
 from app.core.logging import logger
@@ -39,7 +40,9 @@ class LLMProvider(abc.ABC):
         pass
 
     @abc.abstractmethod
-    async def extract_job(self, job_title: str, company: str, description: str) -> JobExtractionOutput:
+    async def extract_job(
+        self, job_title: str, company: str, description: str
+    ) -> JobExtractionOutput:
         pass
 
     @abc.abstractmethod
@@ -78,7 +81,7 @@ class OpenAIProvider(LLMProvider):
             if response.status_code != 200:
                 logger.error(f"OpenAI API error {response.status_code}: {response.text}")
                 raise LLMServiceException(f"OpenAI API returned status code {response.status_code}")
-            
+
             data = response.json()
             content = data["choices"][0]["message"]["content"]
             parsed_json = clean_and_extract_json(content)
@@ -92,7 +95,9 @@ class OpenAIProvider(LLMProvider):
         parsed = await self._call_chat_completion(RESUME_EXTRACTION_SYSTEM_PROMPT, user_prompt)
         return ResumeExtractionOutput.model_validate(parsed)
 
-    async def extract_job(self, job_title: str, company: str, description: str) -> JobExtractionOutput:
+    async def extract_job(
+        self, job_title: str, company: str, description: str
+    ) -> JobExtractionOutput:
         user_prompt = JOB_EXTRACTION_USER_PROMPT.format(
             job_title=job_title, company=company, job_description=description[:10000]
         )
@@ -102,15 +107,33 @@ class OpenAIProvider(LLMProvider):
     async def evaluate_candidate(
         self, candidate_data: Dict[str, Any], job_data: Dict[str, Any]
     ) -> CandidateEvaluationOutput:
-        exp_summary = "\n".join(
-            [f"- {e.get('title', '')} at {e.get('company', '')} ({e.get('years', 0)} yrs)" for e in candidate_data.get("experience", [])]
-        ) or "Not specified"
-        edu_summary = "\n".join(
-            [f"- {e.get('degree', '')} from {e.get('institution', '')}" for e in candidate_data.get("education", [])]
-        ) or "Not specified"
-        proj_summary = "\n".join(
-            [f"- {p.get('name', '')}: {p.get('description', '')}" for p in candidate_data.get("projects", [])]
-        ) or "None listed"
+        exp_summary = (
+            "\n".join(
+                [
+                    f"- {e.get('title', '')} at {e.get('company', '')} ({e.get('years', 0)} yrs)"
+                    for e in candidate_data.get("experience", [])
+                ]
+            )
+            or "Not specified"
+        )
+        edu_summary = (
+            "\n".join(
+                [
+                    f"- {e.get('degree', '')} from {e.get('institution', '')}"
+                    for e in candidate_data.get("education", [])
+                ]
+            )
+            or "Not specified"
+        )
+        proj_summary = (
+            "\n".join(
+                [
+                    f"- {p.get('name', '')}: {p.get('description', '')}"
+                    for p in candidate_data.get("projects", [])
+                ]
+            )
+            or "None listed"
+        )
 
         user_prompt = CANDIDATE_MATCHING_USER_PROMPT.format(
             job_title=job_data.get("title", ""),
@@ -146,7 +169,7 @@ class MockLLMProvider(LLMProvider):
         "graphql", "react", "typescript", "javascript", "node.js", "next.js", "tailwind css",
         "html", "css", "vue", "angular", "c++", "c#", ".net", "go", "java", "spring boot",
         "pytorch", "tensorflow", "scikit-learn", "pandas", "numpy", "machine learning", "nlp",
-        "microservices", "system design", "distributed systems", "unit testing", "agile", "tdd"
+        "microservices", "system design", "distributed systems", "unit testing", "agile", "tdd",
     ]
 
     async def extract_resume(self, raw_text: str) -> ResumeExtractionOutput:
@@ -165,7 +188,9 @@ class MockLLMProvider(LLMProvider):
         lines = [line.strip() for line in text.split("\n") if line.strip()]
         if lines:
             first_line = lines[0]
-            if len(first_line.split()) in [2, 3, 4] and not re.search(r"resume|curriculum|profile|email|phone", first_line, re.I):
+            if len(first_line.split()) in [2, 3, 4] and not re.search(
+                r"resume|curriculum|profile|email|phone", first_line, re.I
+            ):
                 name = first_line
 
         # 3. Extract Skills via dictionary matching
@@ -183,18 +208,22 @@ class MockLLMProvider(LLMProvider):
             soft_skills = ["Team Collaboration", "Problem Solving"]
 
         # 4. Extract Experience & Years
-        years_found = re.findall(r"(\d+(?:\.\d+)?)\+?\s*(?:years?|yrs)\s+(?:of\s+)?experience", lower_text)
+        years_found = re.findall(
+            r"(\d+(?:\.\d+)?)\+?\s*(?:years?|yrs)\s+(?:of\s+)?experience", lower_text
+        )
         if years_found:
             years_of_exp = max(float(y) for y in years_found)
         else:
             # Estimate from date ranges like 2018 - 2023
-            date_ranges = re.findall(r"\b(20\d\d|19\d\d)\s*[-–to]+\s*(20\d\d|present|current)\b", lower_text)
+            date_ranges = re.findall(
+                r"\b(20\d\d|19\d\d)\s*[-–to]+\s*(20\d\d|present|current)\b", lower_text
+            )
             total_duration = 0.0
             for start_y, end_y in date_ranges:
                 s_int = int(start_y)
                 e_int = 2026 if end_y in ["present", "current"] else int(end_y)
                 if e_int >= s_int:
-                    total_duration += (e_int - s_int)
+                    total_duration += e_int - s_int
             years_of_exp = min(total_duration, 25.0) if total_duration > 0 else 3.0
 
         # Construct Experience entries
@@ -221,14 +250,15 @@ class MockLLMProvider(LLMProvider):
                     company="Tech Enterprise",
                     duration=f"{years_of_exp} Years",
                     years=years_of_exp,
-                    responsibilities=["Developed core software components and managed deployments."],
+                    responsibilities=[
+                        "Developed core software components and managed deployments."
+                    ],
                     technologies=skills_list[:4],
                 )
             )
 
         # 5. Extract Education
         education_items = []
-        edu_text = sections.get("education", "")
         if "master" in lower_text or "m.s." in lower_text or "m.tech" in lower_text:
             education_items.append(
                 EducationItem(
@@ -238,7 +268,12 @@ class MockLLMProvider(LLMProvider):
                     graduation_year="2020",
                 )
             )
-        elif "bachelor" in lower_text or "b.s." in lower_text or "b.e." in lower_text or "b.tech" in lower_text:
+        elif (
+            "bachelor" in lower_text
+            or "b.s." in lower_text
+            or "b.e." in lower_text
+            or "b.tech" in lower_text
+        ):
             education_items.append(
                 EducationItem(
                     degree="Bachelor of Science in Computer Science",
@@ -261,7 +296,7 @@ class MockLLMProvider(LLMProvider):
         project_items = []
         proj_text = sections.get("projects", "")
         if proj_text:
-            p_lines = [l.strip("- ") for l in proj_text.split("\n") if len(l.strip()) > 5]
+            p_lines = [item.strip("- ") for item in proj_text.split("\n") if len(item.strip()) > 5]
             for pl in p_lines[:3]:
                 project_items.append(
                     ProjectItem(
@@ -302,7 +337,9 @@ class MockLLMProvider(LLMProvider):
             extraction_warnings=[],
         )
 
-    async def extract_job(self, job_title: str, company: str, description: str) -> JobExtractionOutput:
+    async def extract_job(
+        self, job_title: str, company: str, description: str
+    ) -> JobExtractionOutput:
         lower_desc = description.lower()
         extracted_skills = set()
         for skill in self.KNOWN_SKILLS_CORPUS:
@@ -315,7 +352,9 @@ class MockLLMProvider(LLMProvider):
         pref_skills = all_skills[half_point:] or ["docker", "aws"]
 
         # Parse min experience
-        exp_match = re.search(r"(\d+(?:\.\d+)?)\+?\s*(?:years?|yrs)\s+(?:of\s+)?(?:experience|required)", lower_desc)
+        exp_match = re.search(
+            r"(\d+(?:\.\d+)?)\+?\s*(?:years?|yrs)\s+(?:of\s+)?(?:experience|required)", lower_desc
+        )
         min_exp = float(exp_match.group(1)) if exp_match else 3.0
 
         return JobExtractionOutput(
@@ -326,13 +365,18 @@ class MockLLMProvider(LLMProvider):
             responsibilities=[
                 "Architect and develop scalable, high-quality production services",
                 "Collaborate with engineering teams on API design and data pipelines",
-                "Ensure high reliability, test coverage, and documentation standards"
+                "Ensure high reliability, test coverage, and documentation standards",
             ],
             minimum_experience=min_exp,
-            education_requirements=["Bachelor's degree in Computer Science, Software Engineering, or related STEM field"],
+            education_requirements=[
+                "Bachelor's degree in Computer Science, Software Engineering, or related STEM field"
+            ],
             certifications=[],
             keywords=all_skills[:6],
-            important_requirements=[f"{min_exp}+ years of professional experience", f"Proficiency in {', '.join(req_skills[:3])}"],
+            important_requirements=[
+                f"{min_exp}+ years of professional experience",
+                f"Proficiency in {', '.join(req_skills[:3])}",
+            ],
             nice_to_have_requirements=[f"Experience with {', '.join(pref_skills[:3])}"],
             extraction_warnings=[],
         )
@@ -353,36 +397,46 @@ class MockLLMProvider(LLMProvider):
 
         strengths = []
         if matched_req:
-            strengths.append(f"Demonstrated core proficiency in mandatory skills: {', '.join(sorted(list(matched_req)))}")
+            strengths.append(
+                f"Demonstrated core proficiency in mandatory skills: {', '.join(sorted(list(matched_req)))}"
+            )
         if cand_years >= min_years:
-            strengths.append(f"Exceeds minimum experience requirement with {cand_years:.1f} years vs {min_years:.1f} years required")
+            strengths.append(
+                f"Exceeds minimum experience requirement with {cand_years:.1f} years vs {min_years:.1f} years required"
+            )
         if cand_skills & pref_skills:
-            strengths.append(f"Possesses preferred technology bonus skills: {', '.join(sorted(list(cand_skills & pref_skills)))}")
+            strengths.append(
+                f"Possesses preferred technology bonus skills: {', '.join(sorted(list(cand_skills & pref_skills)))}"
+            )
         if not strengths:
             strengths.append("Demonstrates software development background and foundation.")
 
         missing_skills_list = []
         if missing_req:
-            missing_skills_list = [f"Missing required skill: {s}" for s in sorted(list(missing_req))]
+            missing_skills_list = [
+                f"Missing required skill: {s}" for s in sorted(list(missing_req))
+            ]
         else:
             missing_skills_list = ["No critical required skills missing."]
 
         partial_matches = []
         for miss in list(missing_req)[:2]:
-            partial_matches.append(f"Candidate has adjacent software stack knowledge, can adapt to {miss}")
+            partial_matches.append(
+                f"Candidate has adjacent software stack knowledge, can adapt to {miss}"
+            )
 
         # Recommendation heuristic for qualitative assessment
         match_ratio = len(matched_req) / max(len(req_skills), 1)
         if match_ratio >= 0.7 and cand_years >= min_years:
             rec = "SHORTLIST"
             justification = (
-                f"{cand_name} demonstrates strong alignment with {int(match_ratio*100)}% of mandatory required skills "
+                f"{cand_name} demonstrates strong alignment with {int(match_ratio * 100)}% of mandatory required skills "
                 f"and meets the seniority threshold of {min_years} years."
             )
         elif match_ratio >= 0.4:
             rec = "REVIEW"
             justification = (
-                f"{cand_name} displays relevant competencies ({int(match_ratio*100)}% required skill overlap), "
+                f"{cand_name} displays relevant competencies ({int(match_ratio * 100)}% required skill overlap), "
                 f"with minor skill gaps that can be verified during a technical screening."
             )
         else:
@@ -403,7 +457,7 @@ class MockLLMProvider(LLMProvider):
             certification_assessment="Candidate credentials reviewed.",
             recommendation=rec,
             justification=justification,
-            confidence_notes="Deterministic heuristic analysis generated in local mode."
+            confidence_notes="Deterministic heuristic analysis generated in local mode.",
         )
 
 
@@ -432,15 +486,21 @@ class LLMService:
         try:
             return await self.provider.extract_resume(raw_text)
         except Exception as e:
-            logger.warning(f"Primary LLM extract_resume failed ({e}). Falling back to MockLLMProvider.")
+            logger.warning(
+                f"Primary LLM extract_resume failed ({e}). Falling back to MockLLMProvider."
+            )
             fallback = MockLLMProvider()
             return await fallback.extract_resume(raw_text)
 
-    async def extract_job(self, job_title: str, company: str, description: str) -> JobExtractionOutput:
+    async def extract_job(
+        self, job_title: str, company: str, description: str
+    ) -> JobExtractionOutput:
         try:
             return await self.provider.extract_job(job_title, company, description)
         except Exception as e:
-            logger.warning(f"Primary LLM extract_job failed ({e}). Falling back to MockLLMProvider.")
+            logger.warning(
+                f"Primary LLM extract_job failed ({e}). Falling back to MockLLMProvider."
+            )
             fallback = MockLLMProvider()
             return await fallback.extract_job(job_title, company, description)
 
@@ -450,6 +510,8 @@ class LLMService:
         try:
             return await self.provider.evaluate_candidate(candidate_data, job_data)
         except Exception as e:
-            logger.warning(f"Primary LLM evaluate_candidate failed ({e}). Falling back to MockLLMProvider.")
+            logger.warning(
+                f"Primary LLM evaluate_candidate failed ({e}). Falling back to MockLLMProvider."
+            )
             fallback = MockLLMProvider()
             return await fallback.evaluate_candidate(candidate_data, job_data)

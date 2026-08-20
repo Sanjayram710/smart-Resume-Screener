@@ -1,6 +1,6 @@
 from typing import Any, Dict, Tuple
+
 from app.core.config import settings
-from app.core.logging import logger
 
 
 class ScoringService:
@@ -33,11 +33,11 @@ class ScoringService:
 
         # Weighted sum of subscores (0 - 100)
         total_percentage = (
-            (skill_score * w_skill) +
-            (experience_score * w_exp) +
-            (semantic_score * w_sem) +
-            (education_score * w_edu) +
-            (certification_score * w_cert)
+            (skill_score * w_skill)
+            + (experience_score * w_exp)
+            + (semantic_score * w_sem)
+            + (education_score * w_edu)
+            + (certification_score * w_cert)
         )
 
         total_percentage = min(100.0, max(0.0, total_percentage))
@@ -89,5 +89,5 @@ class ScoringService:
                 "semantic_score": round(semantic_score, 1),
                 "education_score": round(education_score, 1),
                 "certification_score": round(certification_score, 1),
-            }
+            },
         }

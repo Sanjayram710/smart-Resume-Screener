@@ -1,15 +1,16 @@
 import logging
 import sys
+
 from app.core.config import settings
 
 
 def setup_logging() -> logging.Logger:
     log_level = logging.DEBUG if settings.DEBUG else logging.INFO
-    
+
     # Format with timestamp, level, logger name, and message
     formatter = logging.Formatter(
         "[%(asctime)s] [%(levelname)s] [%(name)s:%(lineno)d] %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S"
+        datefmt="%Y-%m-%d %H:%M:%S",
     )
 
     handler = logging.StreamHandler(sys.stdout)
@@ -17,11 +18,11 @@ def setup_logging() -> logging.Logger:
 
     root_logger = logging.getLogger()
     root_logger.setLevel(log_level)
-    
+
     # Clear existing handlers to avoid duplicates
     if root_logger.hasHandlers():
         root_logger.handlers.clear()
-        
+
     root_logger.addHandler(handler)
 
     # Set external libraries to warning to keep logs clean

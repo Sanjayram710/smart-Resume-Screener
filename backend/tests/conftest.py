@@ -13,7 +13,7 @@ from sqlalchemy.pool import StaticPool
 from app.api.deps import get_db, get_llm_service
 from app.db.base import Base
 from app.main import app
-from app.services.llm_service import MockLLMProvider, LLMService
+from app.services.llm_service import LLMService, MockLLMProvider
 
 # In-memory SQLite for isolated automated test runs
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"

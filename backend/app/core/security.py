@@ -3,8 +3,8 @@ import os
 import re
 import unicodedata
 from typing import Tuple
-from app.core.config import settings
 
+from app.core.config import settings
 
 # Protected attributes that must be stripped or ignored to prevent algorithmic bias
 PROTECTED_PATTERNS = [
@@ -40,7 +40,10 @@ def validate_file_upload(filename: str, content: bytes) -> Tuple[bool, str]:
     """
     ext = filename.rsplit(".", 1)[-1].lower() if "." in filename else ""
     if ext not in settings.ALLOWED_EXTENSIONS:
-        return False, f"Unsupported file extension '.{ext}'. Allowed: {', '.join(settings.ALLOWED_EXTENSIONS)}"
+        return (
+            False,
+            f"Unsupported file extension '.{ext}'. Allowed: {', '.join(settings.ALLOWED_EXTENSIONS)}",
+        )
 
     max_bytes = settings.MAX_UPLOAD_SIZE_MB * 1024 * 1024
     if len(content) > max_bytes:

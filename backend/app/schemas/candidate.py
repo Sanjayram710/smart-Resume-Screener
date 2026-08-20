@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any, Dict, List, Optional
+
 from pydantic import BaseModel, ConfigDict
-from app.schemas.llm import EducationItem, ExperienceItem, ProjectItem
 
 
 class CandidateBase(BaseModel):

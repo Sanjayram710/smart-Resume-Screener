@@ -1,11 +1,7 @@
-from typing import Any, Dict, List
 from sqlalchemy.orm import Session
+
 from app.core.exceptions import ResourceNotFoundException
 from app.core.logging import logger
-from app.models.candidate import Candidate
-from app.models.job import Job
-from app.models.resume import Resume
-from app.models.screening import Screening
 from app.repositories.candidate_repository import CandidateRepository
 from app.repositories.job_repository import JobRepository
 from app.repositories.resume_repository import ResumeRepository
@@ -83,7 +79,9 @@ class ScreeningService:
                 # Ensure candidate has embedding
                 cand_vec = candidate.embedding_vector
                 if not cand_vec:
-                    cand_summary = f"{candidate.name} {candidate.summary} {' '.join(candidate.skills or [])}"
+                    cand_summary = (
+                        f"{candidate.name} {candidate.summary} {' '.join(candidate.skills or [])}"
+                    )
                     cand_vec = await EmbeddingService.get_embedding(cand_summary)
                     self.candidate_repo.update(candidate.id, {"embedding_vector": cand_vec})
 
@@ -150,7 +148,7 @@ class ScreeningService:
                     "certifications": candidate.certifications or [],
                     "projects": candidate.projects or [],
                 }
-                
+
                 llm_eval = await self.llm_service.evaluate_candidate(cand_context, job_context)
 
                 # 10. Persist Screening Record
@@ -179,7 +177,9 @@ class ScreeningService:
                 self.resume_repo.update_status(resume.id, "SCREENED")
 
             except Exception as e:
-                logger.error(f"Error screening resume {resume.id} ('{resume.filename}'): {e}", exc_info=True)
+                logger.error(
+                    f"Error screening resume {resume.id} ('{resume.filename}'): {e}", exc_info=True
+                )
                 self.resume_repo.update_status(resume.id, "FAILED", error_message=str(e))
 
         # 11. Retrieve all screenings and rank

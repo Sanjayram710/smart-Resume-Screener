@@ -1,5 +1,5 @@
 from typing import Any, Dict
-from app.core.logging import logger
+
 from app.services.embedding_service import EmbeddingService
 from app.services.llm_service import LLMService
 from app.services.pdf_parser import PDFParser

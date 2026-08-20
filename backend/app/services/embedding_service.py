@@ -1,8 +1,9 @@
-import math
 import re
-from typing import List, Optional
+from typing import List
+
 import httpx
 import numpy as np
+
 from app.core.config import settings
 from app.core.logging import logger
 
@@ -103,7 +104,9 @@ class EmbeddingService:
                             "Falling back to local embedding vectorizer."
                         )
             except Exception as e:
-                logger.warning(f"Error calling OpenAI Embedding API: {e}. Falling back to local embedding.")
+                logger.warning(
+                    f"Error calling OpenAI Embedding API: {e}. Falling back to local embedding."
+                )
 
         # Default fallback
         return cls.generate_local_embedding(text)

@@ -1,5 +1,5 @@
-from typing import Any, Dict, List, Set, Tuple
-from app.core.config import settings
+from typing import Any, Dict, List
+
 from app.services.embedding_service import EmbeddingService
 from app.services.skill_normalizer import SkillNormalizer
 
@@ -13,10 +13,7 @@ class MatchingService:
 
     @classmethod
     def match_skills(
-        cls,
-        candidate_skills: List[str],
-        required_skills: List[str],
-        preferred_skills: List[str]
+        cls, candidate_skills: List[str], required_skills: List[str], preferred_skills: List[str]
     ) -> Dict[str, Any]:
         """
         Stage 1 & 2: Exact and Semantic Skill Matching.
@@ -43,19 +40,20 @@ class MatchingService:
 
             if best_sim >= 0.7:  # Match threshold
                 req_score_accum += best_sim
-                matched_skills_records.append({
-                    "skill": req_skill,
-                    "match_type": best_type,
-                    "similarity_score": round(best_sim, 2),
-                    "importance": "REQUIRED"
-                })
+                matched_skills_records.append(
+                    {
+                        "skill": req_skill,
+                        "match_type": best_type,
+                        "similarity_score": round(best_sim, 2),
+                        "importance": "REQUIRED",
+                    }
+                )
             else:
-                missing_skills_records.append({
-                    "skill": req_skill,
-                    "importance": "REQUIRED"
-                })
+                missing_skills_records.append({"skill": req_skill, "importance": "REQUIRED"})
 
-        req_coverage = req_score_accum / max(len(norm_required_skills), 1) if norm_required_skills else 1.0
+        req_coverage = (
+            req_score_accum / max(len(norm_required_skills), 1) if norm_required_skills else 1.0
+        )
 
         # 2. Match Preferred Skills (Weight: 25% of skill score)
         pref_score_accum = 0.0
@@ -71,19 +69,20 @@ class MatchingService:
 
             if best_sim >= 0.7:
                 pref_score_accum += best_sim
-                matched_skills_records.append({
-                    "skill": pref_skill,
-                    "match_type": best_type,
-                    "similarity_score": round(best_sim, 2),
-                    "importance": "PREFERRED"
-                })
+                matched_skills_records.append(
+                    {
+                        "skill": pref_skill,
+                        "match_type": best_type,
+                        "similarity_score": round(best_sim, 2),
+                        "importance": "PREFERRED",
+                    }
+                )
             else:
-                missing_skills_records.append({
-                    "skill": pref_skill,
-                    "importance": "PREFERRED"
-                })
+                missing_skills_records.append({"skill": pref_skill, "importance": "PREFERRED"})
 
-        pref_coverage = pref_score_accum / max(len(norm_preferred_skills), 1) if norm_preferred_skills else 1.0
+        pref_coverage = (
+            pref_score_accum / max(len(norm_preferred_skills), 1) if norm_preferred_skills else 1.0
+        )
 
         # Overall Skill Match Percentage (0 - 100)
         # If no preferred skills are listed, required skills account for 100%
@@ -120,7 +119,9 @@ class MatchingService:
         return round(min(100.0, max(0.0, score)), 2)
 
     @classmethod
-    def match_education(cls, candidate_education: List[Dict[str, Any]], education_requirements: List[str]) -> float:
+    def match_education(
+        cls, candidate_education: List[Dict[str, Any]], education_requirements: List[str]
+    ) -> float:
         """
         Stage 4: Education Matching.
         Evaluates candidate degree level against required level.
@@ -130,15 +131,33 @@ class MatchingService:
             return 100.0
 
         degree_rank = {
-            "phd": 5, "doctorate": 5, "ph.d": 5,
-            "master": 4, "m.s": 4, "ms": 4, "m.tech": 4, "mba": 4,
-            "bachelor": 3, "b.s": 3, "bs": 3, "b.e": 3, "b.tech": 3, "ba": 3, "b.a": 3,
-            "associate": 2, "diploma": 2,
+            "phd": 5,
+            "doctorate": 5,
+            "ph.d": 5,
+            "master": 4,
+            "m.s": 4,
+            "ms": 4,
+            "m.tech": 4,
+            "mba": 4,
+            "bachelor": 3,
+            "b.s": 3,
+            "bs": 3,
+            "b.e": 3,
+            "b.tech": 3,
+            "ba": 3,
+            "b.a": 3,
+            "associate": 2,
+            "diploma": 2,
         }
 
         # Find highest candidate degree rank
         highest_cand_rank = 1
-        cand_edu_text = " ".join([str(e.get("degree", "")) + " " + str(e.get("field_of_study", "")) for e in candidate_education]).lower()
+        cand_edu_text = " ".join(
+            [
+                str(e.get("degree", "")) + " " + str(e.get("field_of_study", ""))
+                for e in candidate_education
+            ]
+        ).lower()
         for key, rank in degree_rank.items():
             if key in cand_edu_text and rank > highest_cand_rank:
                 highest_cand_rank = rank
@@ -180,7 +199,9 @@ class MatchingService:
         return round(min(100.0, max(0.0, score)), 2)
 
     @classmethod
-    def match_semantic_relevance(cls, candidate_vector: List[float], job_vector: List[float]) -> float:
+    def match_semantic_relevance(
+        cls, candidate_vector: List[float], job_vector: List[float]
+    ) -> float:
         """
         Computes cosine similarity between Candidate embedding and Job embedding vector.
         """

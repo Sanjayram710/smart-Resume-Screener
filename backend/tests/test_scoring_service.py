@@ -1,5 +1,3 @@
-import pytest
-from app.core.config import settings
 from app.services.scoring_service import ScoringService
 
 

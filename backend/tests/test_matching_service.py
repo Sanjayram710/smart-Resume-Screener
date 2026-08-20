@@ -1,4 +1,3 @@
-import pytest
 from app.services.matching_service import MatchingService
 
 

@@ -1,4 +1,3 @@
-import pytest
 from app.services.text_cleaner import TextCleaner
 
 

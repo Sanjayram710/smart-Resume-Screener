@@ -1,6 +1,7 @@
 import re
 import unicodedata
-from typing import Dict, List, Tuple
+from typing import Dict, List
+
 from app.core.security import redact_protected_attributes
 
 
@@ -50,7 +51,7 @@ class TextCleaner:
         "awards": [
             r"^\s*awards?\s*(?:&|and)\s*honors?\b",
             r"^\s*achievements?\b",
-        ]
+        ],
     }
 
     @classmethod
@@ -64,15 +65,17 @@ class TextCleaner:
 
         # Normalize unicode (e.g. smart quotes, em-dashes, special bullets)
         text = unicodedata.normalize("NFKD", text)
-        
+
         # Replace non-standard bullets with standard dash
         text = re.sub(r"[\u2022\u2023\u25E6\u2043\u2219\u25CB\u25CF\u25AA\u25AB]", "\n- ", text)
-        
+
         # Standardize linebreaks
         text = text.replace("\r\n", "\n").replace("\r", "\n")
 
         # Strip unprintable control characters except standard whitespace
-        text = "".join(ch for ch in text if ch == "\n" or ch == "\t" or unicodedata.category(ch)[0] != "C")
+        text = "".join(
+            ch for ch in text if ch == "\n" or ch == "\t" or unicodedata.category(ch)[0] != "C"
+        )
 
         # Collapse excessive horizontal whitespace
         text = re.sub(r"[ \t]+", " ", text)
@@ -97,7 +100,7 @@ class TextCleaner:
             "projects": [],
             "certifications": [],
             "awards": [],
-            "other": []
+            "other": [],
         }
 
         current_section = "header"

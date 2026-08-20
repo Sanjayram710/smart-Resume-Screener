@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
+
 from app.api.deps import get_db
 from app.core.exceptions import ResourceNotFoundException
 from app.repositories.job_repository import JobRepository
 from app.repositories.screening_repository import ScreeningRepository
 from app.schemas.common import APIResponse
 from app.schemas.screening import (
-    CandidateRankingItem,
     JobScreeningResult,
     MatchedSkillSchema,
     MissingSkillSchema,

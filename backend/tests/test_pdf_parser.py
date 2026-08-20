@@ -1,8 +1,9 @@
 import io
+
 import pytest
-import fitz
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
+
 from app.core.exceptions import PDFProcessingException
 from app.services.pdf_parser import PDFParser
 

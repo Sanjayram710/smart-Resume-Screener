@@ -1,8 +1,10 @@
 from typing import List
-from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
+
+from fastapi import APIRouter, Depends, File, UploadFile, status
 from sqlalchemy.orm import Session
+
 from app.api.deps import get_db, get_llm_service
-from app.core.exceptions import ResourceNotFoundException, ValidationException
+from app.core.exceptions import ResourceNotFoundException
 from app.core.logging import logger
 from app.core.security import compute_file_hash
 from app.repositories.candidate_repository import CandidateRepository
@@ -58,10 +60,12 @@ async def upload_resumes(
             f_hash = compute_file_hash(content)
             existing = resume_repo.get_by_hash(job_id, f_hash)
             if existing:
-                failed_resumes.append({
-                    "filename": filename,
-                    "reason": f"Duplicate resume already uploaded (ID: {existing.id})"
-                })
+                failed_resumes.append(
+                    {
+                        "filename": filename,
+                        "reason": f"Duplicate resume already uploaded (ID: {existing.id})",
+                    }
+                )
                 continue
 
             # 3. Store file on disk
@@ -88,7 +92,9 @@ async def upload_resumes(
                 resume_repo.update_status(resume.id, "PARSED")
                 cand_id = candidate.id
             except Exception as parse_err:
-                logger.warning(f"Initial candidate parsing failed for resume {resume.id}: {parse_err}")
+                logger.warning(
+                    f"Initial candidate parsing failed for resume {resume.id}: {parse_err}"
+                )
                 resume_repo.update_status(resume.id, "PENDING", error_message=str(parse_err))
                 cand_id = None
 
@@ -107,10 +113,7 @@ async def upload_resumes(
 
         except Exception as e:
             logger.error(f"Failed to process uploaded file '{file.filename}': {e}")
-            failed_resumes.append({
-                "filename": file.filename or "unknown",
-                "reason": str(e)
-            })
+            failed_resumes.append({"filename": file.filename or "unknown", "reason": str(e)})
 
     result = ResumeBatchUploadResponse(
         total_uploaded=len(successful_resumes),

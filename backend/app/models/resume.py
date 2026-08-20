@@ -1,6 +1,8 @@
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import relationship
+
 from app.db.database import Base
 
 
@@ -19,4 +21,6 @@ class Resume(Base):
 
     # Relationships
     job = relationship("Job", back_populates="resumes")
-    candidate = relationship("Candidate", back_populates="resume", uselist=False, cascade="all, delete-orphan")
+    candidate = relationship(
+        "Candidate", back_populates="resume", uselist=False, cascade="all, delete-orphan"
+    )

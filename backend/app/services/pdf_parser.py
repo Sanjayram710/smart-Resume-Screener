@@ -1,6 +1,7 @@
-import io
-from typing import Dict, Any, Tuple
+from typing import Any, Dict, Tuple
+
 import pymupdf as fitz
+
 from app.core.exceptions import PDFProcessingException
 from app.core.logging import logger
 
@@ -17,16 +18,16 @@ class PDFParser:
         Returns a tuple of (extracted_text, metadata).
         """
         ext = filename.rsplit(".", 1)[-1].lower() if "." in filename else ""
-        
+
         if ext == "txt":
             try:
                 text = file_bytes.decode("utf-8")
             except UnicodeDecodeError:
                 text = file_bytes.decode("latin-1", errors="ignore")
-            
+
             if not text.strip():
                 raise PDFProcessingException("Text file contains no readable text.")
-                
+
             return text.strip(), {"pages": 1, "format": "txt", "char_count": len(text)}
 
         # PDF extraction

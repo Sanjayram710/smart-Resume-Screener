@@ -1,4 +1,5 @@
 from typing import Any, Dict, List
+
 from app.services.embedding_service import EmbeddingService
 from app.services.llm_service import LLMService
 from app.services.skill_normalizer import SkillNormalizer

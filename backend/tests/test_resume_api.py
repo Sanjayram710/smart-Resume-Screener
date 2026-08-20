@@ -1,4 +1,5 @@
 import io
+
 from fastapi.testclient import TestClient
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -30,7 +31,9 @@ def test_upload_resume_and_list(client: TestClient):
     job_id = job_resp.json()["data"]["id"]
 
     # 2. Upload Resume PDF
-    pdf_bytes = create_pdf("Alice Miller - Senior React and TypeScript Engineer with 4 years experience.")
+    pdf_bytes = create_pdf(
+        "Alice Miller - Senior React and TypeScript Engineer with 4 years experience."
+    )
     files = [("files", ("alice_resume.pdf", pdf_bytes, "application/pdf"))]
 
     upload_resp = client.post(f"/api/jobs/{job_id}/resumes", files=files)

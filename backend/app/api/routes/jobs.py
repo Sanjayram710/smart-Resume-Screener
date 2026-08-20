@@ -1,6 +1,8 @@
 from typing import List
-from fastapi import APIRouter, Depends, HTTPException, status
+
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
+
 from app.api.deps import get_db, get_llm_service
 from app.core.exceptions import ResourceNotFoundException
 from app.repositories.job_repository import JobRepository

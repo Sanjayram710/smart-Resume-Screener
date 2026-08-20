@@ -1,5 +1,5 @@
 import re
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Set, Tuple
 
 
 class SkillNormalizer:
@@ -23,7 +23,6 @@ class SkillNormalizer:
         "csharp": "c#",
         "ruby on rails": "ruby on rails",
         "ror": "ruby on rails",
-
         # Frontend
         "react.js": "react",
         "reactjs": "react",
@@ -39,7 +38,6 @@ class SkillNormalizer:
         "html5": "html",
         "css3": "css",
         "sass/scss": "scss",
-
         # Backend & Frameworks
         "fastapi": "fastapi",
         "fast-api": "fastapi",
@@ -57,7 +55,6 @@ class SkillNormalizer:
         ".net core": ".net",
         "dotnet": ".net",
         "asp.net": ".net",
-
         # Databases & Storage
         "postgres": "postgresql",
         "postgresql": "postgresql",
@@ -69,7 +66,6 @@ class SkillNormalizer:
         "redis cache": "redis",
         "dynamodb": "dynamodb",
         "elasticsearch": "elasticsearch",
-
         # Cloud & DevOps
         "aws": "amazon web services",
         "amazon web services": "amazon web services",
@@ -85,7 +81,6 @@ class SkillNormalizer:
         "github actions": "github actions",
         "jenkins": "jenkins",
         "terraform": "terraform",
-
         # Architecture & Practices
         "rest": "rest api",
         "restful": "rest api",
@@ -101,7 +96,6 @@ class SkillNormalizer:
         "unit testing": "unit testing",
         "agile/scrum": "agile",
         "scrum": "agile",
-
         # AI / ML
         "ml": "machine learning",
         "machine learning": "machine learning",
@@ -119,7 +113,16 @@ class SkillNormalizer:
 
     # Skill Family Mappings (for semantic cluster overlap)
     SKILL_FAMILIES: Dict[str, Set[str]] = {
-        "sql_databases": {"postgresql", "mysql", "sqlite", "sql server", "oracle", "mariadb", "sql database", "relational database"},
+        "sql_databases": {
+            "postgresql",
+            "mysql",
+            "sqlite",
+            "sql server",
+            "oracle",
+            "mariadb",
+            "sql database",
+            "relational database",
+        },
         "nosql_databases": {"mongodb", "dynamodb", "cassandra", "couchdb", "redis", "nosql"},
         "python_web": {"fastapi", "django", "flask", "tornado", "pyramid", "django rest framework"},
         "js_frontend": {"react", "vue", "angular", "svelte", "next.js", "nuxt.js"},
@@ -185,7 +188,7 @@ class SkillNormalizer:
         # 2. Substring / Token containment (e.g. 'react' in 'react native' or 'rest api' vs 'api')
         c_tokens = set(c_norm.split())
         t_tokens = set(t_norm.split())
-        
+
         if c_tokens == t_tokens:
             return 1.0, "EXACT"
 

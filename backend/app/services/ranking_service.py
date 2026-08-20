@@ -1,4 +1,5 @@
 from typing import List
+
 from app.models.screening import Screening
 from app.schemas.screening import CandidateRankingItem
 
@@ -15,7 +16,7 @@ class RankingService:
         sorted_screenings = sorted(
             screenings,
             key=lambda s: (s.overall_score, s.skill_score, s.experience_score),
-            reverse=True
+            reverse=True,
         )
 
         ranked_items: List[CandidateRankingItem] = []
@@ -29,7 +30,9 @@ class RankingService:
             top_strengths = s.strengths[:3] if s.strengths else []
 
             explanation_snippet = (
-                s.explanation[:160] + "..." if len(s.explanation or "") > 160 else (s.explanation or "")
+                s.explanation[:160] + "..."
+                if len(s.explanation or "") > 160
+                else (s.explanation or "")
             )
 
             ranked_items.append(
