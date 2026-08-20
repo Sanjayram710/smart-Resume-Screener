@@ -1,0 +1,26 @@
+{
+  "title": "Machine Learning & NLP Specialist",
+  "company": "Cognitive AI Systems",
+  "description": "We are seeking a Machine Learning Engineer to design and deploy NLP and transformer-based models in production. You will build inference APIs in FastAPI and scale containerized deployments.\n\nQualifications:\n- 3+ years experience in Python, PyTorch/TensorFlow, and Scikit-learn.\n- Proven track record deploying ML models via Docker and FastAPI.\n- Experience with NLP, embeddings, and vector similarity search.",
+  "required_skills": [
+    "Python",
+    "PyTorch",
+    "Scikit-learn",
+    "Machine Learning",
+    "NLP",
+    "FastAPI"
+  ],
+  "preferred_skills": [
+    "Docker",
+    "Pandas",
+    "NumPy",
+    "PostgreSQL",
+    "LLMs"
+  ],
+  "minimum_experience": 3.0,
+  "education_requirements": [
+    "Master's or Bachelor's in Computer Science, Data Science, or Mathematics"
+  ],
+  "certifications": [],
+  "auto_extract": true
+}

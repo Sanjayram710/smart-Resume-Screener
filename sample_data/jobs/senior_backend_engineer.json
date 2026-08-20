@@ -1,0 +1,28 @@
+{
+  "title": "Senior Python & Cloud Backend Engineer",
+  "company": "Antigravity Technologies",
+  "description": "We are seeking a high-caliber Senior Backend Engineer to architect, build, and maintain our high-throughput distributed microservices. You will collaborate with product and infrastructure teams to design resilient RESTful APIs, optimize PostgreSQL queries, and deploy containerized services onto cloud environments.\n\nKey Responsibilities:\n- Design scalable backend microservices using Python, FastAPI, and SQLAlchemy.\n- Optimize relational database queries in PostgreSQL and manage caching with Redis.\n- Build CI/CD deployment pipelines with Docker and AWS.\n- Write comprehensive unit and integration tests.\n\nQualifications:\n- 4+ years of professional backend engineering experience in Python.\n- Deep hands-on experience with FastAPI or Django and PostgreSQL.\n- Solid understanding of Docker containerization and AWS cloud infrastructure.\n- Bachelor's degree in Computer Science, Software Engineering, or equivalent experience.",
+  "required_skills": [
+    "Python",
+    "FastAPI",
+    "PostgreSQL",
+    "Docker",
+    "REST API",
+    "SQLAlchemy"
+  ],
+  "preferred_skills": [
+    "AWS",
+    "Kubernetes",
+    "Redis",
+    "CI/CD",
+    "Microservices"
+  ],
+  "minimum_experience": 4.0,
+  "education_requirements": [
+    "Bachelor's Degree in Computer Science, Software Engineering, or related STEM field"
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect (Optional)"
+  ],
+  "auto_extract": true
+}

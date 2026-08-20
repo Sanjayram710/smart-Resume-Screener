@@ -1,0 +1,26 @@
+{
+  "title": "Senior Frontend / Fullstack Engineer",
+  "company": "PixelCraft Studios",
+  "description": "Looking for a seasoned Frontend Engineer proficient with React, TypeScript, and modern styling libraries like Tailwind CSS. You will build dynamic recruiter portals and data visualization tools.\n\nQualifications:\n- 3+ years experience in React, TypeScript, and modern JavaScript.\n- Strong expertise in Tailwind CSS, responsive web development, and state management.\n- Familiarity with REST APIs, GraphQL, and Node.js.\n- Bachelor's in CS or equivalent.",
+  "required_skills": [
+    "React",
+    "TypeScript",
+    "JavaScript",
+    "Tailwind CSS",
+    "HTML",
+    "CSS"
+  ],
+  "preferred_skills": [
+    "Node.js",
+    "Next.js",
+    "REST API",
+    "GraphQL",
+    "Docker"
+  ],
+  "minimum_experience": 3.0,
+  "education_requirements": [
+    "Bachelor's in Computer Science or related degree"
+  ],
+  "certifications": [],
+  "auto_extract": true
+}
