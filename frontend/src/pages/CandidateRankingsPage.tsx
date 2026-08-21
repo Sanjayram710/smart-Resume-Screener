@@ -69,7 +69,7 @@ export const CandidateRankingsPage: React.FC = () => {
         <ErrorMessage message={error || 'Rankings not found'} onRetry={loadRankings} />
         <button
           onClick={() => navigate('/')}
-          className="text-xs text-emerald-400 hover:underline flex items-center space-x-1"
+          className="text-xs text-[#EA580C] hover:underline flex items-center space-x-1 font-bold"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Dashboard</span>
@@ -85,7 +85,7 @@ export const CandidateRankingsPage: React.FC = () => {
         <button
           type="button"
           onClick={() => navigate(`/jobs/${result.job_id}`)}
-          className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-300 clay-btn-secondary"
+          className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Job #{result.job_id}</span>
@@ -94,9 +94,9 @@ export const CandidateRankingsPage: React.FC = () => {
         <div className="flex items-center space-x-3">
           <Link
             to={`/jobs/${result.job_id}/upload`}
-            className="px-4 py-2 text-xs font-bold text-slate-200 clay-btn-secondary flex items-center space-x-1.5"
+            className="px-4 py-2 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary flex items-center space-x-1.5"
           >
-            <FileUp className="w-3.5 h-3.5 text-emerald-400" />
+            <FileUp className="w-3.5 h-3.5 text-[#EA580C]" />
             <span>Upload More</span>
           </Link>
           <button
@@ -111,18 +111,18 @@ export const CandidateRankingsPage: React.FC = () => {
       </div>
 
       {/* Header Requisition Summary */}
-      <div className="clay-card rounded-[28px] p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="clay-card rounded-[28px] p-6 sm:p-7 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#FFFCF7] border border-[#F0E4D3]">
         <div>
-          <div className="flex items-center space-x-2 text-xs font-bold text-emerald-300 mb-1.5">
-            <div className="p-1.5 rounded-xl bg-emerald-500/20 clay-icon-blob">
-              <Trophy className="w-4 h-4 text-emerald-400" />
+          <div className="flex items-center space-x-2 text-xs font-bold text-[#C2410C] mb-1.5">
+            <div className="p-1.5 rounded-xl bg-[#FFEDD5] clay-icon-blob">
+              <Trophy className="w-4 h-4 text-[#EA580C]" />
             </div>
             <span>Candidate Leaderboard & Deterministic Rankings</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white font-['Outfit'] tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#2A1B0F] font-['Outfit'] tracking-tight">
             {result.job_title}
           </h1>
-          <p className="text-xs text-slate-300 mt-1 font-medium">{result.company}</p>
+          <p className="text-xs text-[#6B553F] mt-1 font-medium">{result.company}</p>
         </div>
       </div>
 
@@ -133,32 +133,32 @@ export const CandidateRankingsPage: React.FC = () => {
           value={result.screened_candidates_count}
           subtitle="Processed candidates"
           icon={Users}
-          iconColor="text-slate-200"
-          iconBg="bg-slate-800"
+          iconColor="text-[#6B553F]"
+          iconBg="bg-[#F5EAD9]"
         />
         <StatsCard
           title="Shortlisted"
           value={result.shortlisted_count}
           subtitle="Score ≥ 7.0 (High Match)"
           icon={CheckCircle2}
-          iconColor="text-emerald-300"
-          iconBg="bg-emerald-500/20"
+          iconColor="text-[#15803D]"
+          iconBg="bg-[#DCFCE7]"
         />
         <StatsCard
           title="Review Required"
           value={result.review_count}
           subtitle="Score 5.0 – 6.9 (Partial Match)"
           icon={Bot}
-          iconColor="text-amber-300"
-          iconBg="bg-amber-500/20"
+          iconColor="text-[#92400E]"
+          iconBg="bg-[#FEF3C7]"
         />
         <StatsCard
           title="Not Recommended"
           value={result.not_recommended_count}
           subtitle="Score < 5.0 (Weak Match)"
           icon={Sparkles}
-          iconColor="text-rose-300"
-          iconBg="bg-rose-500/20"
+          iconColor="text-[#991B1B]"
+          iconBg="bg-[#FEE2E2]"
         />
       </div>
 

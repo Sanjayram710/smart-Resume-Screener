@@ -134,71 +134,71 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Quick Template Picker (Molded Clay Container) */}
-      <div className="clay-card p-5 rounded-[28px] space-y-3">
-        <div className="flex items-center space-x-2 text-xs text-slate-300">
-          <Sparkles className="w-4 h-4 text-emerald-400" />
-          <span className="font-bold text-white">Quick Demo Templates (Click to Auto-fill):</span>
+      {/* Quick Template Picker (Molded Warm Clay Container) */}
+      <div className="clay-card p-5 rounded-[28px] space-y-3 bg-[#FFFCF7] border border-[#F0E4D3]">
+        <div className="flex items-center space-x-2 text-xs text-[#6B553F]">
+          <Sparkles className="w-4 h-4 text-[#EA580C]" />
+          <span className="font-extrabold text-[#2A1B0F]">Quick Demo Templates (Click to Auto-fill):</span>
         </div>
         <div className="flex flex-wrap items-center gap-2.5">
           <button
             type="button"
             onClick={() => handleLoadSample('backend')}
-            className="px-3.5 py-1.5 text-xs font-bold text-slate-200 clay-btn-secondary"
+            className="px-3.5 py-1.5 text-xs font-bold text-[#4A3520] clay-btn-secondary"
           >
             Backend (Python)
           </button>
           <button
             type="button"
             onClick={() => handleLoadSample('frontend')}
-            className="px-3.5 py-1.5 text-xs font-bold text-slate-200 clay-btn-secondary"
+            className="px-3.5 py-1.5 text-xs font-bold text-[#4A3520] clay-btn-secondary"
           >
             Frontend (React)
           </button>
           <button
             type="button"
             onClick={() => handleLoadSample('ml')}
-            className="px-3.5 py-1.5 text-xs font-bold text-slate-200 clay-btn-secondary"
+            className="px-3.5 py-1.5 text-xs font-bold text-[#4A3520] clay-btn-secondary"
           >
             AI / ML Engineer
           </button>
           <button
             type="button"
             onClick={() => handleLoadSample('devops')}
-            className="px-3.5 py-1.5 text-xs font-bold text-slate-200 clay-btn-secondary"
+            className="px-3.5 py-1.5 text-xs font-bold text-[#4A3520] clay-btn-secondary"
           >
             DevOps & Cloud
           </button>
           <button
             type="button"
             onClick={() => handleLoadSample('fullstack')}
-            className="px-3.5 py-1.5 text-xs font-bold text-slate-200 clay-btn-secondary"
+            className="px-3.5 py-1.5 text-xs font-bold text-[#4A3520] clay-btn-secondary"
           >
             Full Stack (TS/Next)
           </button>
           <button
             type="button"
             onClick={() => handleLoadSample('data')}
-            className="px-3.5 py-1.5 text-xs font-bold text-slate-200 clay-btn-secondary"
+            className="px-3.5 py-1.5 text-xs font-bold text-[#4A3520] clay-btn-secondary"
           >
             Data & Analytics
           </button>
           <button
             type="button"
             onClick={() => handleLoadSample('security')}
-            className="px-3.5 py-1.5 text-xs font-bold text-slate-200 clay-btn-secondary"
+            className="px-3.5 py-1.5 text-xs font-bold text-[#4A3520] clay-btn-secondary"
           >
             Cybersecurity
           </button>
         </div>
       </div>
 
-      <div className="clay-card rounded-[32px] p-7 sm:p-8 space-y-6">
+      <div className="clay-card rounded-[32px] p-7 sm:p-8 space-y-6 bg-[#FFFCF7] border border-[#F0E4D3]">
         {/* Title & Company */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-xs font-bold text-slate-200 mb-2">
-              Job Title <span className="text-rose-400">*</span>
+            <label className="block text-xs font-extrabold text-[#2A1B0F] mb-2">
+              Job Title <span className="text-rose-500">*</span>
             </label>
             <input
               type="text"
@@ -206,13 +206,13 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Senior Backend Engineer"
-              className="w-full px-4 py-3 rounded-2xl clay-inset text-white text-sm focus:outline-none focus:border-emerald-500/50 transition-colors placeholder:text-slate-500"
+              className="w-full px-4 py-3 rounded-2xl clay-inset text-[#2A1B0F] text-sm focus:outline-none focus:border-[#FDBA74] transition-colors placeholder:text-[#8B7355] font-medium"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-200 mb-2">
-              Hiring Company <span className="text-rose-400">*</span>
+            <label className="block text-xs font-extrabold text-[#2A1B0F] mb-2">
+              Hiring Company <span className="text-rose-500">*</span>
             </label>
             <input
               type="text"
@@ -220,15 +220,15 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
               value={company}
               onChange={(e) => setCompany(e.target.value)}
               placeholder="e.g. Antigravity Inc."
-              className="w-full px-4 py-3 rounded-2xl clay-inset text-white text-sm focus:outline-none focus:border-emerald-500/50 transition-colors placeholder:text-slate-500"
+              className="w-full px-4 py-3 rounded-2xl clay-inset text-[#2A1B0F] text-sm focus:outline-none focus:border-[#FDBA74] transition-colors placeholder:text-[#8B7355] font-medium"
             />
           </div>
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-xs font-bold text-slate-200 mb-2">
-            Full Job Description <span className="text-rose-400">*</span>
+          <label className="block text-xs font-extrabold text-[#2A1B0F] mb-2">
+            Full Job Description <span className="text-rose-500">*</span>
           </label>
           <textarea
             required
@@ -236,13 +236,13 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Paste complete job description, duties, requirements, and qualifications..."
-            className="w-full px-4 py-3 rounded-2xl clay-inset text-white text-sm focus:outline-none focus:border-emerald-500/50 transition-colors placeholder:text-slate-500 leading-relaxed"
+            className="w-full px-4 py-3 rounded-2xl clay-inset text-[#2A1B0F] text-sm focus:outline-none focus:border-[#FDBA74] transition-colors placeholder:text-[#8B7355] leading-relaxed font-medium"
           />
         </div>
 
         {/* Required Skills Tag Input */}
         <div>
-          <label className="block text-xs font-bold text-slate-200 mb-2">
+          <label className="block text-xs font-extrabold text-[#2A1B0F] mb-2">
             Mandatory Required Skills (Weight: 75% of skill score)
           </label>
           <div className="flex space-x-2.5">
@@ -257,12 +257,12 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
                 }
               }}
               placeholder="Type skill & press Add (e.g. Python, FastAPI, PostgreSQL)"
-              className="flex-1 px-4 py-2.5 rounded-full clay-inset text-white text-xs focus:outline-none focus:border-emerald-500/50 placeholder:text-slate-500"
+              className="flex-1 px-4 py-2.5 rounded-full clay-inset text-[#2A1B0F] text-xs focus:outline-none focus:border-[#FDBA74] placeholder:text-[#8B7355] font-medium"
             />
             <button
               type="button"
               onClick={handleAddRequiredSkill}
-              className="px-4 py-2 text-xs font-bold text-slate-200 clay-btn-secondary flex items-center space-x-1"
+              className="px-4 py-2 text-xs font-bold text-[#4A3520] clay-btn-secondary flex items-center space-x-1"
             >
               <Plus className="w-4 h-4" />
               <span>Add</span>
@@ -273,13 +273,13 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
               {requiredSkills.map((skill) => (
                 <span
                   key={skill}
-                  className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold clay-inset-pill bg-[#0b1b1f] text-emerald-200 border border-emerald-500/40"
+                  className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold clay-inset-pill bg-[#F5EAD9] text-[#6B4A2C] border border-[#EBDCC4]"
                 >
                   <span>{skill}</span>
                   <button
                     type="button"
                     onClick={() => removeRequiredSkill(skill)}
-                    className="ml-1.5 text-emerald-400 hover:text-emerald-200"
+                    className="ml-1.5 text-[#A05A2C] hover:text-[#C2410C]"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -291,7 +291,7 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
 
         {/* Preferred Skills Tag Input */}
         <div>
-          <label className="block text-xs font-bold text-slate-200 mb-2">
+          <label className="block text-xs font-extrabold text-[#2A1B0F] mb-2">
             Preferred / Bonus Skills (Weight: 25% of skill score)
           </label>
           <div className="flex space-x-2.5">
@@ -306,12 +306,12 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
                 }
               }}
               placeholder="Type preferred skill & press Add (e.g. AWS, Kubernetes, Redis)"
-              className="flex-1 px-4 py-2.5 rounded-full clay-inset text-white text-xs focus:outline-none focus:border-emerald-500/50 placeholder:text-slate-500"
+              className="flex-1 px-4 py-2.5 rounded-full clay-inset text-[#2A1B0F] text-xs focus:outline-none focus:border-[#FDBA74] placeholder:text-[#8B7355] font-medium"
             />
             <button
               type="button"
               onClick={handleAddPreferredSkill}
-              className="px-4 py-2 text-xs font-bold text-slate-200 clay-btn-secondary flex items-center space-x-1"
+              className="px-4 py-2 text-xs font-bold text-[#4A3520] clay-btn-secondary flex items-center space-x-1"
             >
               <Plus className="w-4 h-4" />
               <span>Add</span>
@@ -322,13 +322,13 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
               {preferredSkills.map((skill) => (
                 <span
                   key={skill}
-                  className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold clay-inset-pill bg-[#0f172a] text-sky-200 border border-sky-500/40"
+                  className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold clay-inset-pill bg-[#FAF0E1] text-[#9A7049] border border-[#EBDCC4]"
                 >
                   <span>{skill}</span>
                   <button
                     type="button"
                     onClick={() => removePreferredSkill(skill)}
-                    className="ml-1.5 text-sky-400 hover:text-sky-200"
+                    className="ml-1.5 text-[#B45309] hover:text-[#EA580C]"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -341,8 +341,8 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
         {/* Minimum Experience & Education */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-xs font-bold text-slate-200 mb-2">
-              Minimum Required Experience (Years): <span className="text-emerald-400 font-extrabold">{minExp} yrs</span>
+            <label className="block text-xs font-extrabold text-[#2A1B0F] mb-2">
+              Minimum Required Experience (Years): <span className="text-[#EA580C] font-extrabold">{minExp} yrs</span>
             </label>
             <input
               type="range"
@@ -351,12 +351,12 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
               step="0.5"
               value={minExp}
               onChange={(e) => setMinExp(parseFloat(e.target.value))}
-              className="w-full accent-emerald-500 bg-slate-800 h-2 rounded-lg cursor-pointer"
+              className="w-full accent-[#EA580C] bg-[#EBDCC4] h-2 rounded-lg cursor-pointer"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-200 mb-2">
+            <label className="block text-xs font-extrabold text-[#2A1B0F] mb-2">
               Education Requirement
             </label>
             <input
@@ -364,7 +364,7 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
               value={education}
               onChange={(e) => setEducation(e.target.value)}
               placeholder="e.g. Bachelor's in Computer Science"
-              className="w-full px-4 py-2.5 rounded-full clay-inset text-white text-xs focus:outline-none focus:border-emerald-500/50 placeholder:text-slate-500"
+              className="w-full px-4 py-2.5 rounded-full clay-inset text-[#2A1B0F] text-xs focus:outline-none focus:border-[#FDBA74] placeholder:text-[#8B7355] font-medium"
             />
           </div>
         </div>
@@ -376,10 +376,10 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
             id="autoExtract"
             checked={autoExtract}
             onChange={(e) => setAutoExtract(e.target.checked)}
-            className="w-4 h-4 rounded text-emerald-500 focus:ring-emerald-500 bg-slate-900 border-white/10"
+            className="w-4 h-4 rounded text-[#EA580C] focus:ring-[#EA580C] bg-[#F5EAD9] border-[#EBDCC4]"
           />
-          <label htmlFor="autoExtract" className="text-xs text-slate-200 font-medium flex items-center space-x-2 cursor-pointer">
-            <Bot className="w-4 h-4 text-emerald-400" />
+          <label htmlFor="autoExtract" className="text-xs text-[#4A3520] font-bold flex items-center space-x-2 cursor-pointer">
+            <Bot className="w-4 h-4 text-[#EA580C]" />
             <span>Enable AI Auto-Extraction to parse requirements & generate embeddings</span>
           </label>
         </div>

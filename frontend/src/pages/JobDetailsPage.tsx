@@ -87,7 +87,7 @@ export const JobDetailsPage: React.FC = () => {
         <ErrorMessage message={error || 'Job not found'} onRetry={loadData} />
         <button
           onClick={() => navigate('/')}
-          className="text-xs text-emerald-400 hover:underline flex items-center space-x-1"
+          className="text-xs text-[#EA580C] hover:underline flex items-center space-x-1 font-bold"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Dashboard</span>
@@ -104,46 +104,46 @@ export const JobDetailsPage: React.FC = () => {
       <button
         type="button"
         onClick={() => navigate('/')}
-        className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-300 clay-btn-secondary"
+        className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         <span>Back to Dashboard</span>
       </button>
 
-      {/* Header Card (Molded Clay Requisition Header) */}
-      <div className="clay-card rounded-[32px] p-7 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      {/* Header Card (Molded Warm Clay Requisition Header) */}
+      <div className="clay-card rounded-[32px] p-7 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 bg-[#FFFCF7] border border-[#F0E4D3]">
         <div className="space-y-3">
           <div className="flex items-center space-x-3">
             <JobStatusBadge status={job.status || 'Open'} size="md" />
             <select
               value={job.status || 'Open'}
               onChange={(e) => handleStatusChange(e.target.value as JobStatus)}
-              className="clay-inset text-slate-200 text-xs font-bold rounded-full px-3 py-1 focus:outline-none cursor-pointer"
+              className="clay-inset text-[#2A1B0F] text-xs font-bold rounded-full px-3 py-1 focus:outline-none cursor-pointer border-[#EBDCC4]"
             >
-              <option value="Open" className="bg-slate-900">Status: Open</option>
-              <option value="Paused" className="bg-slate-900">Status: Paused</option>
-              <option value="Closed" className="bg-slate-900">Status: Closed</option>
+              <option value="Open" className="bg-[#FFFCF7] text-[#2A1B0F]">Status: Open</option>
+              <option value="Paused" className="bg-[#FFFCF7] text-[#2A1B0F]">Status: Paused</option>
+              <option value="Closed" className="bg-[#FFFCF7] text-[#2A1B0F]">Status: Closed</option>
             </select>
-            <span className="text-xs text-slate-400 font-mono font-bold">Job #{job.id}</span>
+            <span className="text-xs text-[#8B7355] font-mono font-bold">Job #{job.id}</span>
           </div>
 
-          <h1 className="text-2xl sm:text-4xl font-extrabold text-white font-['Outfit'] tracking-tight">
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-[#2A1B0F] font-['Outfit'] tracking-tight">
             {job.title}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300">
-            <span className="flex items-center space-x-1.5 text-slate-200 font-bold">
-              <Building className="w-4 h-4 text-slate-400" />
+          <div className="flex flex-wrap items-center gap-4 text-xs text-[#6B553F]">
+            <span className="flex items-center space-x-1.5 text-[#4A3520] font-bold">
+              <Building className="w-4 h-4 text-[#8B7355]" />
               <span>{job.company}</span>
             </span>
-            <span className="text-slate-500">•</span>
-            <span className="flex items-center space-x-1.5 text-slate-300 font-medium">
-              <Clock className="w-4 h-4 text-slate-400" />
+            <span className="text-[#C5B49F]">•</span>
+            <span className="flex items-center space-x-1.5 text-[#6B553F] font-semibold">
+              <Clock className="w-4 h-4 text-[#8B7355]" />
               <span>{job.minimum_experience} Years Minimum Experience</span>
             </span>
-            <span className="text-slate-500">•</span>
-            <span className="flex items-center space-x-1.5 text-emerald-300 font-bold">
-              <FileUp className="w-4 h-4" />
+            <span className="text-[#C5B49F]">•</span>
+            <span className="flex items-center space-x-1.5 text-[#C2410C] font-extrabold">
+              <FileUp className="w-4 h-4 text-[#EA580C]" />
               <span>{resumes.length} Uploaded Resumes</span>
             </span>
           </div>
@@ -154,17 +154,17 @@ export const JobDetailsPage: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsMethodologyOpen(true)}
-            className="px-4 py-2.5 text-xs font-bold text-slate-200 clay-btn-secondary flex items-center space-x-1.5"
+            className="px-4 py-2.5 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary flex items-center space-x-1.5"
           >
-            <HelpCircle className="w-4 h-4 text-cyan-400" />
+            <HelpCircle className="w-4 h-4 text-[#EA580C]" />
             <span>Scoring Model</span>
           </button>
 
           <Link
             to={`/jobs/${job.id}/upload`}
-            className="px-4 py-2.5 text-xs font-bold text-slate-100 clay-btn-secondary flex items-center space-x-2"
+            className="px-4 py-2.5 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary flex items-center space-x-2"
           >
-            <FileUp className="w-4 h-4 text-emerald-400" />
+            <FileUp className="w-4 h-4 text-[#EA580C]" />
             <span>Upload Resumes</span>
           </Link>
 
@@ -181,7 +181,7 @@ export const JobDetailsPage: React.FC = () => {
           {hasScreened ? (
             <Link
               to={`/jobs/${job.id}/rankings`}
-              className="px-4 py-2.5 text-xs font-bold text-slate-100 clay-btn-secondary flex items-center space-x-1.5"
+              className="px-4 py-2.5 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary flex items-center space-x-1.5"
             >
               <span>View Leaderboard</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -190,11 +190,11 @@ export const JobDetailsPage: React.FC = () => {
             <button
               type="button"
               disabled
-              className="px-4 py-2.5 rounded-full bg-[#0a0f1d] text-slate-500 text-xs font-medium border border-white/5 cursor-not-allowed flex items-center space-x-1.5"
+              className="px-4 py-2.5 rounded-full bg-[#F1E5D4] text-[#8C7660] text-xs font-bold border border-[#DFCCA8] cursor-not-allowed flex items-center space-x-1.5"
               title="No candidates screened yet"
             >
               <span>View Leaderboard</span>
-              <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
+              <ChevronRight className="w-3.5 h-3.5 text-[#8C7660]" />
             </button>
           )}
         </div>
@@ -205,13 +205,13 @@ export const JobDetailsPage: React.FC = () => {
         {/* Left Column: Requirements and Job Spec */}
         <div className="lg:col-span-2 space-y-6">
           {/* Skills Required & Preferred */}
-          <div className="clay-card rounded-[28px] p-7 space-y-5">
-            <h3 className="text-sm font-extrabold text-white uppercase tracking-wider font-['Outfit']">
+          <div className="clay-card rounded-[28px] p-7 space-y-5 bg-[#FFFCF7] border border-[#F0E4D3]">
+            <h3 className="text-sm font-extrabold text-[#2A1B0F] uppercase tracking-wider font-['Outfit']">
               Skills & Qualifications
             </h3>
 
             <div>
-              <p className="text-xs font-bold text-slate-300 mb-2.5">Mandatory Required Skills:</p>
+              <p className="text-xs font-bold text-[#6B553F] mb-2.5">Mandatory Required Skills:</p>
               <div className="flex flex-wrap gap-2">
                 {job.required_skills.map((skill: string) => (
                   <SkillBadge key={skill} skill={skill} type="required" />
@@ -221,7 +221,7 @@ export const JobDetailsPage: React.FC = () => {
 
             {job.preferred_skills && job.preferred_skills.length > 0 && (
               <div>
-                <p className="text-xs font-bold text-slate-300 mb-2.5">Preferred / Bonus Skills:</p>
+                <p className="text-xs font-bold text-[#6B553F] mb-2.5">Preferred / Bonus Skills:</p>
                 <div className="flex flex-wrap gap-2">
                   {job.preferred_skills.map((skill: string) => (
                     <SkillBadge key={skill} skill={skill} type="preferred" />
@@ -232,11 +232,11 @@ export const JobDetailsPage: React.FC = () => {
           </div>
 
           {/* Job Description Text */}
-          <div className="clay-card rounded-[28px] p-7 space-y-3">
-            <h3 className="text-sm font-extrabold text-white uppercase tracking-wider font-['Outfit']">
+          <div className="clay-card rounded-[28px] p-7 space-y-3 bg-[#FFFCF7] border border-[#F0E4D3]">
+            <h3 className="text-sm font-extrabold text-[#2A1B0F] uppercase tracking-wider font-['Outfit']">
               Full Job Description
             </h3>
-            <div className="text-xs text-slate-300 leading-relaxed whitespace-pre-line">
+            <div className="text-xs text-[#6B553F] leading-relaxed whitespace-pre-line font-medium">
               {job.description}
             </div>
           </div>

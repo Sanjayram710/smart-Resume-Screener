@@ -113,20 +113,20 @@ export const CreateJobPage: React.FC = () => {
         <button
           type="button"
           onClick={() => navigate('/')}
-          className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-300 clay-btn-secondary mb-4"
+          className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary mb-4"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Dashboard</span>
         </button>
         <div className="flex items-center space-x-4">
-          <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 clay-icon-blob text-emerald-300 flex items-center justify-center flex-shrink-0">
+          <div className="w-12 h-12 rounded-2xl bg-[#FFEDD5] clay-icon-blob text-[#EA580C] flex items-center justify-center flex-shrink-0">
             <Bot className="w-6 h-6" />
           </div>
           <div>
-            <h1 className="text-3xl font-extrabold text-white font-['Outfit'] tracking-tight">
+            <h1 className="text-3xl font-extrabold text-[#2A1B0F] font-['Outfit'] tracking-tight">
               Create Job Requisition
             </h1>
-            <p className="text-xs text-slate-300 mt-1">
+            <p className="text-xs text-[#6B553F] mt-1 font-medium">
               Define target skills, experience, and role responsibilities for candidate screening
             </p>
           </div>

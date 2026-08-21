@@ -11,7 +11,7 @@ import { CandidateDetailsPage } from './pages/CandidateDetailsPage';
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-emerald-500 selection:text-white">
+      <div className="min-h-screen flex flex-col bg-[#FDF6EC] text-[#2A1B0F] selection:bg-[#EA580C] selection:text-white">
         <Navbar />
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6">
           <Routes>
@@ -24,8 +24,8 @@ export const App: React.FC = () => {
           </Routes>
         </main>
 
-        <footer className="border-t border-slate-900 bg-slate-950 py-6 mt-12">
-          <div className="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400">
+        <footer className="border-t border-[#F0E4D3] bg-[#FAF3E7] py-6 mt-12">
+          <div className="max-w-7xl mx-auto px-4 text-center text-xs text-[#6B553F] font-medium">
             Smart Resume Screener & Candidate Ranking System • Deterministic Multi-Stage Matching Engine
           </div>
         </footer>

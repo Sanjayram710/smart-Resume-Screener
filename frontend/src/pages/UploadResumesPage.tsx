@@ -92,25 +92,25 @@ export const UploadResumesPage: React.FC = () => {
       <button
         type="button"
         onClick={() => navigate(`/jobs/${job.id}`)}
-        className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-300 clay-btn-secondary"
+        className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         <span>Back to Job #{job.id}</span>
       </button>
 
-      {/* Header (Molded Clay Card) */}
-      <div className="clay-card rounded-[28px] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      {/* Header (Molded Warm Clay Card) */}
+      <div className="clay-card rounded-[28px] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-[#FFFCF7] border border-[#F0E4D3]">
         <div>
-          <div className="flex items-center space-x-2 text-xs text-emerald-300 font-bold mb-1.5">
-            <div className="p-1.5 rounded-xl bg-emerald-500/20 clay-icon-blob">
-              <FileUp className="w-4 h-4 text-emerald-400" />
+          <div className="flex items-center space-x-2 text-xs text-[#C2410C] font-bold mb-1.5">
+            <div className="p-1.5 rounded-xl bg-[#FFEDD5] clay-icon-blob">
+              <FileUp className="w-4 h-4 text-[#EA580C]" />
             </div>
             <span>Upload Candidate Resumes</span>
           </div>
-          <h1 className="text-xl sm:text-2xl font-extrabold text-white font-['Outfit'] tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-extrabold text-[#2A1B0F] font-['Outfit'] tracking-tight">
             {job.title}
           </h1>
-          <p className="text-xs text-slate-300 mt-1 font-medium">{job.company}</p>
+          <p className="text-xs text-[#6B553F] mt-1 font-medium">{job.company}</p>
         </div>
 
         {resumes.length > 0 && (
@@ -126,8 +126,8 @@ export const UploadResumesPage: React.FC = () => {
       </div>
 
       {successMsg && (
-        <div className="p-4 rounded-[22px] clay-card bg-emerald-950/20 border border-emerald-500/30 text-xs text-emerald-300 flex items-center space-x-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+        <div className="p-4 rounded-[22px] clay-card bg-[#DCFCE7] border border-[#86EFAC] text-xs text-[#15803D] font-bold flex items-center space-x-2">
+          <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
           <span>{successMsg}</span>
         </div>
       )}

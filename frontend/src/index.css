@@ -4,181 +4,186 @@
 
 @layer base {
   body {
-    background-color: #0b1120;
-    color: #f1f5f9;
+    background-color: #FDF6EC;
+    color: #2A1B0F;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Custom soft scrollbar */
+/* Custom warm cream soft scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0b1120;
+  background: #FDF6EC;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #EBDCC4;
   border-radius: 9999px;
-  border: 2px solid #0b1120;
+  border: 2px solid #FDF6EC;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #D6C2A8;
 }
 
 /* ==========================================================================
-   CLAYMORPHISM DARK DESIGN SYSTEM (MOLDED, PUFFY, DUAL-SHADOW)
+   WARM CREAM & ORANGE CLAYMORPHISM SYSTEM
    ========================================================================== */
 
-/* 1. Raised Molded Clay Surfaces (Cards, Panels, Modals) */
+/* 1. Raised Molded Warm Clay Surfaces (Cards, Panels, Modals) */
 .clay-card {
-  background: linear-gradient(135deg, #1e293b 0%, #131b2e 100%);
+  background: linear-gradient(135deg, #FFFCF7 0%, #FAF3E7 100%);
   border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid #F0E4D3;
   box-shadow: 
-    10px 10px 24px rgba(0, 0, 0, 0.5),
-    -6px -6px 16px rgba(255, 255, 255, 0.03),
-    inset 2px 2px 4px rgba(255, 255, 255, 0.09),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.35);
+    8px 8px 20px rgba(180, 110, 40, 0.08),
+    -6px -6px 16px rgba(255, 255, 255, 0.95),
+    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.9),
+    inset -1.5px -1.5px 3px rgba(180, 110, 40, 0.05);
 }
 
 .clay-card-interactive {
-  background: linear-gradient(135deg, #1e293b 0%, #131b2e 100%);
+  background: linear-gradient(135deg, #FFFCF7 0%, #FAF3E7 100%);
   border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid #F0E4D3;
   box-shadow: 
-    10px 10px 24px rgba(0, 0, 0, 0.5),
-    -6px -6px 16px rgba(255, 255, 255, 0.03),
-    inset 2px 2px 4px rgba(255, 255, 255, 0.09),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.35);
+    8px 8px 20px rgba(180, 110, 40, 0.08),
+    -6px -6px 16px rgba(255, 255, 255, 0.95),
+    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.9),
+    inset -1.5px -1.5px 3px rgba(180, 110, 40, 0.05);
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .clay-card-interactive:hover {
   transform: translateY(-2px) scale(1.01);
-  border-color: rgba(52, 211, 153, 0.25);
+  border-color: #FDBA74;
   box-shadow: 
-    14px 14px 28px rgba(0, 0, 0, 0.6),
-    -8px -8px 20px rgba(255, 255, 255, 0.04),
-    inset 2px 2px 5px rgba(255, 255, 255, 0.14),
-    inset -2px -2px 5px rgba(0, 0, 0, 0.35);
+    12px 12px 24px rgba(180, 110, 40, 0.12),
+    -8px -8px 20px rgba(255, 255, 255, 0.98),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.9),
+    inset -1.5px -1.5px 3px rgba(180, 110, 40, 0.06);
 }
 
 .clay-card-interactive:active {
   transform: scale(0.98);
   box-shadow: 
-    6px 6px 14px rgba(0, 0, 0, 0.45),
-    -4px -4px 10px rgba(255, 255, 255, 0.02),
-    inset 2px 2px 4px rgba(255, 255, 255, 0.06),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.4);
+    4px 4px 10px rgba(180, 110, 40, 0.08),
+    -3px -3px 8px rgba(255, 255, 255, 0.8),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.7),
+    inset -1.5px -1.5px 3px rgba(180, 110, 40, 0.08);
 }
 
 /* 2. Inset / Pressed Clay Surfaces (Inputs, Search Bars, Recessed Pills) */
 .clay-inset {
-  background: #0a0f1d;
+  background: #F5EAD9;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid #EBDCC4;
+  color: #2A1B0F;
   box-shadow: 
-    inset 4px 4px 10px rgba(0, 0, 0, 0.65),
-    inset -3px -3px 8px rgba(255, 255, 255, 0.03);
+    inset 3px 3px 7px rgba(160, 100, 30, 0.12),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.85);
 }
 
 .clay-inset-pill {
   border-radius: 9999px;
+  background: #F5EAD9;
+  color: #7C5A3A;
+  border: 1px solid #EBDCC4;
   box-shadow: 
-    inset 2px 2px 5px rgba(0, 0, 0, 0.5),
-    inset -1.5px -1.5px 4px rgba(255, 255, 255, 0.03);
+    inset 2px 2px 4px rgba(160, 100, 30, 0.10),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.85);
 }
 
-/* 3. Primary Mint-Green Clay Buttons */
+/* 3. Primary Warm Orange Clay Buttons */
 .clay-btn-primary {
-  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  background: linear-gradient(135deg, #FB923C 0%, #EA580C 100%);
   color: #ffffff;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 
-    6px 6px 18px rgba(0, 0, 0, 0.45),
-    -3px -3px 10px rgba(52, 211, 153, 0.25),
-    inset 2px 2px 4px rgba(255, 255, 255, 0.4),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.3);
+    5px 5px 15px rgba(234, 88, 12, 0.35),
+    -3px -3px 8px rgba(255, 255, 255, 0.7),
+    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.5),
+    inset -1.5px -1.5px 3px rgba(180, 60, 0, 0.25);
   transition: all 0.18s ease-out;
 }
 
 .clay-btn-primary:hover {
-  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  background: linear-gradient(135deg, #F97316 0%, #C2410C 100%);
   transform: translateY(-1px) scale(1.02);
   box-shadow: 
-    8px 8px 22px rgba(0, 0, 0, 0.5),
-    -4px -4px 14px rgba(52, 211, 153, 0.35),
-    inset 2px 2px 5px rgba(255, 255, 255, 0.5),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.3);
+    7px 7px 18px rgba(234, 88, 12, 0.42),
+    -4px -4px 10px rgba(255, 255, 255, 0.8),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.6),
+    inset -1.5px -1.5px 3px rgba(180, 60, 0, 0.3);
 }
 
 .clay-btn-primary:active {
   transform: scale(0.97);
   box-shadow: 
-    2px 2px 6px rgba(0, 0, 0, 0.45),
-    inset 3px 3px 6px rgba(0, 0, 0, 0.35),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.25);
+    2px 2px 6px rgba(234, 88, 12, 0.35),
+    inset 2px 2px 5px rgba(180, 60, 0, 0.3),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.3);
 }
 
-/* 4. Secondary Clay Buttons */
+/* 4. Secondary Tan / Cream Clay Buttons */
 .clay-btn-secondary {
-  background: linear-gradient(135deg, #243147 0%, #151e2f 100%);
-  color: #e2e8f0;
+  background: linear-gradient(135deg, #F8EFE3 0%, #F1E2CD 100%);
+  color: #4A3520;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid #EBDCC4;
   box-shadow: 
-    5px 5px 14px rgba(0, 0, 0, 0.4),
-    -4px -4px 10px rgba(255, 255, 255, 0.03),
-    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.12),
-    inset -1.5px -1.5px 3px rgba(0, 0, 0, 0.35);
+    4px 4px 10px rgba(180, 110, 40, 0.08),
+    -3px -3px 8px rgba(255, 255, 255, 0.85),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.8),
+    inset -1px -1px 2px rgba(180, 110, 40, 0.05);
   transition: all 0.18s ease-out;
 }
 
 .clay-btn-secondary:hover {
-  background: linear-gradient(135deg, #2d3e5b 0%, #1c283f 100%);
+  background: linear-gradient(135deg, #FAF3E7 0%, #EAD8BF 100%);
   transform: translateY(-1px) scale(1.02);
-  color: #ffffff;
+  color: #2A1B0F;
+  border-color: #DFCCA8;
   box-shadow: 
-    7px 7px 18px rgba(0, 0, 0, 0.45),
-    -5px -5px 12px rgba(255, 255, 255, 0.05),
-    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.18),
-    inset -1.5px -1.5px 3px rgba(0, 0, 0, 0.35);
+    5px 5px 14px rgba(180, 110, 40, 0.12),
+    -4px -4px 10px rgba(255, 255, 255, 0.95),
+    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.9),
+    inset -1px -1px 2px rgba(180, 110, 40, 0.06);
 }
 
 .clay-btn-secondary:active {
   transform: scale(0.97);
   box-shadow: 
-    2px 2px 6px rgba(0, 0, 0, 0.4),
-    inset 2.5px 2.5px 5px rgba(0, 0, 0, 0.4),
-    inset -1.5px -1.5px 3px rgba(255, 255, 255, 0.06);
+    2px 2px 5px rgba(180, 110, 40, 0.08),
+    inset 2px 2px 4px rgba(160, 100, 30, 0.12),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.7);
 }
 
 /* 5. Molded Clay Icon Blob Containers */
 .clay-icon-blob {
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   box-shadow: 
-    6px 6px 14px rgba(0, 0, 0, 0.4),
-    -4px -4px 10px rgba(255, 255, 255, 0.03),
-    inset 2px 2px 4px rgba(255, 255, 255, 0.2),
-    inset -2px -2px 4px rgba(0, 0, 0, 0.3);
+    4px 4px 10px rgba(180, 110, 40, 0.09),
+    -3px -3px 8px rgba(255, 255, 255, 0.85),
+    inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.7),
+    inset -1.5px -1.5px 3px rgba(180, 110, 40, 0.06);
 }
 
 /* 6. Molded Clay Badges */
 .clay-badge {
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow: 
-    3px 3px 8px rgba(0, 0, 0, 0.3),
-    -2px -2px 6px rgba(255, 255, 255, 0.03),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.2),
-    inset -1px -1px 2px rgba(0, 0, 0, 0.25);
+    2px 2px 6px rgba(180, 110, 40, 0.08),
+    -2px -2px 5px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.6),
+    inset -1px -1px 2px rgba(180, 110, 40, 0.05);
 }

@@ -39,25 +39,25 @@ export const JobStatusBadge: React.FC<JobStatusBadgeProps> = ({ status = 'Open',
   const config = norm === 'paused'
     ? {
         label: 'Paused',
-        bgColor: 'bg-gradient-to-r from-amber-500/20 to-amber-600/10',
-        textColor: 'text-amber-200',
-        borderColor: 'border-amber-500/40',
-        dotColor: 'bg-amber-400',
+        bgColor: 'bg-[#FEF3C7]',
+        textColor: 'text-[#92400E]',
+        borderColor: 'border-[#FDE68A]',
+        dotColor: 'bg-[#D97706]',
       }
     : norm === 'closed'
     ? {
         label: 'Closed',
-        bgColor: 'bg-gradient-to-r from-slate-800 to-slate-850',
-        textColor: 'text-slate-300',
-        borderColor: 'border-slate-700',
-        dotColor: 'bg-slate-400',
+        bgColor: 'bg-[#F1E5D4]',
+        textColor: 'text-[#6B553F]',
+        borderColor: 'border-[#DFCCA8]',
+        dotColor: 'bg-[#8C7660]',
       }
     : {
         label: 'Open',
-        bgColor: 'bg-gradient-to-r from-emerald-500/20 to-teal-600/10',
-        textColor: 'text-emerald-200',
-        borderColor: 'border-emerald-500/40',
-        dotColor: 'bg-emerald-400',
+        bgColor: 'bg-[#DCFCE7]',
+        textColor: 'text-[#15803D]',
+        borderColor: 'border-[#86EFAC]',
+        dotColor: 'bg-[#16A34A]',
       };
 
   const sizeClass = size === 'sm' ? 'px-2.5 py-0.5 text-[11px] font-bold' : 'px-3 py-1 text-xs font-bold';
@@ -66,7 +66,7 @@ export const JobStatusBadge: React.FC<JobStatusBadgeProps> = ({ status = 'Open',
     <span
       className={`inline-flex items-center space-x-1.5 rounded-full border clay-badge ${config.bgColor} ${config.textColor} ${config.borderColor} ${sizeClass}`}
     >
-      <span className={`w-1.5 h-1.5 rounded-full ${config.dotColor} shadow-[0_0_6px_currentColor]`} />
+      <span className={`w-1.5 h-1.5 rounded-full ${config.dotColor}`} />
       <span>{config.label}</span>
     </span>
   );
@@ -80,21 +80,21 @@ interface SkillBadgeProps {
 
 export const SkillBadge: React.FC<SkillBadgeProps> = ({ skill, type = 'default', score }) => {
   const styles = {
-    required: 'bg-[#0f172a] text-indigo-200 border-indigo-500/30',
-    preferred: 'bg-[#0f172a] text-sky-200 border-sky-500/30',
-    exact: 'bg-[#0b1b1f] text-emerald-200 border-emerald-500/40',
-    semantic: 'bg-[#091e28] text-cyan-200 border-cyan-500/40',
-    missing: 'bg-[#1e1015] text-rose-300 border-rose-500/40 line-through opacity-85',
-    default: 'bg-[#0f172a] text-slate-200 border-slate-700/60',
+    required: 'bg-[#F5EAD9] text-[#7C5A3A] border-[#EBDCC4]',
+    preferred: 'bg-[#FAF0E1] text-[#9A7049] border-[#EBDCC4]',
+    exact: 'bg-[#E6F4EA] text-[#15803D] border-[#86EFAC]',
+    semantic: 'bg-[#E0F2FE] text-[#0369A1] border-[#BAE6FD]',
+    missing: 'bg-[#FEE2E2] text-[#991B1B] border-[#FECACA] line-through opacity-80',
+    default: 'bg-[#F5EAD9] text-[#7C5A3A] border-[#EBDCC4]',
   };
 
   return (
     <span
-      className={`inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full border clay-inset-pill ${styles[type]} transition-all`}
+      className={`inline-flex items-center px-3 py-1 text-xs font-bold rounded-full border clay-inset-pill ${styles[type]} transition-all`}
     >
       <span>{skill}</span>
       {typeof score === 'number' && (
-        <span className="ml-1.5 px-1.5 py-0.2 rounded-full bg-black/40 text-[10px] text-slate-200 font-mono">
+        <span className="ml-1.5 px-1.5 py-0.2 rounded-full bg-[#EBDCC4]/60 text-[10px] text-[#4A3520] font-mono">
           {Math.round(score * 100)}%
         </span>
       )}

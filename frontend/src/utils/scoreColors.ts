@@ -3,27 +3,27 @@ export function getRecommendationBadge(recommendation: string) {
     case 'SHORTLIST':
       return {
         label: 'SHORTLIST',
-        bgColor: 'bg-emerald-500/15',
-        textColor: 'text-emerald-400',
-        borderColor: 'border-emerald-500/30',
-        dotColor: 'bg-emerald-400',
+        bgColor: 'bg-[#DCFCE7]',
+        textColor: 'text-[#15803D]',
+        borderColor: 'border-[#86EFAC]',
+        dotColor: 'bg-[#16A34A]',
       };
     case 'REVIEW':
       return {
         label: 'REVIEW',
-        bgColor: 'bg-amber-500/15',
-        textColor: 'text-amber-400',
-        borderColor: 'border-amber-500/30',
-        dotColor: 'bg-amber-400',
+        bgColor: 'bg-[#FEF3C7]',
+        textColor: 'text-[#92400E]',
+        borderColor: 'border-[#FDE68A]',
+        dotColor: 'bg-[#D97706]',
       };
     case 'NOT_RECOMMENDED':
     default:
       return {
         label: 'NOT RECOMMENDED',
-        bgColor: 'bg-rose-500/15',
-        textColor: 'text-rose-400',
-        borderColor: 'border-rose-500/30',
-        dotColor: 'bg-rose-400',
+        bgColor: 'bg-[#FEE2E2]',
+        textColor: 'text-[#991B1B]',
+        borderColor: 'border-[#FECACA]',
+        dotColor: 'bg-[#DC2626]',
       };
   }
 }
@@ -36,24 +36,24 @@ export function getScoreColor(score: number): {
 } {
   if (score >= 7.0) {
     return {
-      text: 'text-emerald-400',
-      bg: 'bg-emerald-500/10',
-      border: 'border-emerald-500/30',
-      ring: '#10b981',
+      text: 'text-[#15803D]',
+      bg: 'bg-[#DCFCE7]',
+      border: 'border-[#86EFAC]',
+      ring: '#16A34A',
     };
   } else if (score >= 5.0) {
     return {
-      text: 'text-amber-400',
-      bg: 'bg-amber-500/10',
-      border: 'border-amber-500/30',
-      ring: '#f59e0b',
+      text: 'text-[#B45309]',
+      bg: 'bg-[#FEF3C7]',
+      border: 'border-[#FDE68A]',
+      ring: '#D97706',
     };
   } else {
     return {
-      text: 'text-rose-400',
-      bg: 'bg-rose-500/10',
-      border: 'border-rose-500/30',
-      ring: '#f43f5e',
+      text: 'text-[#B91C1C]',
+      bg: 'bg-[#FEE2E2]',
+      border: 'border-[#FECACA]',
+      ring: '#DC2626',
     };
   }
 }

@@ -28,25 +28,25 @@ export const MatchedSkillsCard: React.FC<MatchedSkillsCardProps> = ({
   const preferredMissing = missingSkills.filter((m) => m.importance === 'PREFERRED');
 
   return (
-    <div className="clay-card rounded-[28px] p-7 space-y-6">
-      <div className="flex items-center justify-between pb-4 border-b border-white/5">
+    <div className="clay-card rounded-[28px] p-7 space-y-6 bg-[#FFFCF7] border border-[#F0E4D3]">
+      <div className="flex items-center justify-between pb-4 border-b border-[#F0E4D3]">
         <div className="flex items-center space-x-3">
-          <div className="p-2 rounded-xl bg-emerald-500/20 clay-icon-blob">
-            <Sparkles className="w-5 h-5 text-emerald-400" />
+          <div className="p-2 rounded-xl bg-[#FFEDD5] clay-icon-blob">
+            <Sparkles className="w-5 h-5 text-[#EA580C]" />
           </div>
-          <h3 className="text-base font-extrabold text-white font-['Outfit']">
+          <h3 className="text-base font-extrabold text-[#2A1B0F] font-['Outfit']">
             Skill Alignment & Semantic Analysis
           </h3>
         </div>
-        <span className="text-xs text-emerald-300 font-mono font-bold clay-badge bg-emerald-500/15 border-emerald-500/30 px-3 py-1">
+        <span className="text-xs text-[#C2410C] font-mono font-extrabold clay-badge bg-[#FFEDD5] border border-[#FDBA74] px-3 py-1">
           {matchedSkills.length} Matched / {missingSkills.length} Missing
         </span>
       </div>
 
       {/* Exact Matches */}
       <div>
-        <div className="flex items-center space-x-1.5 text-xs font-semibold text-emerald-300 mb-2.5">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+        <div className="flex items-center space-x-1.5 text-xs font-bold text-[#15803D] mb-2.5">
+          <CheckCircle2 className="w-4 h-4 text-[#16A34A]" />
           <span>Exact Verified Matches ({exactMatches.length})</span>
         </div>
         {exactMatches.length > 0 ? (
@@ -61,14 +61,14 @@ export const MatchedSkillsCard: React.FC<MatchedSkillsCardProps> = ({
             ))}
           </div>
         ) : (
-          <p className="text-xs text-slate-500">No exact matches identified.</p>
+          <p className="text-xs text-[#8B7355]">No exact matches identified.</p>
         )}
       </div>
 
       {/* Semantic / Alias Matches */}
       <div>
-        <div className="flex items-center space-x-1.5 text-xs font-semibold text-cyan-300 mb-2.5">
-          <Sparkles className="w-4 h-4 text-cyan-400" />
+        <div className="flex items-center space-x-1.5 text-xs font-bold text-[#0369A1] mb-2.5">
+          <Sparkles className="w-4 h-4 text-[#0284C7]" />
           <span>Semantic & Adjacent Competencies ({semanticMatches.length})</span>
         </div>
         {semanticMatches.length > 0 ? (
@@ -83,22 +83,22 @@ export const MatchedSkillsCard: React.FC<MatchedSkillsCardProps> = ({
             ))}
           </div>
         ) : (
-          <p className="text-xs text-slate-500">No semantic alias matches detected.</p>
+          <p className="text-xs text-[#8B7355]">No semantic alias matches detected.</p>
         )}
       </div>
 
       {/* Missing Required Skills */}
       {requiredMissing.length > 0 && (
-        <div className="pt-3 border-t border-slate-800/80">
-          <div className="flex items-center space-x-1.5 text-xs font-semibold text-rose-300 mb-2.5">
-            <XCircle className="w-4 h-4 text-rose-400" />
+        <div className="pt-3 border-t border-[#F0E4D3]">
+          <div className="flex items-center space-x-1.5 text-xs font-bold text-[#B91C1C] mb-2.5">
+            <XCircle className="w-4 h-4 text-[#DC2626]" />
             <span>Missing Mandatory Required Skills ({requiredMissing.length})</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {requiredMissing.map((m, idx) => (
               <span
                 key={idx}
-                className="px-2.5 py-1 rounded-md text-xs font-medium bg-rose-500/10 text-rose-300 border border-rose-500/20"
+                className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#FEE2E2] text-[#991B1B] border border-[#FECACA] clay-inset-pill"
               >
                 {m.skill}
               </span>
@@ -109,16 +109,16 @@ export const MatchedSkillsCard: React.FC<MatchedSkillsCardProps> = ({
 
       {/* Missing Preferred Skills */}
       {preferredMissing.length > 0 && (
-        <div className="pt-2 border-t border-slate-800/80">
-          <div className="flex items-center space-x-1.5 text-xs font-semibold text-amber-300 mb-2.5">
-            <CircleAlert className="w-4 h-4 text-amber-400" />
+        <div className="pt-2 border-t border-[#F0E4D3]">
+          <div className="flex items-center space-x-1.5 text-xs font-bold text-[#B45309] mb-2.5">
+            <CircleAlert className="w-4 h-4 text-[#D97706]" />
             <span>Missing Preferred / Nice-to-Have Skills ({preferredMissing.length})</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {preferredMissing.map((m, idx) => (
               <span
                 key={idx}
-                className="px-2.5 py-1 rounded-md text-xs font-medium bg-slate-800 text-slate-400 border border-slate-700"
+                className="px-2.5 py-1 rounded-full text-xs font-bold bg-[#F5EAD9] text-[#7C5A3A] border border-[#EBDCC4] clay-inset-pill"
               >
                 {m.skill}
               </span>

@@ -51,10 +51,10 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onUpload, isUplo
         onDragLeave={() => setIsDragOver(false)}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`border-2 border-dashed rounded-[32px] p-10 text-center cursor-pointer transition-all duration-200 clay-card ${
+        className={`border-2 border-dashed rounded-[32px] p-10 text-center cursor-pointer transition-all duration-200 clay-card bg-[#FFFCF7] ${
           isDragOver
-            ? 'border-emerald-400 bg-emerald-500/15 scale-[1.01]'
-            : 'border-emerald-500/30 hover:border-emerald-400/60'
+            ? 'border-[#EA580C] bg-[#FFEDD5]/40 scale-[1.01]'
+            : 'border-[#FDBA74] hover:border-[#EA580C]'
         }`}
       >
         <input
@@ -67,20 +67,20 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onUpload, isUplo
         />
 
         <div className="flex flex-col items-center justify-center space-y-4">
-          <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 clay-icon-blob text-emerald-300 flex items-center justify-center">
+          <div className="w-14 h-14 rounded-2xl bg-[#FFEDD5] clay-icon-blob text-[#EA580C] flex items-center justify-center">
             <UploadCloud className="w-7 h-7" />
           </div>
           <div>
-            <p className="text-base font-extrabold text-white font-['Outfit']">
+            <p className="text-base font-extrabold text-[#2A1B0F] font-['Outfit']">
               Drag & Drop PDF or TXT Resumes here
             </p>
-            <p className="text-xs text-slate-300 mt-1">
+            <p className="text-xs text-[#6B553F] mt-1 font-medium">
               Supports multi-file upload (up to 10MB per file)
             </p>
           </div>
           <button
             type="button"
-            className="px-5 py-2.5 text-xs font-bold text-slate-200 clay-btn-secondary"
+            className="px-5 py-2.5 text-xs font-bold text-[#4A3520] clay-btn-secondary"
           >
             Browse Local Files
           </button>
@@ -89,13 +89,13 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onUpload, isUplo
 
       {/* Selected Files List */}
       {selectedFiles.length > 0 && (
-        <div className="clay-card rounded-[28px] p-5 space-y-3.5">
-          <div className="flex items-center justify-between text-xs font-bold text-white">
+        <div className="clay-card rounded-[28px] p-5 space-y-3.5 bg-[#FFFCF7] border border-[#F0E4D3]">
+          <div className="flex items-center justify-between text-xs font-bold text-[#2A1B0F]">
             <span>Selected Files ({selectedFiles.length})</span>
             <button
               type="button"
               onClick={() => setSelectedFiles([])}
-              className="text-rose-400 hover:text-rose-300 font-bold"
+              className="text-[#DC2626] hover:text-[#991B1B] font-bold"
             >
               Clear All
             </button>
@@ -105,19 +105,19 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onUpload, isUplo
             {selectedFiles.map((file, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between p-3 rounded-2xl clay-inset text-xs"
+                className="flex items-center justify-between p-3 rounded-2xl clay-inset text-xs bg-[#F5EAD9] border-[#EBDCC4]"
               >
                 <div className="flex items-center space-x-2.5 truncate">
-                  <File className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span className="text-white font-medium truncate">{file.name}</span>
-                  <span className="text-slate-400 text-[10px]">
+                  <File className="w-4 h-4 text-[#EA580C] shrink-0" />
+                  <span className="text-[#2A1B0F] font-medium truncate">{file.name}</span>
+                  <span className="text-[#8B7355] text-[10px]">
                     ({(file.size / 1024).toFixed(0)} KB)
                   </span>
                 </div>
                 <button
                   type="button"
                   onClick={() => removeFile(idx)}
-                  className="text-slate-400 hover:text-rose-400 ml-2"
+                  className="text-[#8B7355] hover:text-[#DC2626] ml-2"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -125,7 +125,7 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onUpload, isUplo
             ))}
           </div>
 
-          <div className="flex justify-end pt-2 border-t border-white/5">
+          <div className="flex justify-end pt-2 border-t border-[#F0E4D3]">
             <button
               type="button"
               disabled={isUploading}

@@ -67,17 +67,17 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
   ];
 
   return (
-    <div className="clay-card rounded-[28px] p-6 space-y-4">
-      <div className="flex items-center justify-between pb-4 border-b border-white/5">
+    <div className="clay-card rounded-[28px] p-6 space-y-4 bg-[#FFFCF7] border border-[#F0E4D3]">
+      <div className="flex items-center justify-between pb-4 border-b border-[#F0E4D3]">
         <div className="flex items-center space-x-3">
-          <div className="p-2 rounded-xl bg-emerald-500/20 clay-icon-blob">
-            <Layers className="w-5 h-5 text-emerald-400" />
+          <div className="p-2 rounded-xl bg-[#FFEDD5] clay-icon-blob">
+            <Layers className="w-5 h-5 text-[#EA580C]" />
           </div>
-          <h3 className="text-base font-extrabold text-white font-['Outfit']">
+          <h3 className="text-base font-extrabold text-[#2A1B0F] font-['Outfit']">
             Deterministic Scoring Breakdown
           </h3>
         </div>
-        <span className="text-xs font-bold text-slate-300 clay-badge bg-slate-800/80 px-3 py-1">
+        <span className="text-xs font-bold text-[#6B553F] clay-badge bg-[#F5EAD9] border-[#EBDCC4] px-3 py-1">
           Scale 1.0 – 10.0
         </span>
       </div>
@@ -90,8 +90,8 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
               <div className="flex items-center justify-between text-xs mb-2">
                 <div className="flex items-center space-x-2">
                   <Icon className={`w-4 h-4 ${m.textColor}`} />
-                  <span className="font-bold text-white">{m.label}</span>
-                  <span className="text-[10px] font-bold text-slate-300 clay-badge bg-[#0f172a] px-2 py-0.5">
+                  <span className="font-bold text-[#2A1B0F]">{m.label}</span>
+                  <span className="text-[10px] font-bold text-[#7C5A3A] clay-badge bg-[#F5EAD9] border-[#EBDCC4] px-2 py-0.5">
                     Weight: {m.weight}
                   </span>
                 </div>
@@ -101,13 +101,13 @@ export const ScoreBreakdownCard: React.FC<ScoreBreakdownCardProps> = ({
               </div>
 
               {/* Recessed Clay Progress Bar */}
-              <div className="w-full clay-inset h-3 rounded-full overflow-hidden p-0.5">
+              <div className="w-full clay-inset bg-[#F5EAD9] border-[#EBDCC4] h-3 rounded-full overflow-hidden p-0.5">
                 <div
-                  className={`h-full ${m.color} transition-all duration-700 rounded-full shadow-[0_0_8px_currentColor]`}
+                  className={`h-full ${m.color} transition-all duration-700 rounded-full shadow-sm`}
                   style={{ width: `${Math.min(100, Math.max(0, m.score))}%` }}
                 />
               </div>
-              <p className="text-[11px] text-slate-300 mt-1.5 font-medium">{m.description}</p>
+              <p className="text-[11px] text-[#6B553F] mt-1.5 font-medium">{m.description}</p>
             </div>
           );
         })}

@@ -36,9 +36,8 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
             cx={svgSize / 2}
             cy={svgSize / 2}
             r={radius}
-            stroke="currentColor"
+            stroke="#EBDCC4"
             strokeWidth={stroke}
-            className="text-slate-800/80"
             fill="transparent"
           />
           {/* Progress stroke */}
@@ -62,12 +61,12 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
             {formatScore(score)}
           </span>
           {size === 'lg' && (
-            <span className="text-[10px] text-slate-400 font-bold mt-0.5">/ 10</span>
+            <span className="text-[10px] text-[#8B7355] font-bold mt-0.5">/ 10</span>
           )}
         </div>
       </div>
       {showLabel && size !== 'sm' && (
-        <span className={`font-bold text-slate-300 mt-1.5 ${labelSize}`}>Match Score</span>
+        <span className={`font-bold text-[#6B553F] mt-1.5 ${labelSize}`}>Match Score</span>
       )}
     </div>
   );
