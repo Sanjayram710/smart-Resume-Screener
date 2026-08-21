@@ -24,10 +24,10 @@ export const StatsCard: React.FC<StatsCardProps> = ({
   badge,
 }) => {
   return (
-    <div className="clay-card-interactive p-6 rounded-[28px] flex flex-col justify-between space-y-4">
+    <div className="clay-card-interactive p-6 rounded-[28px] flex flex-col justify-between space-y-4 bg-[#FFFCF7] border border-[#F0E4D3] shadow-[0_8px_24px_rgba(194,120,3,0.08)]">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs font-bold text-[#6B553F] tracking-wide">{title}</p>
+          <p className="text-xs font-bold text-[#5A4232] tracking-wide">{title}</p>
           <p className="text-3xl font-extrabold text-[#2A1B0F] font-['Outfit'] mt-1.5 tracking-tight">
             {value}
           </p>
@@ -38,9 +38,9 @@ export const StatsCard: React.FC<StatsCardProps> = ({
       </div>
       {(subtitle || badge) && (
         <div className="pt-2.5 flex items-center justify-between text-xs border-t border-[#F0E4D3]">
-          {subtitle && <span className="text-[#7C6752] text-[11px] font-medium">{subtitle}</span>}
+          {subtitle && <span className="text-[#6B4F3A] text-[11px] font-semibold">{subtitle}</span>}
           {badge && (
-            <span className={`px-2.5 py-0.5 rounded-full font-bold text-[10px] uppercase tracking-wider clay-badge ${badge.color}`}>
+            <span className={`px-2.5 py-0.5 rounded-full font-extrabold text-[10px] uppercase tracking-wider clay-badge ${badge.color}`}>
               {badge.text}
             </span>
           )}

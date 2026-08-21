@@ -1,15 +1,20 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
+  Award,
   Bot,
+  Brain,
   Briefcase,
   CheckCircle2,
+  Code,
   Cpu,
   FileText,
+  GraduationCap,
   Info,
   Layers,
   PlusCircle,
   Search,
+  ShieldCheck,
   SlidersHorizontal,
   Sparkles,
   X,
@@ -142,48 +147,129 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="space-y-8 pb-12">
-      {/* Hero Welcome Banner (Molded Warm Clay Surface) */}
-      <div className="clay-card p-8 sm:p-10 rounded-[32px] relative overflow-hidden">
+      {/* Hero Welcome Banner (Molded Warm Clay Surface with balanced 6-stage architecture diagram) */}
+      <div className="clay-card p-8 sm:p-10 rounded-[32px] relative overflow-hidden bg-[#FFFCF7] border border-[#F0E4D3] shadow-[0_8px_24px_rgba(194,120,3,0.10)]">
         {/* Subtle ambient warm lighting effect */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#FB923C]/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-3xl space-y-4">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#FFEDD5] border border-[#FDBA74] text-[#C2410C] text-xs font-bold clay-badge">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Deterministic Scoring & AI Explainability</span>
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Left Column: Heading, high-contrast description, and action buttons */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#FFEDD5] border border-[#FDBA74] text-[#C2410C] text-xs font-extrabold clay-badge">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Deterministic Scoring & AI Explainability</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#2A1B0F] font-['Outfit'] tracking-tight leading-tight">
+              AI Recruiter Intelligence & Candidate Screener
+            </h1>
+
+            <p className="text-sm sm:text-base text-[#5A4232] leading-relaxed font-semibold">
+              Screen resumes against job requirements with 6-stage deterministic matching,
+              transparent scoring weights, demographic bias redaction, and AI qualitative evaluations.
+            </p>
+
+            <div className="pt-3 flex flex-wrap items-center gap-3.5">
+              <Link
+                to="/jobs/create"
+                className="px-6 py-3 text-xs font-extrabold text-white clay-btn-primary flex items-center space-x-2"
+              >
+                <PlusCircle className="w-4 h-4" />
+                <span>Create New Job</span>
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => setIsMethodologyOpen(true)}
+                className="px-5 py-3 text-xs font-extrabold text-[#9A3412] hover:text-[#7C2D12] clay-btn-secondary flex items-center space-x-2 border border-[#DFCCA8]"
+              >
+                <Layers className="w-4 h-4 text-[#C2410C]" />
+                <span>View Scoring Methodology (6 Stages)</span>
+              </button>
+            </div>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#2A1B0F] font-['Outfit'] tracking-tight leading-tight">
-            AI Recruiter Intelligence & Candidate Screener
-          </h1>
+          {/* Right Column: Balanced 6-Stage Scoring Architecture Preview */}
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            <div className="p-5 rounded-3xl bg-[#FAF3E7]/90 border border-[#F0E4D3] shadow-[inset_1px_1px_3px_rgba(255,255,255,0.8),0_4px_16px_rgba(180,110,40,0.06)] space-y-3">
+              <div className="flex items-center justify-between pb-2 border-b border-[#F0E4D3]/70">
+                <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#9A3412] flex items-center space-x-1.5">
+                  <Layers className="w-3.5 h-3.5 text-[#EA580C]" />
+                  <span>6-Stage Architecture</span>
+                </span>
+                <span className="text-[10px] font-bold text-[#8B7355] bg-[#F5EAD9] px-2 py-0.5 rounded-full border border-[#EBDCC4]">
+                  Deterministic
+                </span>
+              </div>
 
-          <p className="text-sm text-[#6B553F] leading-relaxed font-medium">
-            Screen resumes against job requirements with 6-stage deterministic matching,
-            transparent scoring weights, demographic bias redaction, and AI qualitative evaluations.
-          </p>
+              {/* 6 Stage Mini Cards Grid */}
+              <div className="grid grid-cols-2 gap-2">
+                <div className="p-2.5 rounded-2xl bg-[#FFFCF7] border border-[#F0E4D3] flex items-center justify-between shadow-sm">
+                  <div className="flex items-center space-x-2 truncate">
+                    <div className="w-6 h-6 rounded-lg bg-[#FFEDD5] flex items-center justify-center text-[#EA580C] shrink-0">
+                      <Code className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-xs font-extrabold text-[#2A1B0F] truncate">Skills</span>
+                  </div>
+                  <span className="text-[10px] font-extrabold text-[#C2410C] bg-[#FFEDD5] px-1.5 py-0.5 rounded-full">40%</span>
+                </div>
 
-          <div className="pt-3 flex flex-wrap items-center gap-3.5">
-            <Link
-              to="/jobs/create"
-              className="px-6 py-3 text-xs font-extrabold text-white clay-btn-primary flex items-center space-x-2"
-            >
-              <PlusCircle className="w-4 h-4" />
-              <span>Create New Job</span>
-            </Link>
+                <div className="p-2.5 rounded-2xl bg-[#FFFCF7] border border-[#F0E4D3] flex items-center justify-between shadow-sm">
+                  <div className="flex items-center space-x-2 truncate">
+                    <div className="w-6 h-6 rounded-lg bg-[#FEF3C7] flex items-center justify-center text-[#B45309] shrink-0">
+                      <Briefcase className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-xs font-extrabold text-[#2A1B0F] truncate">Seniority</span>
+                  </div>
+                  <span className="text-[10px] font-extrabold text-[#B45309] bg-[#FEF3C7] px-1.5 py-0.5 rounded-full">25%</span>
+                </div>
 
-            <button
-              type="button"
-              onClick={() => setIsMethodologyOpen(true)}
-              className="px-5 py-3 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary flex items-center space-x-2"
-            >
-              <Layers className="w-4 h-4 text-[#EA580C]" />
-              <span>View Scoring Methodology (6 Stages)</span>
-            </button>
+                <div className="p-2.5 rounded-2xl bg-[#FFFCF7] border border-[#F0E4D3] flex items-center justify-between shadow-sm">
+                  <div className="flex items-center space-x-2 truncate">
+                    <div className="w-6 h-6 rounded-lg bg-[#FDE4D0] flex items-center justify-center text-[#C2410C] shrink-0">
+                      <Brain className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-xs font-extrabold text-[#2A1B0F] truncate">Semantic</span>
+                  </div>
+                  <span className="text-[10px] font-extrabold text-[#C2410C] bg-[#FDE4D0] px-1.5 py-0.5 rounded-full">20%</span>
+                </div>
+
+                <div className="p-2.5 rounded-2xl bg-[#FFFCF7] border border-[#F0E4D3] flex items-center justify-between shadow-sm">
+                  <div className="flex items-center space-x-2 truncate">
+                    <div className="w-6 h-6 rounded-lg bg-[#FDE9C8] flex items-center justify-center text-[#92400E] shrink-0">
+                      <GraduationCap className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-xs font-extrabold text-[#2A1B0F] truncate">Degree</span>
+                  </div>
+                  <span className="text-[10px] font-extrabold text-[#92400E] bg-[#FDE9C8] px-1.5 py-0.5 rounded-full">10%</span>
+                </div>
+
+                <div className="p-2.5 rounded-2xl bg-[#FFFCF7] border border-[#F0E4D3] flex items-center justify-between shadow-sm">
+                  <div className="flex items-center space-x-2 truncate">
+                    <div className="w-6 h-6 rounded-lg bg-[#FFEDD5] flex items-center justify-center text-[#EA580C] shrink-0">
+                      <Award className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-xs font-extrabold text-[#2A1B0F] truncate">Certs</span>
+                  </div>
+                  <span className="text-[10px] font-extrabold text-[#C2410C] bg-[#FFEDD5] px-1.5 py-0.5 rounded-full">5%</span>
+                </div>
+
+                <div className="p-2.5 rounded-2xl bg-[#FFFCF7] border border-[#F0E4D3] flex items-center justify-between shadow-sm">
+                  <div className="flex items-center space-x-2 truncate">
+                    <div className="w-6 h-6 rounded-lg bg-[#DCFCE7] flex items-center justify-center text-[#15803D] shrink-0">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-xs font-extrabold text-[#2A1B0F] truncate">Redaction</span>
+                  </div>
+                  <span className="text-[10px] font-extrabold text-[#15803D] bg-[#DCFCE7] px-1.5 py-0.5 rounded-full">Active</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Stats Cards Row */}
+      {/* Stats Cards Row - Unified Cohesive Warm Palette & Elevated Shadow */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <StatsCard
           title="Active Jobs"
@@ -198,16 +284,16 @@ export const DashboardPage: React.FC = () => {
           value={totalResumes}
           subtitle="PDF & TXT documents"
           icon={FileText}
-          iconColor="text-[#0F766E]"
-          iconBg="bg-[#D9F0EA]"
+          iconColor="text-[#B45309]"
+          iconBg="bg-[#FEF3C7]"
         />
         <StatsCard
           title="Candidates Screened"
           value={totalScreened}
           subtitle="AI & deterministic scored"
           icon={Bot}
-          iconColor="text-[#9A3412]"
-          iconBg="bg-[#F3E4D9]"
+          iconColor="text-[#C2410C]"
+          iconBg="bg-[#FDE4D0]"
         />
         <div
           onClick={() => setIsEngineModalOpen(true)}
@@ -218,13 +304,13 @@ export const DashboardPage: React.FC = () => {
             value={isMockEngine ? 'Offline Mock' : 'OpenAI Live'}
             subtitle={isMockEngine ? 'Zero-cost local heuristics' : 'Live GPT-4o extraction'}
             icon={isMockEngine ? Cpu : CheckCircle2}
-            iconColor={isMockEngine ? 'text-[#B45309]' : 'text-[#15803D]'}
-            iconBg={isMockEngine ? 'bg-[#FEF3C7]' : 'bg-[#DCFCE7]'}
+            iconColor="text-[#92400E]"
+            iconBg="bg-[#FDE9C8]"
             badge={{
-              text: isMockEngine ? 'Mock Mode' : 'Live API',
+              text: isMockEngine ? 'MOCK MODE' : 'LIVE API',
               color: isMockEngine
-                ? 'bg-[#FEF3C7] text-[#92400E] border-[#FDE68A]'
-                : 'bg-[#DCFCE7] text-[#15803D] border-[#86EFAC]',
+                ? 'bg-[#FEF3C7] text-[#92400E] border-2 border-[#D97706]/70 shadow-sm font-extrabold'
+                : 'bg-[#DCFCE7] text-[#15803D] border border-[#86EFAC] font-extrabold',
             }}
           />
         </div>
