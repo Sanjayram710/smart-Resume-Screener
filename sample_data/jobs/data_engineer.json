@@ -1,0 +1,29 @@
+{
+  "title": "Senior Data & Analytics Engineer",
+  "company": "DataCore Insights",
+  "description": "We are seeking a Senior Data Engineer to design high-throughput ETL/ELT pipelines and modern lakehouse architectures. You will orchestrate data processing jobs using Apache Spark, Snowflake, and Apache Airflow.\n\nQualifications:\n- 4+ years of data engineering experience with Python and advanced SQL.\n- Production experience with distributed computing (Apache Spark, Databricks) and cloud warehouses (Snowflake, BigQuery).\n- Hands-on data modeling and orchestration with dbt and Apache Airflow.",
+  "required_skills": [
+    "Python",
+    "SQL",
+    "Apache Spark",
+    "Snowflake",
+    "Apache Airflow",
+    "ETL"
+  ],
+  "preferred_skills": [
+    "dbt",
+    "Kafka",
+    "AWS",
+    "Databricks",
+    "Docker"
+  ],
+  "minimum_experience": 4.0,
+  "education_requirements": [
+    "Bachelor's or Master's in Data Engineering, Computer Science, or Statistics"
+  ],
+  "certifications": [
+    "Snowflake SnowPro Core",
+    "Databricks Certified Data Engineer"
+  ],
+  "auto_extract": true
+}

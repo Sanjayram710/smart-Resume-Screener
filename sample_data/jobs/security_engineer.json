@@ -1,0 +1,29 @@
+{
+  "title": "Information Security & SecOps Engineer",
+  "company": "CyberShield Security",
+  "description": "We are seeking a Cybersecurity Engineer to safeguard cloud environments and lead vulnerability assessments, SIEM monitoring, and incident response. You will collaborate with engineering teams to embed DevSecOps security best practices.\n\nQualifications:\n- 3+ years in cloud security, vulnerability management, and threat detection.\n- Hands-on experience with SIEM tools (Splunk/Elastic), penetration testing, and AWS security controls.\n- Experience implementing compliance frameworks like SOC 2, ISO 27001, and NIST.",
+  "required_skills": [
+    "Cybersecurity",
+    "SIEM",
+    "Vulnerability Assessment",
+    "AWS",
+    "Python",
+    "Network Security"
+  ],
+  "preferred_skills": [
+    "Penetration Testing",
+    "SOC 2",
+    "Splunk",
+    "Terraform",
+    "Docker"
+  ],
+  "minimum_experience": 3.5,
+  "education_requirements": [
+    "Bachelor's Degree in Cybersecurity, Information Systems, or Computer Science"
+  ],
+  "certifications": [
+    "Certified Information Systems Security Professional (CISSP)",
+    "CompTIA Security+"
+  ],
+  "auto_extract": true
+}

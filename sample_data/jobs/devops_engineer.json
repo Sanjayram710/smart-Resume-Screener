@@ -1,0 +1,30 @@
+{
+  "title": "Principal DevOps & Cloud Infrastructure Engineer",
+  "company": "CloudScale Systems",
+  "description": "We are looking for a Principal DevOps & Cloud Engineer to lead our cloud platform infrastructure, Kubernetes clusters, and automated CI/CD release engineering. You will manage multi-region AWS infrastructure using Terraform and automate observability.\n\nQualifications:\n- 4+ years managing production AWS environments and Kubernetes clusters (EKS).\n- Strong proficiency in Terraform infrastructure-as-code, Docker, and GitHub Actions CI/CD pipelines.\n- Experience in Linux systems administration, Prometheus/Grafana monitoring, and Python/Bash scripting.",
+  "required_skills": [
+    "AWS",
+    "Kubernetes",
+    "Docker",
+    "Terraform",
+    "CI/CD",
+    "Linux",
+    "Python"
+  ],
+  "preferred_skills": [
+    "Prometheus",
+    "Grafana",
+    "Helm",
+    "Ansible",
+    "ArgoCD"
+  ],
+  "minimum_experience": 4.0,
+  "education_requirements": [
+    "Bachelor's Degree in Computer Science, Computer Engineering, or equivalent practical experience"
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect",
+    "Certified Kubernetes Administrator (CKA)"
+  ],
+  "auto_extract": true
+}

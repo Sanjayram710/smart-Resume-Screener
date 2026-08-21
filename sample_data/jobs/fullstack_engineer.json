@@ -1,0 +1,26 @@
+{
+  "title": "Full Stack TypeScript / Next.js Engineer",
+  "company": "NexGen Digital",
+  "description": "Seeking an agile Full Stack Engineer to build fast, responsive enterprise SaaS applications. You will create modern user interfaces using Next.js/React and scale backend APIs in Node.js/TypeScript with PostgreSQL and Redis caching.\n\nQualifications:\n- 3+ years experience across React, Next.js, Node.js, and TypeScript.\n- Deep understanding of relational databases (PostgreSQL/Prisma), REST & GraphQL APIs.\n- Expertise in Tailwind CSS and state management.",
+  "required_skills": [
+    "TypeScript",
+    "React",
+    "Node.js",
+    "Next.js",
+    "PostgreSQL",
+    "REST API"
+  ],
+  "preferred_skills": [
+    "GraphQL",
+    "Redis",
+    "Docker",
+    "Prisma",
+    "Tailwind CSS"
+  ],
+  "minimum_experience": 3.0,
+  "education_requirements": [
+    "Bachelor's Degree in Computer Science or Software Development"
+  ],
+  "certifications": [],
+  "auto_extract": true
+}

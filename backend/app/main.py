@@ -13,11 +13,23 @@ from app.db.base import Base
 from app.db.database import engine
 
 
+from sqlalchemy import text
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup: Ensure database schema is created
     logger.info("Initializing database schema...")
     Base.metadata.create_all(bind=engine)
+
+    # Safe migration check for SQLite/Postgres to add status column if missing
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("ALTER TABLE jobs ADD COLUMN status VARCHAR(50) DEFAULT 'Open'"))
+            conn.commit()
+    except Exception:
+        pass  # Column already exists
+
     logger.info(
         f"Starting {settings.PROJECT_NAME} in {settings.ENVIRONMENT} mode (LLM: {settings.LLM_MODE})"
     )

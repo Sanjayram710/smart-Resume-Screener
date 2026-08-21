@@ -29,6 +29,16 @@ async def seed_database():
     # 1. Initialize schema
     print("[1/5] Initializing database schema...")
     Base.metadata.create_all(bind=engine)
+    
+    # Safe migration check for status column
+    from sqlalchemy import text
+    try:
+        with engine.connect() as conn:
+            conn.execute(text("ALTER TABLE jobs ADD COLUMN status VARCHAR(50) DEFAULT 'Open'"))
+            conn.commit()
+    except Exception:
+        pass
+
     db = SessionLocal()
 
     job_repo = JobRepository(db)

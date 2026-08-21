@@ -41,7 +41,9 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
     setPreferredSkills(preferredSkills.filter((s) => s !== skill));
   };
 
-  const handleLoadSample = (type: 'backend' | 'frontend' | 'ml') => {
+  const handleLoadSample = (
+    type: 'backend' | 'frontend' | 'ml' | 'devops' | 'fullstack' | 'data' | 'security'
+  ) => {
     if (type === 'backend') {
       setTitle('Senior Backend & Cloud Engineer');
       setCompany('Antigravity Technologies');
@@ -72,6 +74,46 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
       setPreferredSkills(['Docker', 'FastAPI', 'Pandas', 'NumPy']);
       setMinExp(3.0);
       setEducation("Master's or Bachelor's in Computer Science or Data Science");
+    } else if (type === 'devops') {
+      setTitle('Principal DevOps & Cloud Infrastructure Engineer');
+      setCompany('CloudScale Systems');
+      setDescription(
+        'We are looking for a Principal DevOps & Cloud Engineer to lead our cloud platform infrastructure, Kubernetes clusters, and automated CI/CD release engineering. You will manage multi-region AWS infrastructure using Terraform and automate observability.\n\nQualifications:\n- 4+ years managing production AWS environments and Kubernetes clusters (EKS).\n- Strong proficiency in Terraform infrastructure-as-code, Docker, and GitHub Actions CI/CD pipelines.\n- Experience in Linux systems administration, Prometheus/Grafana monitoring, and Python/Bash scripting.'
+      );
+      setRequiredSkills(['AWS', 'Kubernetes', 'Docker', 'Terraform', 'CI/CD', 'Linux', 'Python']);
+      setPreferredSkills(['Prometheus', 'Grafana', 'Helm', 'Ansible', 'ArgoCD']);
+      setMinExp(4.0);
+      setEducation("Bachelor's Degree in Computer Science or Computer Engineering");
+    } else if (type === 'fullstack') {
+      setTitle('Full Stack TypeScript / Next.js Engineer');
+      setCompany('NexGen Digital');
+      setDescription(
+        'Seeking an agile Full Stack Engineer to build fast, responsive enterprise SaaS applications. You will create modern user interfaces using Next.js/React and scale backend APIs in Node.js/TypeScript with PostgreSQL and Redis caching.\n\nQualifications:\n- 3+ years experience across React, Next.js, Node.js, and TypeScript.\n- Deep understanding of relational databases (PostgreSQL/Prisma), REST & GraphQL APIs.\n- Expertise in Tailwind CSS and state management.'
+      );
+      setRequiredSkills(['TypeScript', 'React', 'Node.js', 'Next.js', 'PostgreSQL', 'REST API']);
+      setPreferredSkills(['GraphQL', 'Redis', 'Docker', 'Prisma', 'Tailwind CSS']);
+      setMinExp(3.0);
+      setEducation("Bachelor's Degree in Computer Science or Software Development");
+    } else if (type === 'data') {
+      setTitle('Senior Data & Analytics Engineer');
+      setCompany('DataCore Insights');
+      setDescription(
+        'We are seeking a Senior Data Engineer to design high-throughput ETL/ELT pipelines and modern lakehouse architectures. You will orchestrate data processing jobs using Apache Spark, Snowflake, and Apache Airflow.\n\nQualifications:\n- 4+ years of data engineering experience with Python and advanced SQL.\n- Production experience with distributed computing (Apache Spark, Databricks) and cloud warehouses (Snowflake, BigQuery).\n- Hands-on data modeling and orchestration with dbt and Apache Airflow.'
+      );
+      setRequiredSkills(['Python', 'SQL', 'Apache Spark', 'Snowflake', 'Apache Airflow', 'ETL']);
+      setPreferredSkills(['dbt', 'Kafka', 'AWS', 'Databricks', 'Docker']);
+      setMinExp(4.0);
+      setEducation("Bachelor's or Master's in Data Engineering, Computer Science, or Statistics");
+    } else if (type === 'security') {
+      setTitle('Information Security & SecOps Engineer');
+      setCompany('CyberShield Security');
+      setDescription(
+        'We are seeking a Cybersecurity Engineer to safeguard cloud environments and lead vulnerability assessments, SIEM monitoring, and incident response. You will collaborate with engineering teams to embed DevSecOps security best practices.\n\nQualifications:\n- 3+ years in cloud security, vulnerability management, and threat detection.\n- Hands-on experience with SIEM tools (Splunk/Elastic), penetration testing, and AWS security controls.\n- Experience implementing compliance frameworks like SOC 2, ISO 27001, and NIST.'
+      );
+      setRequiredSkills(['Cybersecurity', 'SIEM', 'Vulnerability Assessment', 'AWS', 'Python', 'Network Security']);
+      setPreferredSkills(['Penetration Testing', 'SOC 2', 'Splunk', 'Terraform', 'Docker']);
+      setMinExp(3.5);
+      setEducation("Bachelor's Degree in Cybersecurity or Information Systems");
     }
   };
 
@@ -93,32 +135,60 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Quick Template Picker */}
-      <div className="glass-card p-4 rounded-xl border border-slate-800 flex flex-wrap items-center justify-between gap-3">
+      <div className="glass-card p-4 rounded-xl border border-slate-800 space-y-2.5">
         <div className="flex items-center space-x-2 text-xs text-slate-300">
           <Sparkles className="w-4 h-4 text-emerald-400" />
-          <span className="font-semibold">Quick Demo Templates:</span>
+          <span className="font-semibold text-slate-200">Quick Demo Templates (Click to Load):</span>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => handleLoadSample('backend')}
-            className="px-2.5 py-1 text-xs rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors"
+            className="px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-emerald-500/40 transition-colors"
           >
             Backend (Python)
           </button>
           <button
             type="button"
             onClick={() => handleLoadSample('frontend')}
-            className="px-2.5 py-1 text-xs rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors"
+            className="px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-emerald-500/40 transition-colors"
           >
             Frontend (React)
           </button>
           <button
             type="button"
             onClick={() => handleLoadSample('ml')}
-            className="px-2.5 py-1 text-xs rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-colors"
+            className="px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-emerald-500/40 transition-colors"
           >
             AI / ML Engineer
+          </button>
+          <button
+            type="button"
+            onClick={() => handleLoadSample('devops')}
+            className="px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-emerald-500/40 transition-colors"
+          >
+            DevOps & Cloud
+          </button>
+          <button
+            type="button"
+            onClick={() => handleLoadSample('fullstack')}
+            className="px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-emerald-500/40 transition-colors"
+          >
+            Full Stack (TS/Next)
+          </button>
+          <button
+            type="button"
+            onClick={() => handleLoadSample('data')}
+            className="px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-emerald-500/40 transition-colors"
+          >
+            Data & Analytics
+          </button>
+          <button
+            type="button"
+            onClick={() => handleLoadSample('security')}
+            className="px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-emerald-500/40 transition-colors"
+          >
+            Cybersecurity
           </button>
         </div>
       </div>
