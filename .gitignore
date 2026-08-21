@@ -59,3 +59,5 @@ Thumbs.db
 # App Uploads (keep directory structure, ignore user files)
 uploads/*
 !uploads/.gitkeep
+backend/uploads/*
+!backend/uploads/.gitkeep
