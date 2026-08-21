@@ -74,7 +74,7 @@ export const CandidateDetailsPage: React.FC = () => {
               navigate(-1);
             }
           }}
-          className="inline-flex items-center space-x-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors"
+          className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-300 clay-btn-secondary"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>
@@ -87,43 +87,43 @@ export const CandidateDetailsPage: React.FC = () => {
         {candidate.job_id && (
           <Link
             to={`/jobs/${candidate.job_id}`}
-            className="text-xs text-slate-400 hover:text-emerald-400 transition-colors flex items-center space-x-1"
+            className="px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-300 clay-btn-secondary flex items-center space-x-1.5"
           >
-            <Briefcase className="w-3.5 h-3.5" />
+            <Briefcase className="w-3.5 h-3.5 text-emerald-400" />
             <span>Requisition: {candidate.job_title}</span>
           </Link>
         )}
       </div>
 
-      {/* Candidate Score Hero Header */}
+      {/* Candidate Score Hero Header (Molded Clay Card) */}
       {screening && (
-        <div className="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div className="clay-card rounded-[32px] p-7 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
           <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 text-center sm:text-left">
             <ScoreGauge score={screening.overall_score} size="lg" />
-            <div className="space-y-1.5">
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+            <div className="space-y-2">
+              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2.5">
                 <RecommendationBadge recommendation={screening.recommendation} size="lg" />
-                <span className="text-xs text-slate-400 font-medium">
+                <span className="text-xs text-slate-300 font-bold">
                   • Matched against {candidate.job_title}
                 </span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-100 font-['Outfit']">
+              <h1 className="text-2xl sm:text-4xl font-extrabold text-white font-['Outfit'] tracking-tight">
                 {candidate.name}
               </h1>
               <p className="text-xs text-slate-400">
-                Source Document: <span className="text-slate-300">{candidate.resume_filename}</span>
+                Source Document: <span className="text-slate-200 font-medium">{candidate.resume_filename}</span>
               </p>
             </div>
           </div>
 
-          <div className="text-right flex flex-col items-center sm:items-end space-y-1">
-            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          <div className="text-right flex flex-col items-center sm:items-end space-y-1.5">
+            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">
               Deterministic Overall Score
             </span>
-            <span className="text-3xl font-extrabold text-emerald-400 font-['Outfit']">
-              {screening.overall_score.toFixed(1)} / 10.0
+            <span className="text-4xl font-extrabold text-emerald-400 font-['Outfit']">
+              {screening.overall_score.toFixed(1)} <span className="text-xl text-slate-400 font-normal">/ 10.0</span>
             </span>
-            <span className="text-[11px] text-slate-500">
+            <span className="text-[11px] text-slate-400">
               Computed via 5 weighted deterministic subscores
             </span>
           </div>

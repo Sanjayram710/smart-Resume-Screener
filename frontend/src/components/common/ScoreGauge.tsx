@@ -29,7 +29,7 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="relative inline-flex items-center justify-center" style={{ width: svgSize, height: svgSize }}>
+      <div className="relative inline-flex items-center justify-center rounded-full clay-inset p-1.5" style={{ width: svgSize + 12, height: svgSize + 12 }}>
         <svg className="transform -rotate-90" width={svgSize} height={svgSize}>
           {/* Background circle */}
           <circle
@@ -38,7 +38,7 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
             r={radius}
             stroke="currentColor"
             strokeWidth={stroke}
-            className="text-slate-800"
+            className="text-slate-800/80"
             fill="transparent"
           />
           {/* Progress stroke */}
@@ -58,16 +58,16 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({
 
         {/* Center Score Text */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <span className={`font-bold font-['Outfit'] leading-none ${color.text} ${textSize}`}>
+          <span className={`font-extrabold font-['Outfit'] leading-none ${color.text} ${textSize}`}>
             {formatScore(score)}
           </span>
           {size === 'lg' && (
-            <span className="text-[10px] text-slate-400 font-medium mt-0.5">/ 10</span>
+            <span className="text-[10px] text-slate-400 font-bold mt-0.5">/ 10</span>
           )}
         </div>
       </div>
       {showLabel && size !== 'sm' && (
-        <span className={`font-medium text-slate-400 mt-1 ${labelSize}`}>Match Score</span>
+        <span className={`font-bold text-slate-300 mt-1.5 ${labelSize}`}>Match Score</span>
       )}
     </div>
   );

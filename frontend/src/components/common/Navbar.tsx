@@ -12,46 +12,44 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 glass-panel border-b border-slate-800/80">
+    <header className="sticky top-0 z-50 bg-[#0e1626]/90 backdrop-blur-md border-b border-white/5 shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo & Title */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform duration-200">
-              <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
-                <Bot className="w-5 h-5 text-emerald-400" />
-              </div>
+          <Link to="/" className="flex items-center space-x-3.5 group">
+            <div className="w-11 h-11 clay-icon-blob bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center p-0.5 group-hover:scale-105 transition-transform duration-200">
+              <Bot className="w-6 h-6 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]" />
             </div>
             <div>
-              <span className="text-lg font-bold bg-gradient-to-r from-white via-slate-100 to-emerald-300 bg-clip-text text-transparent font-['Outfit'] tracking-tight">
+              <span className="text-lg font-extrabold text-white font-['Outfit'] tracking-tight">
                 Smart Resume Screener
               </span>
-              <span className="hidden sm:inline-block ml-2 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span className="hidden sm:inline-block ml-2 text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 clay-badge">
                 AI Engine
               </span>
             </div>
           </Link>
 
           {/* Navigation Links */}
-          <nav className="flex items-center space-x-1 sm:space-x-2">
+          <nav className="flex items-center space-x-2 sm:space-x-3">
             <Link
               to="/"
-              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 flex items-center space-x-1.5 ${
+              className={`px-4 py-2 text-xs font-bold transition-all duration-150 flex items-center space-x-2 rounded-full ${
                 isActive('/') && location.pathname === '/'
-                  ? 'bg-slate-800 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/60'
+                  ? 'clay-btn-secondary text-white'
+                  : 'text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-full'
               }`}
             >
-              <FileSpreadsheet className="w-4 h-4" />
+              <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
               <span>Dashboard</span>
             </Link>
 
             <Link
               to="/jobs/create"
-              className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-150 flex items-center space-x-1.5 ${
+              className={`px-4 py-2 text-xs font-bold transition-all duration-150 flex items-center space-x-2 rounded-full ${
                 isActive('/jobs/create')
-                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25'
-                  : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 hover:bg-emerald-500/20'
+                  ? 'clay-btn-primary'
+                  : 'clay-btn-secondary text-emerald-300 hover:text-emerald-200'
               }`}
             >
               <PlusCircle className="w-4 h-4" />

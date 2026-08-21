@@ -36,15 +36,17 @@ export const ErrorMessage: React.FC<ErrorMessageProps> = ({
   onRetry,
 }) => {
   return (
-    <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-5 text-slate-100 flex items-start space-x-3.5">
-      <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
+    <div className="rounded-[28px] clay-card border border-rose-500/30 bg-rose-950/20 p-6 text-slate-100 flex items-start space-x-4">
+      <div className="p-2 rounded-xl bg-rose-500/20 clay-icon-blob shrink-0">
+        <AlertCircle className="w-5 h-5 text-rose-400" />
+      </div>
       <div className="flex-1">
-        <h4 className="text-sm font-semibold text-rose-300">{title}</h4>
-        <p className="text-xs text-rose-200/80 mt-1">{message}</p>
+        <h4 className="text-sm font-extrabold text-rose-300 font-['Outfit']">{title}</h4>
+        <p className="text-xs text-rose-200/90 mt-1 leading-relaxed">{message}</p>
         {onRetry && (
           <button
             onClick={onRetry}
-            className="mt-3 px-3 py-1.5 bg-rose-600/80 hover:bg-rose-600 text-xs font-medium text-white rounded-lg transition-colors"
+            className="mt-3 px-4 py-2 bg-rose-600 hover:bg-rose-500 text-xs font-bold text-white rounded-full shadow-[4px_4px_12px_rgba(0,0,0,0.4),inset_1px_1px_2px_rgba(255,255,255,0.3)] hover:scale-105 active:scale-95 transition-all"
           >
             Try Again
           </button>

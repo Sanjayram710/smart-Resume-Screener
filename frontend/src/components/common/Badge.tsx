@@ -13,16 +13,16 @@ export const RecommendationBadge: React.FC<RecommendationBadgeProps> = ({
   const badge = getRecommendationBadge(recommendation);
 
   const sizeClasses = {
-    sm: 'px-2 py-0.5 text-xs',
-    md: 'px-2.5 py-1 text-xs font-semibold',
-    lg: 'px-3.5 py-1.5 text-sm font-bold',
+    sm: 'px-2.5 py-0.5 text-xs',
+    md: 'px-3 py-1 text-xs font-bold',
+    lg: 'px-4 py-1.5 text-sm font-extrabold',
   };
 
   return (
     <span
-      className={`inline-flex items-center space-x-1.5 rounded-full border ${badge.bgColor} ${badge.textColor} ${badge.borderColor} ${sizeClasses[size]}`}
+      className={`inline-flex items-center space-x-1.5 rounded-full border clay-badge ${badge.bgColor} ${badge.textColor} ${badge.borderColor} ${sizeClasses[size]}`}
     >
-      <span className={`w-1.5 h-1.5 rounded-full ${badge.dotColor}`} />
+      <span className={`w-2 h-2 rounded-full ${badge.dotColor} shadow-[0_0_8px_currentColor]`} />
       <span>{badge.label}</span>
     </span>
   );
@@ -39,34 +39,34 @@ export const JobStatusBadge: React.FC<JobStatusBadgeProps> = ({ status = 'Open',
   const config = norm === 'paused'
     ? {
         label: 'Paused',
-        bgColor: 'bg-amber-500/15',
-        textColor: 'text-amber-300',
+        bgColor: 'bg-gradient-to-r from-amber-500/20 to-amber-600/10',
+        textColor: 'text-amber-200',
         borderColor: 'border-amber-500/40',
         dotColor: 'bg-amber-400',
       }
     : norm === 'closed'
     ? {
         label: 'Closed',
-        bgColor: 'bg-slate-800/80',
+        bgColor: 'bg-gradient-to-r from-slate-800 to-slate-850',
         textColor: 'text-slate-300',
         borderColor: 'border-slate-700',
         dotColor: 'bg-slate-400',
       }
     : {
         label: 'Open',
-        bgColor: 'bg-emerald-500/15',
-        textColor: 'text-emerald-300',
+        bgColor: 'bg-gradient-to-r from-emerald-500/20 to-teal-600/10',
+        textColor: 'text-emerald-200',
         borderColor: 'border-emerald-500/40',
         dotColor: 'bg-emerald-400',
       };
 
-  const sizeClass = size === 'sm' ? 'px-2 py-0.5 text-[11px] font-medium' : 'px-2.5 py-1 text-xs font-semibold';
+  const sizeClass = size === 'sm' ? 'px-2.5 py-0.5 text-[11px] font-bold' : 'px-3 py-1 text-xs font-bold';
 
   return (
     <span
-      className={`inline-flex items-center space-x-1.5 rounded-full border ${config.bgColor} ${config.textColor} ${config.borderColor} ${sizeClass}`}
+      className={`inline-flex items-center space-x-1.5 rounded-full border clay-badge ${config.bgColor} ${config.textColor} ${config.borderColor} ${sizeClass}`}
     >
-      <span className={`w-1.5 h-1.5 rounded-full ${config.dotColor}`} />
+      <span className={`w-1.5 h-1.5 rounded-full ${config.dotColor} shadow-[0_0_6px_currentColor]`} />
       <span>{config.label}</span>
     </span>
   );
@@ -80,21 +80,21 @@ interface SkillBadgeProps {
 
 export const SkillBadge: React.FC<SkillBadgeProps> = ({ skill, type = 'default', score }) => {
   const styles = {
-    required: 'bg-indigo-950/70 text-indigo-200 border-indigo-500/40 font-medium',
-    preferred: 'bg-sky-950/70 text-sky-200 border-sky-500/40 font-medium',
-    exact: 'bg-emerald-950/70 text-emerald-200 border-emerald-500/40 font-medium',
-    semantic: 'bg-cyan-950/70 text-cyan-200 border-cyan-500/40 font-medium',
-    missing: 'bg-rose-950/70 text-rose-300 border-rose-500/40 line-through opacity-85',
-    default: 'bg-slate-800 text-slate-200 border-slate-700 font-medium',
+    required: 'bg-[#0f172a] text-indigo-200 border-indigo-500/30',
+    preferred: 'bg-[#0f172a] text-sky-200 border-sky-500/30',
+    exact: 'bg-[#0b1b1f] text-emerald-200 border-emerald-500/40',
+    semantic: 'bg-[#091e28] text-cyan-200 border-cyan-500/40',
+    missing: 'bg-[#1e1015] text-rose-300 border-rose-500/40 line-through opacity-85',
+    default: 'bg-[#0f172a] text-slate-200 border-slate-700/60',
   };
 
   return (
     <span
-      className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs border ${styles[type]} transition-colors`}
+      className={`inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full border clay-inset-pill ${styles[type]} transition-all`}
     >
       <span>{skill}</span>
       {typeof score === 'number' && (
-        <span className="ml-1.5 px-1 py-0.2 rounded bg-slate-900/80 text-[10px] text-slate-200 font-mono">
+        <span className="ml-1.5 px-1.5 py-0.2 rounded-full bg-black/40 text-[10px] text-slate-200 font-mono">
           {Math.round(score * 100)}%
         </span>
       )}

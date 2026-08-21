@@ -19,28 +19,28 @@ export const StatsCard: React.FC<StatsCardProps> = ({
   value,
   subtitle,
   icon: Icon,
-  iconColor = 'text-emerald-400',
-  iconBg = 'bg-emerald-500/10',
+  iconColor = 'text-emerald-300',
+  iconBg = 'bg-emerald-500/20',
   badge,
 }) => {
   return (
-    <div className="glass-card rounded-xl p-5 border border-slate-800/80 hover:border-slate-700/80 transition-all duration-200">
-      <div className="flex items-center justify-between">
+    <div className="clay-card-interactive p-6 rounded-[28px] flex flex-col justify-between space-y-4">
+      <div className="flex items-start justify-between">
         <div>
-          <p className="text-xs font-medium text-slate-400">{title}</p>
-          <p className="text-2xl font-bold text-slate-100 font-['Outfit'] mt-1 tracking-tight">
+          <p className="text-xs font-semibold text-slate-300 tracking-wide">{title}</p>
+          <p className="text-3xl font-extrabold text-white font-['Outfit'] mt-1.5 tracking-tight">
             {value}
           </p>
         </div>
-        <div className={`p-3 rounded-xl ${iconBg} ${iconColor} border border-white/5`}>
-          <Icon className="w-5 h-5" />
+        <div className={`p-3.5 clay-icon-blob ${iconBg} ${iconColor} flex items-center justify-center`}>
+          <Icon className="w-5 h-5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]" />
         </div>
       </div>
       {(subtitle || badge) && (
-        <div className="mt-3 flex items-center justify-between text-xs">
-          {subtitle && <span className="text-slate-400">{subtitle}</span>}
+        <div className="pt-2 flex items-center justify-between text-xs border-t border-white/5">
+          {subtitle && <span className="text-slate-300 text-[11px] font-medium">{subtitle}</span>}
           {badge && (
-            <span className={`px-2 py-0.5 rounded-full font-medium text-[11px] ${badge.color}`}>
+            <span className={`px-2.5 py-0.5 rounded-full font-bold text-[10px] uppercase tracking-wider clay-badge ${badge.color}`}>
               {badge.text}
             </span>
           )}

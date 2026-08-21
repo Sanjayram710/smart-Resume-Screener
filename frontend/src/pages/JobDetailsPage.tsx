@@ -104,43 +104,45 @@ export const JobDetailsPage: React.FC = () => {
       <button
         type="button"
         onClick={() => navigate('/')}
-        className="inline-flex items-center space-x-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors"
+        className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-300 clay-btn-secondary"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         <span>Back to Dashboard</span>
       </button>
 
-      {/* Header Card */}
-      <div className="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="space-y-2">
+      {/* Header Card (Molded Clay Requisition Header) */}
+      <div className="clay-card rounded-[32px] p-7 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="space-y-3">
           <div className="flex items-center space-x-3">
             <JobStatusBadge status={job.status || 'Open'} size="md" />
             <select
               value={job.status || 'Open'}
               onChange={(e) => handleStatusChange(e.target.value as JobStatus)}
-              className="bg-slate-900 border border-slate-700 text-slate-300 text-xs rounded-lg px-2 py-0.5 focus:outline-none focus:border-emerald-500 cursor-pointer"
+              className="clay-inset text-slate-200 text-xs font-bold rounded-full px-3 py-1 focus:outline-none cursor-pointer"
             >
-              <option value="Open">Status: Open</option>
-              <option value="Paused">Status: Paused</option>
-              <option value="Closed">Status: Closed</option>
+              <option value="Open" className="bg-slate-900">Status: Open</option>
+              <option value="Paused" className="bg-slate-900">Status: Paused</option>
+              <option value="Closed" className="bg-slate-900">Status: Closed</option>
             </select>
-            <span className="text-xs text-slate-400 font-mono">Job #{job.id}</span>
+            <span className="text-xs text-slate-400 font-mono font-bold">Job #{job.id}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-100 font-['Outfit']">
+
+          <h1 className="text-2xl sm:text-4xl font-extrabold text-white font-['Outfit'] tracking-tight">
             {job.title}
           </h1>
+
           <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300">
-            <span className="flex items-center space-x-1 text-slate-200 font-medium">
+            <span className="flex items-center space-x-1.5 text-slate-200 font-bold">
               <Building className="w-4 h-4 text-slate-400" />
               <span>{job.company}</span>
             </span>
             <span className="text-slate-500">•</span>
-            <span className="flex items-center space-x-1 text-slate-300">
+            <span className="flex items-center space-x-1.5 text-slate-300 font-medium">
               <Clock className="w-4 h-4 text-slate-400" />
               <span>{job.minimum_experience} Years Minimum Experience</span>
             </span>
             <span className="text-slate-500">•</span>
-            <span className="flex items-center space-x-1 text-emerald-300 font-medium">
+            <span className="flex items-center space-x-1.5 text-emerald-300 font-bold">
               <FileUp className="w-4 h-4" />
               <span>{resumes.length} Uploaded Resumes</span>
             </span>
@@ -152,7 +154,7 @@ export const JobDetailsPage: React.FC = () => {
           <button
             type="button"
             onClick={() => setIsMethodologyOpen(true)}
-            className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition-all flex items-center space-x-1.5 shadow-sm"
+            className="px-4 py-2.5 text-xs font-bold text-slate-200 clay-btn-secondary flex items-center space-x-1.5"
           >
             <HelpCircle className="w-4 h-4 text-cyan-400" />
             <span>Scoring Model</span>
@@ -160,7 +162,7 @@ export const JobDetailsPage: React.FC = () => {
 
           <Link
             to={`/jobs/${job.id}/upload`}
-            className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-100 border border-slate-700 transition-all flex items-center space-x-2 shadow-sm"
+            className="px-4 py-2.5 text-xs font-bold text-slate-100 clay-btn-secondary flex items-center space-x-2"
           >
             <FileUp className="w-4 h-4 text-emerald-400" />
             <span>Upload Resumes</span>
@@ -169,7 +171,7 @@ export const JobDetailsPage: React.FC = () => {
           <button
             onClick={handleRunScreening}
             disabled={isScreening || resumes.length === 0}
-            className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white shadow-lg shadow-emerald-600/25 transition-all flex items-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-5 py-2.5 text-xs font-extrabold text-white clay-btn-primary flex items-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed"
             title={resumes.length === 0 ? 'Upload resumes before running screening' : 'Screen candidates'}
           >
             <Play className="w-4 h-4 fill-white" />
@@ -179,7 +181,7 @@ export const JobDetailsPage: React.FC = () => {
           {hasScreened ? (
             <Link
               to={`/jobs/${job.id}/rankings`}
-              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-100 border border-slate-700 transition-all flex items-center space-x-1.5"
+              className="px-4 py-2.5 text-xs font-bold text-slate-100 clay-btn-secondary flex items-center space-x-1.5"
             >
               <span>View Leaderboard</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -188,7 +190,7 @@ export const JobDetailsPage: React.FC = () => {
             <button
               type="button"
               disabled
-              className="px-4 py-2.5 rounded-xl bg-slate-800/40 text-slate-400 text-xs font-medium border border-slate-800 cursor-not-allowed flex items-center space-x-1.5"
+              className="px-4 py-2.5 rounded-full bg-[#0a0f1d] text-slate-500 text-xs font-medium border border-white/5 cursor-not-allowed flex items-center space-x-1.5"
               title="No candidates screened yet"
             >
               <span>View Leaderboard</span>
@@ -203,13 +205,13 @@ export const JobDetailsPage: React.FC = () => {
         {/* Left Column: Requirements and Job Spec */}
         <div className="lg:col-span-2 space-y-6">
           {/* Skills Required & Preferred */}
-          <div className="glass-card rounded-xl p-6 border border-slate-800 space-y-5">
-            <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider font-['Outfit']">
+          <div className="clay-card rounded-[28px] p-7 space-y-5">
+            <h3 className="text-sm font-extrabold text-white uppercase tracking-wider font-['Outfit']">
               Skills & Qualifications
             </h3>
 
             <div>
-              <p className="text-xs font-semibold text-slate-300 mb-2">Mandatory Required Skills:</p>
+              <p className="text-xs font-bold text-slate-300 mb-2.5">Mandatory Required Skills:</p>
               <div className="flex flex-wrap gap-2">
                 {job.required_skills.map((skill: string) => (
                   <SkillBadge key={skill} skill={skill} type="required" />
@@ -219,7 +221,7 @@ export const JobDetailsPage: React.FC = () => {
 
             {job.preferred_skills && job.preferred_skills.length > 0 && (
               <div>
-                <p className="text-xs font-semibold text-slate-300 mb-2">Preferred / Bonus Skills:</p>
+                <p className="text-xs font-bold text-slate-300 mb-2.5">Preferred / Bonus Skills:</p>
                 <div className="flex flex-wrap gap-2">
                   {job.preferred_skills.map((skill: string) => (
                     <SkillBadge key={skill} skill={skill} type="preferred" />
@@ -230,8 +232,8 @@ export const JobDetailsPage: React.FC = () => {
           </div>
 
           {/* Job Description Text */}
-          <div className="glass-card rounded-xl p-6 border border-slate-800 space-y-3">
-            <h3 className="text-sm font-bold text-slate-100 uppercase tracking-wider font-['Outfit']">
+          <div className="clay-card rounded-[28px] p-7 space-y-3">
+            <h3 className="text-sm font-extrabold text-white uppercase tracking-wider font-['Outfit']">
               Full Job Description
             </h3>
             <div className="text-xs text-slate-300 leading-relaxed whitespace-pre-line">

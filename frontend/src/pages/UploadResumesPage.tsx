@@ -92,30 +92,32 @@ export const UploadResumesPage: React.FC = () => {
       <button
         type="button"
         onClick={() => navigate(`/jobs/${job.id}`)}
-        className="inline-flex items-center space-x-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors"
+        className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-300 clay-btn-secondary"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         <span>Back to Job #{job.id}</span>
       </button>
 
-      {/* Header */}
-      <div className="glass-card rounded-2xl p-6 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      {/* Header (Molded Clay Card) */}
+      <div className="clay-card rounded-[28px] p-6 sm:p-7 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center space-x-2 text-xs text-emerald-400 font-semibold mb-1">
-            <FileUp className="w-4 h-4" />
+          <div className="flex items-center space-x-2 text-xs text-emerald-300 font-bold mb-1.5">
+            <div className="p-1.5 rounded-xl bg-emerald-500/20 clay-icon-blob">
+              <FileUp className="w-4 h-4 text-emerald-400" />
+            </div>
             <span>Upload Candidate Resumes</span>
           </div>
-          <h1 className="text-xl sm:text-2xl font-extrabold text-slate-100 font-['Outfit']">
+          <h1 className="text-xl sm:text-2xl font-extrabold text-white font-['Outfit'] tracking-tight">
             {job.title}
           </h1>
-          <p className="text-xs text-slate-400 mt-0.5">{job.company}</p>
+          <p className="text-xs text-slate-300 mt-1 font-medium">{job.company}</p>
         </div>
 
         {resumes.length > 0 && (
           <button
             onClick={handleRunScreening}
             disabled={isScreening}
-            className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white shadow-lg shadow-emerald-600/25 transition-all flex items-center space-x-2 shrink-0 disabled:opacity-50"
+            className="px-6 py-2.5 text-xs font-extrabold text-white clay-btn-primary flex items-center space-x-2 shrink-0 disabled:opacity-50"
           >
             <Play className="w-4 h-4 fill-white" />
             <span>{isScreening ? 'Screening...' : `Screen ${resumes.length} Candidate(s)`}</span>
@@ -124,7 +126,7 @@ export const UploadResumesPage: React.FC = () => {
       </div>
 
       {successMsg && (
-        <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-300 flex items-center space-x-2">
+        <div className="p-4 rounded-[22px] clay-card bg-emerald-950/20 border border-emerald-500/30 text-xs text-emerald-300 flex items-center space-x-2">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{successMsg}</span>
         </div>

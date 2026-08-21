@@ -28,15 +28,17 @@ export const MatchedSkillsCard: React.FC<MatchedSkillsCardProps> = ({
   const preferredMissing = missingSkills.filter((m) => m.importance === 'PREFERRED');
 
   return (
-    <div className="glass-card rounded-xl p-6 border border-slate-800 space-y-6">
-      <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-        <div className="flex items-center space-x-2.5">
-          <Sparkles className="w-5 h-5 text-emerald-400" />
-          <h3 className="text-base font-semibold text-slate-100 font-['Outfit']">
+    <div className="clay-card rounded-[28px] p-7 space-y-6">
+      <div className="flex items-center justify-between pb-4 border-b border-white/5">
+        <div className="flex items-center space-x-3">
+          <div className="p-2 rounded-xl bg-emerald-500/20 clay-icon-blob">
+            <Sparkles className="w-5 h-5 text-emerald-400" />
+          </div>
+          <h3 className="text-base font-extrabold text-white font-['Outfit']">
             Skill Alignment & Semantic Analysis
           </h3>
         </div>
-        <span className="text-xs text-emerald-400 font-mono font-semibold bg-emerald-500/10 px-2.5 py-1 rounded-md border border-emerald-500/20">
+        <span className="text-xs text-emerald-300 font-mono font-bold clay-badge bg-emerald-500/15 border-emerald-500/30 px-3 py-1">
           {matchedSkills.length} Matched / {missingSkills.length} Missing
         </span>
       </div>

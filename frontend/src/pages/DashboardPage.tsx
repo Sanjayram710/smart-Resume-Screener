@@ -142,25 +142,30 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="space-y-8 pb-12">
-      {/* Hero Welcome Banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-slate-800 p-8 shadow-2xl">
-        <div className="relative z-10 max-w-3xl space-y-3">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold">
+      {/* Hero Welcome Banner (Molded Clay Surface) */}
+      <div className="clay-card p-8 sm:p-10 rounded-[32px] relative overflow-hidden">
+        {/* Subtle ambient lighting effect */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-3xl space-y-4">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-bold clay-badge">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Deterministic Scoring & AI Explainability</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white font-['Outfit'] tracking-tight">
+
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-['Outfit'] tracking-tight leading-tight">
             AI Recruiter Intelligence & Candidate Screener
           </h1>
-          <p className="text-sm text-slate-300 leading-relaxed">
+
+          <p className="text-sm text-slate-300 leading-relaxed font-normal">
             Screen resumes against job requirements with 6-stage deterministic matching,
-            transparent scoring weights, bias redaction, and AI qualitative evaluations.
+            transparent scoring weights, demographic bias redaction, and AI qualitative evaluations.
           </p>
 
-          <div className="pt-2 flex flex-wrap items-center gap-3">
+          <div className="pt-3 flex flex-wrap items-center gap-3.5">
             <Link
               to="/jobs/create"
-              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-600/25 transition-all flex items-center space-x-2"
+              className="px-6 py-3 text-xs font-extrabold text-white clay-btn-primary flex items-center space-x-2"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Create New Job</span>
@@ -169,7 +174,7 @@ export const DashboardPage: React.FC = () => {
             <button
               type="button"
               onClick={() => setIsMethodologyOpen(true)}
-              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition-colors flex items-center space-x-2"
+              className="px-5 py-3 text-xs font-bold text-slate-200 clay-btn-secondary flex items-center space-x-2"
             >
               <Layers className="w-4 h-4 text-emerald-400" />
               <span>View Scoring Methodology (6 Stages)</span>
@@ -185,41 +190,41 @@ export const DashboardPage: React.FC = () => {
           value={totalJobs}
           subtitle="Open requisition profiles"
           icon={Briefcase}
-          iconColor="text-emerald-400"
-          iconBg="bg-emerald-500/10"
+          iconColor="text-emerald-300"
+          iconBg="bg-emerald-500/20"
         />
         <StatsCard
           title="Resumes Uploaded"
           value={totalResumes}
           subtitle="PDF & TXT documents"
           icon={FileText}
-          iconColor="text-blue-400"
-          iconBg="bg-blue-500/10"
+          iconColor="text-sky-300"
+          iconBg="bg-sky-500/20"
         />
         <StatsCard
           title="Candidates Screened"
           value={totalScreened}
           subtitle="AI & deterministic scored"
           icon={Bot}
-          iconColor="text-purple-400"
-          iconBg="bg-purple-500/10"
+          iconColor="text-purple-300"
+          iconBg="bg-purple-500/20"
         />
         <div
           onClick={() => setIsEngineModalOpen(true)}
-          className="cursor-pointer transition-transform hover:scale-[1.01]"
+          className="cursor-pointer"
         >
           <StatsCard
             title="Evaluation Engine"
             value={isMockEngine ? 'Offline Mock' : 'OpenAI Live'}
             subtitle={isMockEngine ? 'Zero-cost local heuristics' : 'Live GPT-4o extraction'}
             icon={isMockEngine ? Cpu : CheckCircle2}
-            iconColor={isMockEngine ? 'text-amber-400' : 'text-emerald-400'}
-            iconBg={isMockEngine ? 'bg-amber-500/10' : 'bg-emerald-500/10'}
+            iconColor={isMockEngine ? 'text-amber-300' : 'text-emerald-300'}
+            iconBg={isMockEngine ? 'bg-amber-500/20' : 'bg-emerald-500/20'}
             badge={{
               text: isMockEngine ? 'Mock Mode' : 'Live API',
               color: isMockEngine
-                ? 'bg-amber-500/15 text-amber-300 border border-amber-500/40'
-                : 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/40',
+                ? 'bg-amber-500/20 text-amber-200 border-amber-500/40'
+                : 'bg-emerald-500/20 text-emerald-200 border-emerald-500/40',
             }}
           />
         </div>
@@ -227,17 +232,19 @@ export const DashboardPage: React.FC = () => {
 
       {/* Engine Status Notice Banner if in Mock Mode */}
       {isMockEngine && (
-        <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-between gap-3 text-xs text-amber-200">
-          <div className="flex items-center space-x-2.5">
-            <Info className="w-4 h-4 text-amber-400 flex-shrink-0" />
+        <div className="p-4 rounded-[24px] clay-card bg-gradient-to-r from-[#1c1815] to-[#161d2d] border border-amber-500/30 flex items-center justify-between gap-3 text-xs text-amber-200">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 rounded-2xl bg-amber-500/20 clay-icon-blob flex-shrink-0">
+              <Info className="w-4 h-4 text-amber-300" />
+            </div>
             <span>
-              <strong>Offline Mock Engine Active:</strong> Match scores and formulas calculate locally using deterministic algorithms without consuming OpenAI API credits.
+              <strong className="text-amber-100 font-bold">Offline Mock Engine Active:</strong> Match scores and formulas calculate locally using deterministic algorithms without consuming OpenAI API credits.
             </span>
           </div>
           <button
             type="button"
             onClick={() => setIsEngineModalOpen(true)}
-            className="px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 font-semibold text-[11px] transition-colors flex-shrink-0"
+            className="px-3.5 py-1.5 rounded-full bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 font-bold text-[11px] clay-badge border-amber-500/40 transition-colors flex-shrink-0"
           >
             Engine Details
           </button>
@@ -245,42 +252,42 @@ export const DashboardPage: React.FC = () => {
       )}
 
       {/* Jobs Listing Section with Search, Filter, Sort Controls */}
-      <div className="space-y-5">
+      <div className="space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-bold text-slate-100 font-['Outfit']">
+            <h2 className="text-2xl font-extrabold text-white font-['Outfit'] tracking-tight">
               Job Postings & Screeners
             </h2>
-            <p className="text-xs text-slate-300 mt-0.5">
+            <p className="text-xs text-slate-300 mt-1">
               Select a job to inspect candidate rankings, manage status, or upload resumes
             </p>
           </div>
 
           <Link
             to="/jobs/create"
-            className="self-start sm:self-auto px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-100 border border-slate-700 transition-colors flex items-center space-x-1.5 shadow-sm"
+            className="self-start sm:self-auto px-4 py-2 text-xs font-bold text-white clay-btn-primary flex items-center space-x-1.5"
           >
-            <PlusCircle className="w-4 h-4 text-emerald-400" />
+            <PlusCircle className="w-4 h-4" />
             <span>New Job</span>
           </Link>
         </div>
 
-        {/* Search & Filter Toolbar */}
-        <div className="glass-card p-4 rounded-xl border border-slate-800 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3.5">
-          {/* Search Input */}
+        {/* Search & Filter Toolbar (Clay Container + Inset Controls) */}
+        <div className="clay-card p-5 rounded-[28px] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+          {/* Search Input (Recessed Inset Clay) */}
           <div className="relative flex-1">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by job title, company, or required skill..."
-              className="w-full pl-9 pr-8 py-2 rounded-lg bg-slate-900 border border-slate-700 text-slate-100 text-xs placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 transition-colors"
+              className="w-full pl-10 pr-9 py-2.5 rounded-full clay-inset text-white text-xs placeholder:text-slate-400 focus:outline-none focus:border-emerald-500/50 transition-colors"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-200"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -288,31 +295,34 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           {/* Filter Pills & Sort Dropdown */}
-          <div className="flex flex-wrap items-center gap-2.5">
-            {/* Status Filter Pills */}
-            <div className="flex items-center p-1 rounded-lg bg-slate-900 border border-slate-800 text-xs">
-              {(['ALL', 'Open', 'Paused', 'Closed'] as const).map((st) => (
-                <button
-                  key={st}
-                  onClick={() => setStatusFilter(st)}
-                  className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-all ${
-                    statusFilter === st
-                      ? 'bg-emerald-600 text-white font-semibold shadow-sm'
-                      : 'text-slate-300 hover:text-slate-100'
-                  }`}
-                >
-                  {st}
-                </button>
-              ))}
+          <div className="flex flex-wrap items-center gap-3">
+            {/* Status Filter Pills (Clay & Pressed Inset States) */}
+            <div className="flex items-center p-1.5 rounded-full clay-inset">
+              {(['ALL', 'Open', 'Paused', 'Closed'] as const).map((st) => {
+                const isSelected = statusFilter === st;
+                return (
+                  <button
+                    key={st}
+                    onClick={() => setStatusFilter(st)}
+                    className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all ${
+                      isSelected
+                        ? 'clay-btn-primary text-white shadow-md'
+                        : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    {st}
+                  </button>
+                );
+              })}
             </div>
 
             {/* Sort Dropdown */}
-            <div className="flex items-center space-x-1.5 bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-xs">
+            <div className="flex items-center space-x-2 clay-inset rounded-full px-3.5 py-1.5 text-xs">
               <SlidersHorizontal className="w-3.5 h-3.5 text-slate-400" />
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="bg-transparent text-slate-200 text-xs focus:outline-none cursor-pointer"
+                className="bg-transparent text-slate-200 text-xs font-semibold focus:outline-none cursor-pointer pr-1"
               >
                 <option value="recent" className="bg-slate-900 text-slate-200">
                   Most Recent
@@ -337,24 +347,28 @@ export const DashboardPage: React.FC = () => {
         ) : error ? (
           <ErrorMessage message={error} onRetry={fetchJobs} />
         ) : jobs.length === 0 ? (
-          <div className="glass-card rounded-2xl p-12 text-center border border-slate-800 text-slate-400 space-y-3">
-            <Briefcase className="w-12 h-12 text-slate-500 mx-auto" />
-            <h3 className="text-base font-bold text-slate-200">No Job Postings Found</h3>
+          <div className="clay-card rounded-[32px] p-12 text-center text-slate-400 space-y-3">
+            <div className="w-16 h-16 rounded-3xl bg-slate-800/80 clay-icon-blob flex items-center justify-center mx-auto text-slate-400">
+              <Briefcase className="w-8 h-8" />
+            </div>
+            <h3 className="text-lg font-extrabold text-white font-['Outfit']">No Job Postings Found</h3>
             <p className="text-xs text-slate-300 max-w-sm mx-auto">
               Create your first job description to start uploading resumes and ranking candidates.
             </p>
             <Link
               to="/jobs/create"
-              className="inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold shadow-md mt-2"
+              className="inline-flex items-center space-x-2 px-5 py-2.5 text-xs font-bold text-white clay-btn-primary mt-2"
             >
               <PlusCircle className="w-4 h-4" />
               <span>Create Job</span>
             </Link>
           </div>
         ) : filteredAndSortedJobs.length === 0 ? (
-          <div className="glass-card rounded-2xl p-10 text-center border border-slate-800 text-slate-300 space-y-3">
-            <Search className="w-10 h-10 text-slate-500 mx-auto" />
-            <h3 className="text-base font-bold text-slate-200">No Matching Jobs</h3>
+          <div className="clay-card rounded-[32px] p-10 text-center text-slate-300 space-y-3">
+            <div className="w-14 h-14 rounded-3xl bg-slate-800/80 clay-icon-blob flex items-center justify-center mx-auto text-slate-400">
+              <Search className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-extrabold text-white font-['Outfit']">No Matching Jobs</h3>
             <p className="text-xs text-slate-300 max-w-sm mx-auto">
               No job postings matched your search filter "{searchQuery}".
             </p>
@@ -363,13 +377,13 @@ export const DashboardPage: React.FC = () => {
                 setSearchQuery('');
                 setStatusFilter('ALL');
               }}
-              className="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700"
+              className="px-4 py-2 text-xs font-bold text-slate-200 clay-btn-secondary"
             >
               Clear Filters
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredAndSortedJobs.map((job) => (
               <JobCard
                 key={job.id}
@@ -389,17 +403,17 @@ export const DashboardPage: React.FC = () => {
         onClose={() => setIsMethodologyOpen(false)}
       />
 
-      {/* Engine Status Details Modal */}
+      {/* Engine Status Details Modal (Molded Clay Modal) */}
       {isEngineModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="w-full max-w-md rounded-2xl bg-slate-900 border border-slate-700 p-6 space-y-4 shadow-2xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="w-full max-w-md clay-card p-7 space-y-5 shadow-[0_25px_60px_rgba(0,0,0,0.8)] border border-white/10">
             <div className="flex items-start justify-between">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
-                  <Bot className="w-5 h-5" />
+              <div className="flex items-center space-x-3.5">
+                <div className="w-11 h-11 rounded-2xl bg-emerald-500/20 clay-icon-blob text-emerald-300 flex items-center justify-center flex-shrink-0">
+                  <Bot className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-slate-100 font-['Outfit']">
+                  <h3 className="text-lg font-extrabold text-white font-['Outfit']">
                     AI Evaluation Engine
                   </h3>
                   <p className="text-xs text-slate-400">
@@ -409,35 +423,35 @@ export const DashboardPage: React.FC = () => {
               </div>
               <button
                 onClick={() => setIsEngineModalOpen(false)}
-                className="p-1 text-slate-400 hover:text-slate-200"
+                className="p-1 text-slate-400 hover:text-white clay-btn-secondary rounded-full"
               >
-                <X className="w-5 h-5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="space-y-2.5 p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs">
+            <div className="space-y-2.5 p-4 rounded-2xl clay-inset text-xs">
               <div className="flex items-center justify-between">
                 <span className="text-slate-400">Active Mode:</span>
-                <span className="font-semibold text-emerald-300 uppercase font-mono">
+                <span className="font-bold text-emerald-300 uppercase font-mono">
                   {engineHealth?.llm_mode || 'mock'}
                 </span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-400">Database Connection:</span>
-                <span className="font-medium text-emerald-400">Connected (Healthy)</span>
+                <span className="font-bold text-emerald-400">Connected (Healthy)</span>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-slate-400">Deterministic Engine:</span>
-                <span className="font-medium text-slate-200">6-Stage Mathematical</span>
+                <span className="font-bold text-slate-200">6-Stage Mathematical</span>
               </div>
             </div>
 
             <div className="text-xs text-slate-300 space-y-2 leading-relaxed">
               <p>
-                <strong>Offline Mock Mode (Current):</strong> Scores are computed with the 100% deterministic mathematical model (Skills 40%, Experience 25%, Vectors 20%, Education 10%, Certs 5%). Qualitative notes use deterministic synthesis.
+                <strong className="text-white">Offline Mock Mode (Current):</strong> Scores are computed with the 100% deterministic mathematical model (Skills 40%, Experience 25%, Vectors 20%, Education 10%, Certs 5%). Qualitative notes use deterministic synthesis.
               </p>
-              <p className="text-slate-400">
-                To enable live OpenAI generation, set <code className="text-emerald-400 bg-slate-950 px-1 py-0.5 rounded">LLM_MODE=real</code> and provide <code className="text-emerald-400 bg-slate-950 px-1 py-0.5 rounded">OPENAI_API_KEY</code> in <code className="text-slate-300">.env</code>.
+              <p className="text-slate-400 text-[11px]">
+                To enable live OpenAI generation, set <code className="text-emerald-300 font-mono bg-black/40 px-1.5 py-0.5 rounded-full">LLM_MODE=real</code> and provide <code className="text-emerald-300 font-mono bg-black/40 px-1.5 py-0.5 rounded-full">OPENAI_API_KEY</code> in <code className="text-slate-300">.env</code>.
               </p>
             </div>
 
@@ -445,7 +459,7 @@ export const DashboardPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsEngineModalOpen(false)}
-                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold text-white shadow-md"
+                className="px-5 py-2 text-xs font-extrabold text-white clay-btn-primary"
               >
                 Close
               </button>
