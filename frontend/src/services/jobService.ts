@@ -18,6 +18,11 @@ export const jobService = {
     return res.data.data;
   },
 
+  async updateJob(id: number, payload: Partial<Job>): Promise<Job> {
+    const res = await api.put<APIResponse<Job>>(`/jobs/${id}`, payload);
+    return res.data.data;
+  },
+
   async deleteJob(id: number): Promise<void> {
     await api.delete(`/jobs/${id}`);
   },

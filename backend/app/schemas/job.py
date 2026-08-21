@@ -8,6 +8,7 @@ class JobBase(BaseModel):
     title: str = Field(..., min_length=2, max_length=255, description="Job title")
     company: str = Field(..., min_length=1, max_length=255, description="Company name")
     description: str = Field(..., min_length=10, description="Full job description text")
+    status: str = Field("Open", description="Status of the job posting: Open, Paused, Closed")
     required_skills: List[str] = Field(
         default_factory=list, description="Mandatory required skills"
     )
@@ -31,6 +32,7 @@ class JobUpdate(BaseModel):
     title: Optional[str] = None
     company: Optional[str] = None
     description: Optional[str] = None
+    status: Optional[str] = None
     required_skills: Optional[List[str]] = None
     preferred_skills: Optional[List[str]] = None
     minimum_experience: Optional[float] = None
@@ -40,6 +42,7 @@ class JobUpdate(BaseModel):
 
 class JobResponse(JobBase):
     id: int
+    status: str = "Open"
     keywords: List[str] = []
     responsibilities: List[str] = []
     important_requirements: List[str] = []
@@ -58,6 +61,7 @@ class JobSummary(BaseModel):
     id: int
     title: str
     company: str
+    status: str = "Open"
     required_skills: List[str]
     preferred_skills: List[str]
     minimum_experience: float

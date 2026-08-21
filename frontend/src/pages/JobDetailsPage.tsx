@@ -6,16 +6,18 @@ import {
   ChevronRight,
   Clock,
   FileUp,
+  HelpCircle,
   Play,
 } from 'lucide-react';
-import { Job } from '../types/job';
+import { Job, JobStatus } from '../types/job';
 import { Resume } from '../types/candidate';
 import { jobService } from '../services/jobService';
 import { resumeService } from '../services/resumeService';
 import { screeningService } from '../services/screeningService';
-import { SkillBadge } from '../components/common/Badge';
+import { JobStatusBadge, SkillBadge } from '../components/common/Badge';
 import { LoadingSpinner, ErrorMessage } from '../components/common/LoadingSpinner';
 import { ResumeList } from '../components/resumes/ResumeList';
+import { ScoringMethodologyModal } from '../components/common/ScoringMethodologyModal';
 
 export const JobDetailsPage: React.FC = () => {
   const { jobId } = useParams<{ jobId: string }>();
@@ -26,6 +28,7 @@ export const JobDetailsPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isScreening, setIsScreening] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isMethodologyOpen, setIsMethodologyOpen] = useState(false);
 
   const numericJobId = Number(jobId);
 
@@ -49,6 +52,16 @@ export const JobDetailsPage: React.FC = () => {
       setError(err.message || 'Failed to load job details');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleStatusChange = async (newStatus: JobStatus) => {
+    if (!job) return;
+    try {
+      await jobService.updateJob(job.id, { status: newStatus });
+      setJob({ ...job, status: newStatus });
+    } catch (err: any) {
+      alert(`Failed to update status: ${err.message}`);
     }
   };
 
@@ -83,6 +96,8 @@ export const JobDetailsPage: React.FC = () => {
     );
   }
 
+  const hasScreened = (job.screened_count || 0) > 0;
+
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
       {/* Back button */}
@@ -99,26 +114,33 @@ export const JobDetailsPage: React.FC = () => {
       <div className="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-2">
           <div className="flex items-center space-x-3">
-            <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-              Active Requisition
-            </span>
-            <span className="text-xs text-slate-500 font-mono">Job #{job.id}</span>
+            <JobStatusBadge status={job.status || 'Open'} size="md" />
+            <select
+              value={job.status || 'Open'}
+              onChange={(e) => handleStatusChange(e.target.value as JobStatus)}
+              className="bg-slate-900 border border-slate-700 text-slate-300 text-xs rounded-lg px-2 py-0.5 focus:outline-none focus:border-emerald-500 cursor-pointer"
+            >
+              <option value="Open">Status: Open</option>
+              <option value="Paused">Status: Paused</option>
+              <option value="Closed">Status: Closed</option>
+            </select>
+            <span className="text-xs text-slate-400 font-mono">Job #{job.id}</span>
           </div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-100 font-['Outfit']">
             {job.title}
           </h1>
-          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
-            <span className="flex items-center space-x-1 text-slate-300">
-              <Building className="w-4 h-4 text-slate-500" />
+          <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300">
+            <span className="flex items-center space-x-1 text-slate-200 font-medium">
+              <Building className="w-4 h-4 text-slate-400" />
               <span>{job.company}</span>
             </span>
-            <span>•</span>
-            <span className="flex items-center space-x-1">
-              <Clock className="w-4 h-4 text-slate-500" />
+            <span className="text-slate-500">•</span>
+            <span className="flex items-center space-x-1 text-slate-300">
+              <Clock className="w-4 h-4 text-slate-400" />
               <span>{job.minimum_experience} Years Minimum Experience</span>
             </span>
-            <span>•</span>
-            <span className="flex items-center space-x-1 text-emerald-400">
+            <span className="text-slate-500">•</span>
+            <span className="flex items-center space-x-1 text-emerald-300 font-medium">
               <FileUp className="w-4 h-4" />
               <span>{resumes.length} Uploaded Resumes</span>
             </span>
@@ -127,6 +149,15 @@ export const JobDetailsPage: React.FC = () => {
 
         {/* Actions */}
         <div className="flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setIsMethodologyOpen(true)}
+            className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition-all flex items-center space-x-1.5 shadow-sm"
+          >
+            <HelpCircle className="w-4 h-4 text-cyan-400" />
+            <span>Scoring Model</span>
+          </button>
+
           <Link
             to={`/jobs/${job.id}/upload`}
             className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-100 border border-slate-700 transition-all flex items-center space-x-2 shadow-sm"
@@ -138,19 +169,32 @@ export const JobDetailsPage: React.FC = () => {
           <button
             onClick={handleRunScreening}
             disabled={isScreening || resumes.length === 0}
-            className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white shadow-lg shadow-emerald-600/25 transition-all flex items-center space-x-2 disabled:opacity-50"
+            className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white shadow-lg shadow-emerald-600/25 transition-all flex items-center space-x-2 disabled:opacity-40 disabled:cursor-not-allowed"
+            title={resumes.length === 0 ? 'Upload resumes before running screening' : 'Screen candidates'}
           >
             <Play className="w-4 h-4 fill-white" />
             <span>{isScreening ? 'Screening Candidates...' : 'Run Candidate Screening'}</span>
           </button>
 
-          <Link
-            to={`/jobs/${job.id}/rankings`}
-            className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-100 border border-slate-700 transition-all flex items-center space-x-1.5"
-          >
-            <span>View Leaderboard</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </Link>
+          {hasScreened ? (
+            <Link
+              to={`/jobs/${job.id}/rankings`}
+              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-100 border border-slate-700 transition-all flex items-center space-x-1.5"
+            >
+              <span>View Leaderboard</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </Link>
+          ) : (
+            <button
+              type="button"
+              disabled
+              className="px-4 py-2.5 rounded-xl bg-slate-800/40 text-slate-400 text-xs font-medium border border-slate-800 cursor-not-allowed flex items-center space-x-1.5"
+              title="No candidates screened yet"
+            >
+              <span>View Leaderboard</span>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
+            </button>
+          )}
         </div>
       </div>
 
@@ -201,6 +245,12 @@ export const JobDetailsPage: React.FC = () => {
           <ResumeList resumes={resumes} />
         </div>
       </div>
+
+      {/* Scoring Methodology Modal */}
+      <ScoringMethodologyModal
+        isOpen={isMethodologyOpen}
+        onClose={() => setIsMethodologyOpen(false)}
+      />
     </div>
   );
 };

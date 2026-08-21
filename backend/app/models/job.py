@@ -13,6 +13,7 @@ class Job(Base):
     title = Column(String(255), nullable=False, index=True)
     company = Column(String(255), nullable=False, index=True)
     description = Column(Text, nullable=False)
+    status = Column(String(50), default="Open", nullable=False)
 
     # Requirements
     required_skills = Column(JSON, default=list, nullable=False)

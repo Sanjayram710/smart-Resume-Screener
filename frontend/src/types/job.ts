@@ -1,7 +1,10 @@
+export type JobStatus = 'Open' | 'Paused' | 'Closed';
+
 export interface Job {
   id: number;
   title: string;
   company: string;
+  status: JobStatus;
   description: string;
   required_skills: string[];
   preferred_skills: string[];
@@ -23,6 +26,7 @@ export interface JobSummary {
   id: number;
   title: string;
   company: string;
+  status: JobStatus;
   required_skills: string[];
   preferred_skills: string[];
   minimum_experience: number;
@@ -34,6 +38,7 @@ export interface JobSummary {
 export interface JobCreatePayload {
   title: string;
   company: string;
+  status?: JobStatus;
   description: string;
   required_skills: string[];
   preferred_skills: string[];
@@ -41,4 +46,16 @@ export interface JobCreatePayload {
   education_requirements: string[];
   certifications: string[];
   auto_extract: boolean;
+}
+
+export interface JobUpdatePayload {
+  title?: string;
+  company?: string;
+  status?: JobStatus;
+  description?: string;
+  required_skills?: string[];
+  preferred_skills?: string[];
+  minimum_experience?: number;
+  education_requirements?: string[];
+  certifications?: string[];
 }
