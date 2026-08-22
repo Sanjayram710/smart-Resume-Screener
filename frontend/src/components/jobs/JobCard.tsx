@@ -211,44 +211,44 @@ export const JobCard: React.FC<JobCardProps> = ({
       </div>
 
       {/* Footer Stats & Actions */}
-      <div className="mt-6 pt-4 border-t border-[#F0E4D3] flex items-center justify-between">
-        <div className="flex items-center space-x-4 text-xs">
-          <span className="flex items-center space-x-1.5 text-[#6B553F] font-semibold" title="Uploaded resumes">
-            <FileText className="w-4 h-4 text-[#8B7355]" />
+      <div className="mt-6 pt-4 border-t border-[#F0E4D3] flex items-center justify-between gap-2.5">
+        <div className="flex items-center space-x-3 text-xs shrink-0">
+          <span className="flex items-center space-x-1.5 text-[#6B553F] font-semibold whitespace-nowrap" title="Uploaded resumes">
+            <FileText className="w-4 h-4 text-[#8B7355] shrink-0" />
             <span>{job.resume_count} Resumes</span>
           </span>
           <span
-            className="flex items-center space-x-1.5 font-bold text-[#C2410C]"
+            className="flex items-center space-x-1.5 font-bold text-[#C2410C] whitespace-nowrap"
             title="Screened and scored candidates"
           >
-            <Sparkles className="w-4 h-4 text-[#EA580C]" />
+            <Sparkles className="w-4 h-4 text-[#EA580C] shrink-0" />
             <span>{job.screened_count} Screened</span>
           </span>
         </div>
 
-        <div className="flex items-center space-x-2.5">
+        <div className="flex items-center space-x-2 shrink-0">
           <Link
             to={`/jobs/${job.id}`}
-            className="px-3.5 py-1.5 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary flex items-center space-x-1"
+            className="h-8 px-3.5 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary inline-flex items-center justify-center space-x-1 whitespace-nowrap shrink-0"
           >
             <span>View Job</span>
-            <ChevronRight className="w-3.5 h-3.5" />
+            <ChevronRight className="w-3.5 h-3.5 shrink-0" />
           </Link>
 
           {/* Rankings Button: Clay Styled */}
           {hasScreened ? (
             <Link
               to={`/jobs/${job.id}/rankings`}
-              className="px-4 py-1.5 text-xs font-extrabold text-white clay-btn-primary flex items-center space-x-1"
+              className="h-8 px-3.5 text-xs font-extrabold text-white clay-btn-primary inline-flex items-center justify-center space-x-1 whitespace-nowrap shrink-0"
             >
               <span>Rankings</span>
             </Link>
           ) : (
-            <div className="relative group/disabled">
+            <div className="relative group/disabled shrink-0">
               <button
                 type="button"
                 disabled
-                className="px-3.5 py-1.5 rounded-full bg-[#F1E5D4] text-[#8C7660] text-xs font-bold border border-[#DFCCA8] cursor-not-allowed transition-colors"
+                className="h-8 px-3.5 rounded-full bg-[#F1E5D4] text-[#8C7660] text-xs font-bold border border-[#DFCCA8] cursor-not-allowed transition-colors inline-flex items-center justify-center whitespace-nowrap"
                 title="No candidates screened yet"
               >
                 <span>Rankings</span>
