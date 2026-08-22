@@ -68,11 +68,11 @@ export const JobCard: React.FC<JobCardProps> = ({
   };
 
   return (
-    <div className="clay-card-interactive p-6 sm:p-7 rounded-[28px] flex flex-col justify-between relative group">
+    <div className="clay-card-interactive p-5 rounded-[28px] flex flex-col justify-between relative group h-full">
       <div>
         {/* Top Meta Bar: Status Badge + Posted Date + Kebab Menu */}
         <div className="flex items-center justify-between gap-2 mb-4">
-          <div className="flex items-center space-x-2.5">
+          <div className="flex items-center space-x-2">
             <JobStatusBadge status={job.status || 'Open'} size="sm" />
             <span className="flex items-center space-x-1 text-[11px] text-[#6B553F] font-bold">
               <Calendar className="w-3.5 h-3.5 text-[#8B7355]" />
@@ -179,7 +179,7 @@ export const JobCard: React.FC<JobCardProps> = ({
           <h3 className="text-xl font-extrabold text-[#2A1B0F] group-hover:text-[#EA580C] transition-colors font-['Outfit'] tracking-tight leading-snug">
             {job.title}
           </h3>
-          <div className="flex flex-wrap items-center gap-3 text-xs text-[#6B553F] mt-2">
+          <div className="flex flex-wrap items-center gap-2.5 text-xs text-[#6B553F] mt-2">
             <span className="flex items-center space-x-1.5 text-[#4A3520] font-bold">
               <Building className="w-4 h-4 text-[#8B7355]" />
               <span>{job.company}</span>
@@ -193,16 +193,16 @@ export const JobCard: React.FC<JobCardProps> = ({
         </div>
 
         {/* Required Skills Recessed Chips */}
-        <div className="mt-5">
-          <p className="text-[11px] font-bold text-[#6B553F] uppercase tracking-wider mb-2.5">
+        <div className="mt-4">
+          <p className="text-[11px] font-bold text-[#6B553F] uppercase tracking-wider mb-2">
             Required Skills:
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5">
             {job.required_skills.slice(0, 5).map((skill) => (
               <SkillBadge key={skill} skill={skill} type="required" />
             ))}
             {job.required_skills.length > 5 && (
-              <span className="text-[11px] text-[#7C5A3A] font-bold self-center px-2.5 py-0.5 rounded-full clay-inset-pill bg-[#F5EAD9] border border-[#EBDCC4]">
+              <span className="text-[11px] text-[#7C5A3A] font-bold self-center px-2 py-0.5 rounded-full clay-inset-pill bg-[#F5EAD9] border border-[#EBDCC4]">
                 +{job.required_skills.length - 5} more
               </span>
             )}
@@ -211,25 +211,26 @@ export const JobCard: React.FC<JobCardProps> = ({
       </div>
 
       {/* Footer Stats & Actions */}
-      <div className="mt-6 pt-4 border-t border-[#F0E4D3] flex items-center justify-between gap-2.5">
-        <div className="flex items-center space-x-3 text-xs shrink-0">
-          <span className="flex items-center space-x-1.5 text-[#6B553F] font-semibold whitespace-nowrap" title="Uploaded resumes">
-            <FileText className="w-4 h-4 text-[#8B7355] shrink-0" />
+      <div className="mt-5 pt-3.5 border-t border-[#F0E4D3] flex items-center justify-between gap-2">
+        <div className="flex items-center space-x-2 text-xs shrink-0">
+          <span className="flex items-center space-x-1 text-[#6B553F] font-bold text-[11px] whitespace-nowrap" title="Uploaded resumes">
+            <FileText className="w-3.5 h-3.5 text-[#8B7355] shrink-0" />
             <span>{job.resume_count} Resumes</span>
           </span>
+          <span className="text-[#DFCCA8]">•</span>
           <span
-            className="flex items-center space-x-1.5 font-bold text-[#C2410C] whitespace-nowrap"
+            className="flex items-center space-x-1 font-bold text-[#C2410C] text-[11px] whitespace-nowrap"
             title="Screened and scored candidates"
           >
-            <Sparkles className="w-4 h-4 text-[#EA580C] shrink-0" />
+            <Sparkles className="w-3.5 h-3.5 text-[#EA580C] shrink-0" />
             <span>{job.screened_count} Screened</span>
           </span>
         </div>
 
-        <div className="flex items-center space-x-2 shrink-0">
+        <div className="flex items-center space-x-1.5 shrink-0">
           <Link
             to={`/jobs/${job.id}`}
-            className="h-8 px-3.5 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary inline-flex items-center justify-center space-x-1 whitespace-nowrap shrink-0"
+            className="h-8 px-2.5 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary inline-flex items-center justify-center space-x-1 whitespace-nowrap shrink-0"
           >
             <span>View Job</span>
             <ChevronRight className="w-3.5 h-3.5 shrink-0" />
@@ -239,7 +240,7 @@ export const JobCard: React.FC<JobCardProps> = ({
           {hasScreened ? (
             <Link
               to={`/jobs/${job.id}/rankings`}
-              className="h-8 px-3.5 text-xs font-extrabold text-white clay-btn-primary inline-flex items-center justify-center space-x-1 whitespace-nowrap shrink-0"
+              className="h-8 px-3 text-xs font-extrabold text-white clay-btn-primary inline-flex items-center justify-center whitespace-nowrap shrink-0"
             >
               <span>Rankings</span>
             </Link>
@@ -248,12 +249,12 @@ export const JobCard: React.FC<JobCardProps> = ({
               <button
                 type="button"
                 disabled
-                className="h-8 px-3.5 rounded-full bg-[#F1E5D4] text-[#8C7660] text-xs font-bold border border-[#DFCCA8] cursor-not-allowed transition-colors inline-flex items-center justify-center whitespace-nowrap"
+                className="h-8 px-3 rounded-full bg-[#F1E5D4] text-[#8C7660] text-xs font-bold border border-[#DFCCA8] cursor-not-allowed transition-colors inline-flex items-center justify-center whitespace-nowrap"
                 title="No candidates screened yet"
               >
                 <span>Rankings</span>
               </button>
-              <div className="absolute bottom-full right-0 mb-2 hidden group-hover/disabled:block z-20 w-48 p-2 rounded-2xl bg-[#2A1B0F] text-white text-[11px] text-center shadow-xl pointer-events-none">
+              <div className="absolute bottom-full right-0 mb-2 hidden group-hover/disabled:block z-20 w-44 p-2 rounded-2xl bg-[#2A1B0F] text-white text-[11px] text-center shadow-xl pointer-events-none">
                 No candidates screened yet
               </div>
             </div>
