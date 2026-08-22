@@ -68,7 +68,7 @@ export const JobCard: React.FC<JobCardProps> = ({
   };
 
   return (
-    <div className="clay-card-interactive p-5 rounded-[28px] flex flex-col justify-between relative group h-full">
+    <div className="clay-card-interactive p-4 sm:p-5 rounded-[28px] flex flex-col justify-between relative group h-full">
       <div>
         {/* Top Meta Bar: Status Badge + Posted Date + Kebab Menu */}
         <div className="flex items-center justify-between gap-2 mb-4">
@@ -211,28 +211,33 @@ export const JobCard: React.FC<JobCardProps> = ({
       </div>
 
       {/* Footer Stats & Actions */}
-      <div className="mt-5 pt-3.5 border-t border-[#F0E4D3] flex items-center justify-between gap-2">
-        <div className="flex items-center space-x-2 text-xs shrink-0">
-          <span className="flex items-center space-x-1 text-[#6B553F] font-bold text-[11px] whitespace-nowrap" title="Uploaded resumes">
-            <FileText className="w-3.5 h-3.5 text-[#8B7355] shrink-0" />
-            <span>{job.resume_count} Resumes</span>
-          </span>
-          <span className="text-[#DFCCA8]">•</span>
+      <div className="mt-5 pt-3.5 border-t border-[#F0E4D3] flex items-center justify-between gap-2 w-full">
+        {/* Stats: Resumes & Screened */}
+        <div className="flex items-center gap-2 text-[11px] leading-none shrink-0">
           <span
-            className="flex items-center space-x-1 font-bold text-[#C2410C] text-[11px] whitespace-nowrap"
+            className="inline-flex items-center gap-1 text-[#6B553F] font-bold whitespace-nowrap leading-none"
+            title="Uploaded resumes"
+          >
+            <FileText className="w-3.5 h-3.5 text-[#8B7355] shrink-0" />
+            <span className="leading-none">{job.resume_count} Resumes</span>
+          </span>
+
+          <span
+            className="inline-flex items-center gap-1 font-bold text-[#C2410C] whitespace-nowrap leading-none"
             title="Screened and scored candidates"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#EA580C] shrink-0" />
-            <span>{job.screened_count} Screened</span>
+            <span className="leading-none">{job.screened_count} Screened</span>
           </span>
         </div>
 
-        <div className="flex items-center space-x-1.5 shrink-0">
+        {/* Action Buttons: View Job & Rankings */}
+        <div className="flex items-center gap-1.5 shrink-0">
           <Link
             to={`/jobs/${job.id}`}
-            className="h-8 px-2.5 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary inline-flex items-center justify-center space-x-1 whitespace-nowrap shrink-0"
+            className="h-8 px-2.5 text-xs font-bold text-[#4A3520] hover:text-[#2A1B0F] clay-btn-secondary inline-flex items-center justify-center gap-1 whitespace-nowrap leading-none shrink-0"
           >
-            <span>View Job</span>
+            <span className="leading-none">View Job</span>
             <ChevronRight className="w-3.5 h-3.5 shrink-0" />
           </Link>
 
@@ -240,19 +245,19 @@ export const JobCard: React.FC<JobCardProps> = ({
           {hasScreened ? (
             <Link
               to={`/jobs/${job.id}/rankings`}
-              className="h-8 px-3 text-xs font-extrabold text-white clay-btn-primary inline-flex items-center justify-center whitespace-nowrap shrink-0"
+              className="h-8 px-2.5 text-xs font-extrabold text-white clay-btn-primary inline-flex items-center justify-center whitespace-nowrap leading-none shrink-0"
             >
-              <span>Rankings</span>
+              <span className="leading-none">Rankings</span>
             </Link>
           ) : (
-            <div className="relative group/disabled shrink-0">
+            <div className="relative group/disabled inline-flex items-center shrink-0">
               <button
                 type="button"
                 disabled
-                className="h-8 px-3 rounded-full bg-[#F1E5D4] text-[#8C7660] text-xs font-bold border border-[#DFCCA8] cursor-not-allowed transition-colors inline-flex items-center justify-center whitespace-nowrap"
+                className="h-8 px-2.5 rounded-full bg-[#F1E5D4] text-[#8C7660] text-xs font-bold border border-[#DFCCA8] cursor-not-allowed transition-colors inline-flex items-center justify-center whitespace-nowrap leading-none"
                 title="No candidates screened yet"
               >
-                <span>Rankings</span>
+                <span className="leading-none">Rankings</span>
               </button>
               <div className="absolute bottom-full right-0 mb-2 hidden group-hover/disabled:block z-20 w-44 p-2 rounded-2xl bg-[#2A1B0F] text-white text-[11px] text-center shadow-xl pointer-events-none">
                 No candidates screened yet
