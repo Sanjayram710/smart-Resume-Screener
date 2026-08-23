@@ -10,28 +10,47 @@
 
 ---
 
+## 🎥 Workflow Video Demo
+
+Watch the complete end-to-end workflow walkthrough of **Smart Resume Screener**, including job creation, PDF resume parsing, deterministic 6-stage candidate ranking, and AI qualitative scorecard inspection:
+
+https://github.com/Sanjayram710/smart-Resume-Screener/raw/main/docs/assets/workflow-demo.mp4
+
+<p align="center">
+  <video src="docs/assets/workflow-demo.mp4" poster="docs/assets/video-poster.png" width="100%" controls="controls">
+    <a href="docs/assets/workflow-demo.mp4">
+      <img src="docs/assets/video-poster.png" alt="Smart Resume Screener Video Walkthrough" width="100%" />
+    </a>
+  </video>
+</p>
+
+> 🎬 **Direct Video Link**: [Download / Stream `docs/assets/workflow-demo.mp4`](docs/assets/workflow-demo.mp4)
+
+---
+
 ## Table of Contents
-1. [Project Overview](#1-project-overview)
-2. [Problem Statement](#2-problem-statement)
-3. [Objectives](#3-objectives)
-4. [Features](#4-features)
-5. [Architecture](#5-architecture)
-6. [Tech Stack](#6-tech-stack)
-7. [Folder Structure](#7-folder-structure)
-8. [Database Design](#8-database-design)
-9. [AI/ML Pipeline](#9-aiml-pipeline)
-10. [Matching Algorithm](#10-matching-algorithm)
-11. [Scoring Formula](#11-scoring-formula)
-12. [LLM Prompt Strategy](#12-llm-prompt-strategy)
-13. [API Documentation](#13-api-documentation)
-14. [Setup Instructions](#14-setup-instructions)
-15. [Environment Variables](#15-environment-variables)
-16. [Local Development](#16-local-development)
-17. [Testing](#17-testing)
-18. [Demo Flow](#18-demo-flow)
-19. [Limitations](#19-limitations)
-20. [Future Improvements](#20-future-improvements)
-21. [Fairness and Bias Note](#21-fairness-and-bias-note)
+1. [Workflow Video Demo](#-workflow-video-demo)
+2. [Project Overview](#1-project-overview)
+3. [Problem Statement](#2-problem-statement)
+4. [Objectives](#3-objectives)
+5. [Features](#4-features)
+6. [Architecture](#5-architecture)
+7. [Tech Stack](#6-tech-stack)
+8. [Folder Structure](#7-folder-structure)
+9. [Database Design](#8-database-design)
+10. [AI/ML Pipeline](#9-aiml-pipeline)
+11. [Matching Algorithm](#10-matching-algorithm)
+12. [Scoring Formula](#11-scoring-formula)
+13. [LLM Prompt Strategy](#12-llm-prompt-strategy)
+14. [API Documentation](#13-api-documentation)
+15. [Setup Instructions](#14-setup-instructions)
+16. [Environment Variables](#15-environment-variables)
+17. [Local Development](#16-local-development)
+18. [Testing](#17-testing)
+19. [Demo Flow](#18-demo-flow)
+20. [Limitations](#19-limitations)
+21. [Future Improvements](#20-future-improvements)
+22. [Fairness and Bias Note](#21-fairness-and-bias-note)
 
 ---
 
@@ -359,6 +378,8 @@ pytest backend/tests -v
 ---
 
 ## 18. Demo Flow
+
+> 🎥 **Video Walkthrough**: See the full video recording in [Workflow Video Demo](#-workflow-video-demo) or download [`docs/assets/workflow-demo.mp4`](docs/assets/workflow-demo.mp4).
 
 1. Open `http://localhost:5173`.
 2. Click **"Create Job"** -> Click **"Backend (Python)"** demo template -> Click **"Create Job"**.
