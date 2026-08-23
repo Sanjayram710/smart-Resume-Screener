@@ -10,7 +10,11 @@
 
 ---
 
-![Smart Resume Screener Workflow Demo](docs/assets/workflow-demo.gif)
+<p align="center">
+  <video src="https://github.com/Sanjayram710/smart-Resume-Screener/raw/main/docs/assets/workflow-demo.mp4" controls="controls" width="100%" poster="docs/assets/video-poster.png">
+    <img src="docs/assets/workflow-demo.gif" alt="Smart Resume Screener Workflow Demo" width="100%" />
+  </video>
+</p>
 
 ---
 
