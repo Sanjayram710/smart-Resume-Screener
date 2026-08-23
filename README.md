@@ -10,36 +10,42 @@
 
 ---
 
-<p align="center">
-  <video src="https://github.com/Sanjayram710/smart-Resume-Screener/raw/main/docs/assets/workflow-demo.mp4" controls="controls" width="100%" poster="docs/assets/video-poster.png">
-    <img src="docs/assets/workflow-demo.gif" alt="Smart Resume Screener Workflow Demo" width="100%" />
-  </video>
-</p>
+## 🎥 Workflow Demo & Walkthrough
+
+![Smart Resume Screener Workflow Demo](docs/assets/workflow-demo.gif)
+
+### Quick Demo Flow
+1. Open `http://localhost:5173`.
+2. Click **"Create Job"** -> Click **"Backend (Python)"** demo template -> Click **"Create Job"**.
+3. Upload the sample PDFs located in `sample_data/resumes/`.
+4. Click **"Run Candidate Screening"**.
+5. View the ranked candidate leaderboard.
+6. Click **"Inspect"** on Candidate #1 to inspect the 6-stage score breakdown, matched skills, and AI evaluation.
 
 ---
 
 ## Table of Contents
-1. [Project Overview](#1-project-overview)
-2. [Problem Statement](#2-problem-statement)
-3. [Objectives](#3-objectives)
-4. [Features](#4-features)
-5. [Architecture](#5-architecture)
-6. [Tech Stack](#6-tech-stack)
-7. [Folder Structure](#7-folder-structure)
-8. [Database Design](#8-database-design)
-9. [AI/ML Pipeline](#9-aiml-pipeline)
-10. [Matching Algorithm](#10-matching-algorithm)
-11. [Scoring Formula](#11-scoring-formula)
-12. [LLM Prompt Strategy](#12-llm-prompt-strategy)
-13. [API Documentation](#13-api-documentation)
-14. [Setup Instructions](#14-setup-instructions)
-15. [Environment Variables](#15-environment-variables)
-16. [Local Development](#16-local-development)
-17. [Testing](#17-testing)
-18. [Demo Flow](#18-demo-flow)
-19. [Limitations](#19-limitations)
-20. [Future Improvements](#20-future-improvements)
-21. [Fairness and Bias Note](#21-fairness-and-bias-note)
+1. [Workflow Demo & Walkthrough](#-workflow-demo--walkthrough)
+2. [Project Overview](#1-project-overview)
+3. [Problem Statement](#2-problem-statement)
+4. [Objectives](#3-objectives)
+5. [Features](#4-features)
+6. [Architecture](#5-architecture)
+7. [Tech Stack](#6-tech-stack)
+8. [Folder Structure](#7-folder-structure)
+9. [Database Design](#8-database-design)
+10. [AI/ML Pipeline](#9-aiml-pipeline)
+11. [Matching Algorithm](#10-matching-algorithm)
+12. [Scoring Formula](#11-scoring-formula)
+13. [LLM Prompt Strategy](#12-llm-prompt-strategy)
+14. [API Documentation](#13-api-documentation)
+15. [Setup Instructions](#14-setup-instructions)
+16. [Environment Variables](#15-environment-variables)
+17. [Local Development](#16-local-development)
+18. [Testing](#17-testing)
+19. [Limitations](#18-limitations)
+20. [Future Improvements](#19-future-improvements)
+21. [Fairness and Bias Note](#20-fairness-and-bias-note)
 
 ---
 
@@ -366,25 +372,14 @@ pytest backend/tests -v
 
 ---
 
-## 18. Demo Flow
-
-1. Open `http://localhost:5173`.
-2. Click **"Create Job"** -> Click **"Backend (Python)"** demo template -> Click **"Create Job"**.
-3. Upload the 5 sample PDFs located in `sample_data/resumes/`.
-4. Click **"Run Candidate Screening"**.
-5. View the ranked candidate leaderboard.
-6. Click **"Inspect"** on Candidate #1 to inspect the score breakdown, matched skills, and AI explanation.
-
----
-
-## 19. Limitations
+## 18. Limitations
 
 - **Image-Only Scans**: Scanned image PDFs without embedded text are flagged and rejected with a clear user prompt (OCR engine integration planned).
 - **Token Truncation**: Extremely long non-standard resumes (>20 pages) are truncated safely to 12,000 characters.
 
 ---
 
-## 20. Future Improvements
+## 19. Future Improvements
 
 - Async background worker queue (Celery/Redis) for batch processing 1,000+ resumes concurrently.
 - Optical Character Recognition (OCR via Tesseract/AWS Textract) for scanned physical documents.
@@ -392,6 +387,6 @@ pytest backend/tests -v
 
 ---
 
-## 21. Fairness and Bias Note
+## 20. Fairness and Bias Note
 
 The Smart Resume Screener is designed in accordance with algorithmic fairness best practices. Demographic markers (gender, race, religion, marital status, caste, age, nationality) are automatically stripped before evaluation and isolated from the deterministic scoring engine. For details, see [docs/bias_and_fairness.md](docs/bias_and_fairness.md).
