@@ -12,19 +12,7 @@
 
 ## 🎥 Workflow Video Demo
 
-Watch the complete end-to-end workflow walkthrough of **Smart Resume Screener**, including job creation, PDF resume parsing, deterministic 6-stage candidate ranking, and AI qualitative scorecard inspection:
-
-https://github.com/Sanjayram710/smart-Resume-Screener/raw/main/docs/assets/workflow-demo.mp4
-
-<p align="center">
-  <video src="docs/assets/workflow-demo.mp4" poster="docs/assets/video-poster.png" width="100%" controls="controls">
-    <a href="docs/assets/workflow-demo.mp4">
-      <img src="docs/assets/video-poster.png" alt="Smart Resume Screener Video Walkthrough" width="100%" />
-    </a>
-  </video>
-</p>
-
-> 🎬 **Direct Video Link**: [Download / Stream `docs/assets/workflow-demo.mp4`](docs/assets/workflow-demo.mp4)
+![Smart Resume Screener Workflow Demo](docs/assets/workflow-demo.gif)
 
 ---
 
@@ -379,7 +367,7 @@ pytest backend/tests -v
 
 ## 18. Demo Flow
 
-> 🎥 **Video Walkthrough**: See the full video recording in [Workflow Video Demo](#-workflow-video-demo) or download [`docs/assets/workflow-demo.mp4`](docs/assets/workflow-demo.mp4).
+> 🎥 **Video Walkthrough**: See the workflow demo animation in [Workflow Video Demo](#-workflow-video-demo).
 
 1. Open `http://localhost:5173`.
 2. Click **"Create Job"** -> Click **"Backend (Python)"** demo template -> Click **"Create Job"**.
