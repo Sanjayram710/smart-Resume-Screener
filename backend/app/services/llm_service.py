@@ -98,8 +98,10 @@ class OpenAIProvider(LLMProvider):
     async def extract_job(
         self, job_title: str, company: str, description: str
     ) -> JobExtractionOutput:
+        effective_title = job_title if job_title and job_title.strip() not in ["", "Unknown", "Uploaded Job Description", "Job Title"] else "Infer from job description"
+        effective_company = company if company and company.strip() not in ["", "Unknown", "Company"] else "Infer from job description"
         user_prompt = JOB_EXTRACTION_USER_PROMPT.format(
-            job_title=job_title, company=company, job_description=description[:10000]
+            job_title=effective_title, company=effective_company, job_description=description[:10000]
         )
         parsed = await self._call_chat_completion(JOB_EXTRACTION_SYSTEM_PROMPT, user_prompt)
         return JobExtractionOutput.model_validate(parsed)
@@ -357,9 +359,52 @@ class MockLLMProvider(LLMProvider):
         )
         min_exp = float(exp_match.group(1)) if exp_match else 3.0
 
+        # Infer title if not explicitly provided or generic
+        final_title = job_title
+        if not final_title or final_title.strip() in ["", "Unknown", "Uploaded Job Description", "Job Title", "Infer from job description"]:
+            title_match = re.search(
+                r"(?:Job Title|Position|Role|Designation)\s*[:\-–]\s*([^\n\r]+)",
+                description,
+                re.IGNORECASE,
+            )
+            if title_match and len(title_match.group(1).strip()) < 80:
+                final_title = title_match.group(1).strip()
+            else:
+                # Search for typical engineering/developer roles
+                role_pattern = re.search(
+                    r"\b((?:Senior|Lead|Staff|Principal|Junior|Associate|Full\s*Stack|Data|Cloud|DevOps|ML|AI|Software|Security|Backend|Frontend)\s+(?:Engineer|Developer|Architect|Specialist|Scientist|Consultant|Manager))\b",
+                    description,
+                    re.IGNORECASE,
+                )
+                if role_pattern:
+                    final_title = role_pattern.group(1).strip()
+                else:
+                    first_line = description.strip().split("\n")[0].strip() if description.strip() else ""
+                    if first_line and len(first_line) < 60 and not first_line.lower().startswith(("we are", "looking for", "about")):
+                        final_title = first_line
+                    else:
+                        final_title = "Software Engineer"
+
+        # Infer company if not explicitly provided or generic
+        final_company = company
+        if not final_company or final_company.strip() in ["", "Unknown", "Company", "Infer from job description"]:
+            comp_match = re.search(
+                r"(?:Company|Organization|Employer|Client)\s*[:\-–]\s*([A-Za-z0-9\s&.,'-]{2,50})",
+                description,
+                re.IGNORECASE,
+            )
+            if comp_match:
+                final_company = comp_match.group(1).strip()
+            else:
+                at_match = re.search(r"\bat\s+([A-Z][A-Za-z0-9&]{2,25}(?:\s+[A-Z][A-Za-z0-9&]{2,25})?)\b", description)
+                if at_match and at_match.group(1).lower() not in ["least", "present", "first", "scale", "work"]:
+                    final_company = at_match.group(1).strip()
+                else:
+                    final_company = "Hiring Organization"
+
         return JobExtractionOutput(
-            job_title=job_title,
-            company=company,
+            job_title=final_title,
+            company=final_company,
             required_skills=req_skills,
             preferred_skills=pref_skills,
             responsibilities=[

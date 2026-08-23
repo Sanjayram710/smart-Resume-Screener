@@ -70,3 +70,22 @@ class JobSummary(BaseModel):
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+
+class ParsedJDResponse(BaseModel):
+    title: str = Field("Software Engineer", description="Extracted job title")
+    company: str = Field("Hiring Organization", description="Extracted hiring company")
+    description: str = Field(..., description="Full cleaned job description text")
+    required_skills: List[str] = Field(default_factory=list, description="Extracted mandatory skills")
+    preferred_skills: List[str] = Field(default_factory=list, description="Extracted preferred skills")
+    minimum_experience: float = Field(0.0, description="Extracted minimum required experience in years")
+    education_requirements: List[str] = Field(default_factory=list, description="Extracted education requirements")
+    certifications: List[str] = Field(default_factory=list, description="Extracted certifications")
+    responsibilities: List[str] = Field(default_factory=list, description="Extracted role responsibilities")
+    keywords: List[str] = Field(default_factory=list, description="Extracted keywords")
+    important_requirements: List[str] = Field(default_factory=list, description="Extracted important requirements")
+    nice_to_have_requirements: List[str] = Field(default_factory=list, description="Extracted nice to have requirements")
+    filename: Optional[str] = None
+    char_count: int = 0
+    page_count: int = 1
+

@@ -178,13 +178,21 @@ export const DashboardPage: React.FC = () => {
                 <span>Create New Job</span>
               </Link>
 
+              <Link
+                to="/quick-match"
+                className="px-5 py-3 text-xs font-extrabold text-[#C2410C] hover:text-[#9A3412] clay-btn-secondary flex items-center space-x-2 border border-[#FDBA74] bg-[#FFEDD5]/60 shadow-sm"
+              >
+                <Sparkles className="w-4 h-4 text-[#EA580C]" />
+                <span>Instant Match (PDF JD + Resumes)</span>
+              </Link>
+
               <button
                 type="button"
                 onClick={() => setIsMethodologyOpen(true)}
                 className="px-5 py-3 text-xs font-extrabold text-[#9A3412] hover:text-[#7C2D12] clay-btn-secondary flex items-center space-x-2 border border-[#DFCCA8]"
               >
                 <Layers className="w-4 h-4 text-[#C2410C]" />
-                <span>View Scoring Methodology (6 Stages)</span>
+                <span>View Scoring Methodology</span>
               </button>
             </div>
           </div>

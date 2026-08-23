@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Bot, FileSpreadsheet, PlusCircle } from 'lucide-react';
+import { Bot, FileSpreadsheet, PlusCircle, Zap } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
   const location = useLocation();
 
   const isDashboardActive = location.pathname === '/';
+  const isQuickMatchActive = location.pathname === '/quick-match';
   const isCreateJobActive = location.pathname === '/jobs/create';
 
   return (
@@ -42,6 +43,18 @@ export const Navbar: React.FC = () => {
             </Link>
 
             <Link
+              to="/quick-match"
+              className={`px-4 py-2 text-xs font-extrabold transition-all duration-150 flex items-center space-x-2 rounded-full ${
+                isQuickMatchActive
+                  ? 'clay-btn-primary bg-gradient-to-r from-[#FB923C] to-[#EA580C] text-white shadow-[0_4px_14px_rgba(234,88,12,0.30)]'
+                  : 'clay-btn-secondary text-[#5A4232] hover:text-[#2A1B0F]'
+              }`}
+            >
+              <Zap className={`w-4 h-4 ${isQuickMatchActive ? 'text-white' : 'text-[#EA580C]'}`} />
+              <span>Instant Match</span>
+            </Link>
+
+            <Link
               to="/jobs/create"
               className={`px-4 py-2 text-xs font-extrabold transition-all duration-150 flex items-center space-x-2 rounded-full ${
                 isCreateJobActive
@@ -58,3 +71,4 @@ export const Navbar: React.FC = () => {
     </header>
   );
 };
+

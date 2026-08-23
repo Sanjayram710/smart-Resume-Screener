@@ -59,3 +59,22 @@ export interface JobUpdatePayload {
   education_requirements?: string[];
   certifications?: string[];
 }
+
+export interface ParsedJDResponse {
+  title: string;
+  company: string;
+  description: string;
+  required_skills: string[];
+  preferred_skills: string[];
+  minimum_experience: number;
+  education_requirements: string[];
+  certifications: string[];
+  responsibilities: string[];
+  keywords: string[];
+  important_requirements: string[];
+  nice_to_have_requirements: string[];
+  filename?: string;
+  char_count?: number;
+  page_count?: number;
+}
+

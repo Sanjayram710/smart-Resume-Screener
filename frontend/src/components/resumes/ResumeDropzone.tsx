@@ -3,10 +3,15 @@ import { File, FileUp, UploadCloud, X } from 'lucide-react';
 
 interface ResumeDropzoneProps {
   onUpload: (files: File[]) => Promise<void>;
+  onUploadAndScreen?: (files: File[]) => Promise<void>;
   isUploading: boolean;
 }
 
-export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onUpload, isUploading }) => {
+export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({
+  onUpload,
+  onUploadAndScreen,
+  isUploading,
+}) => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isDragOver, setIsDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -37,6 +42,12 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onUpload, isUplo
   const handleUploadSubmit = async () => {
     if (selectedFiles.length === 0) return;
     await onUpload(selectedFiles);
+    setSelectedFiles([]);
+  };
+
+  const handleUploadAndScreenSubmit = async () => {
+    if (selectedFiles.length === 0 || !onUploadAndScreen) return;
+    await onUploadAndScreen(selectedFiles);
     setSelectedFiles([]);
   };
 
@@ -125,19 +136,32 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onUpload, isUplo
             ))}
           </div>
 
-          <div className="flex justify-end pt-2 border-t border-[#F0E4D3]">
+          <div className="flex flex-wrap items-center justify-end gap-3 pt-2 border-t border-[#F0E4D3]">
             <button
               type="button"
               disabled={isUploading}
               onClick={handleUploadSubmit}
-              className="px-6 py-2.5 text-xs font-extrabold text-white clay-btn-primary flex items-center space-x-2 disabled:opacity-50"
+              className="px-5 py-2.5 text-xs font-bold text-[#4A3520] clay-btn-secondary flex items-center space-x-2 disabled:opacity-50"
             >
               <FileUp className="w-4 h-4" />
-              <span>{isUploading ? 'Uploading & Parsing...' : `Upload ${selectedFiles.length} Resumes`}</span>
+              <span>{isUploading ? 'Uploading...' : `Upload ${selectedFiles.length} Resumes`}</span>
             </button>
+
+            {onUploadAndScreen && (
+              <button
+                type="button"
+                disabled={isUploading}
+                onClick={handleUploadAndScreenSubmit}
+                className="px-6 py-2.5 text-xs font-extrabold text-white clay-btn-primary flex items-center space-x-2 disabled:opacity-50"
+              >
+                <FileUp className="w-4 h-4" />
+                <span>{isUploading ? 'Screening...' : `Upload & Screen Match Now`}</span>
+              </button>
+            )}
           </div>
         </div>
       )}
     </div>
   );
 };
+

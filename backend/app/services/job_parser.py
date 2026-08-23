@@ -88,3 +88,48 @@ class JobParserService:
             "nice_to_have_requirements": nice_to_haves,
             "job_vector": job_vector,
         }
+
+    async def parse_jd_file_content(
+        self,
+        file_bytes: bytes,
+        filename: str,
+        title_override: str = "",
+        company_override: str = "",
+    ) -> Dict[str, Any]:
+        """
+        Extracts text from a JD document (PDF or TXT), extracts structured
+        role requirements via LLM, and normalizes skills and criteria.
+        """
+        from app.services.pdf_parser import PDFParser
+
+        raw_text, meta = PDFParser.extract_text_from_bytes(file_bytes, filename)
+        cleaned_text = TextCleaner.clean_text(raw_text)
+
+        extracted = await self.llm_service.extract_job(
+            job_title=title_override,
+            company=company_override,
+            description=cleaned_text,
+        )
+
+        req_skills = SkillNormalizer.normalize_list(extracted.required_skills)
+        pref_skills = SkillNormalizer.normalize_list(extracted.preferred_skills)
+
+        return {
+            "title": extracted.job_title or title_override or "Software Engineer",
+            "company": extracted.company or company_override or "Hiring Organization",
+            "description": cleaned_text,
+            "required_skills": req_skills,
+            "preferred_skills": pref_skills,
+            "minimum_experience": extracted.minimum_experience,
+            "education_requirements": extracted.education_requirements,
+            "certifications": extracted.certifications,
+            "responsibilities": extracted.responsibilities,
+            "keywords": extracted.keywords,
+            "important_requirements": extracted.important_requirements,
+            "nice_to_have_requirements": extracted.nice_to_have_requirements,
+            "raw_text": raw_text,
+            "filename": filename,
+            "char_count": meta.get("char_count", len(raw_text)),
+            "page_count": meta.get("pages", 1),
+        }
+

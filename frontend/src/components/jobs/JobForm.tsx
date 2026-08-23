@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { Bot, Plus, Sparkles, X } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { Bot, CheckCircle2, FileText, Loader2, Plus, Sparkles, UploadCloud, X } from 'lucide-react';
 import { JobCreatePayload } from '../../types/job';
+import { jobService } from '../../services/jobService';
 
 interface JobFormProps {
   onSubmit: (payload: JobCreatePayload) => Promise<void>;
@@ -18,6 +19,53 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
   const [minExp, setMinExp] = useState(3.0);
   const [education, setEducation] = useState("Bachelor's Degree in Computer Science or STEM");
   const [autoExtract, setAutoExtract] = useState(true);
+
+  // JD PDF Upload States
+  const [isParsingJD, setIsParsingJD] = useState(false);
+  const [jdError, setJdError] = useState<string | null>(null);
+  const [parsedJDMsg, setParsedJDMsg] = useState<string | null>(null);
+  const [isJdDragOver, setIsJdDragOver] = useState(false);
+  const jdFileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleJDUpload = async (file: File) => {
+    if (!file) return;
+    const ext = file.name.split('.').pop()?.toLowerCase();
+    if (ext !== 'pdf' && ext !== 'txt') {
+      setJdError('Please upload a valid .pdf or .txt Job Description file.');
+      return;
+    }
+
+    setIsParsingJD(true);
+    setJdError(null);
+    setParsedJDMsg(null);
+
+    try {
+      const parsed = await jobService.parseJDFile(file);
+      if (parsed.title) setTitle(parsed.title);
+      if (parsed.company) setCompany(parsed.company);
+      if (parsed.description) setDescription(parsed.description);
+      if (parsed.required_skills && parsed.required_skills.length > 0) {
+        setRequiredSkills(parsed.required_skills);
+      }
+      if (parsed.preferred_skills && parsed.preferred_skills.length > 0) {
+        setPreferredSkills(parsed.preferred_skills);
+      }
+      if (parsed.minimum_experience !== undefined) {
+        setMinExp(parsed.minimum_experience);
+      }
+      if (parsed.education_requirements && parsed.education_requirements.length > 0) {
+        setEducation(parsed.education_requirements[0]);
+      }
+      setParsedJDMsg(
+        `Extracted ${parsed.required_skills.length} required skills, ${parsed.preferred_skills.length} preferred skills, and ${parsed.minimum_experience} yrs experience from "${file.name}"!`
+      );
+    } catch (err: any) {
+      setJdError(err.message || 'Failed to parse Job Description file');
+    } finally {
+      setIsParsingJD(false);
+    }
+  };
+
 
   const handleAddRequiredSkill = () => {
     if (reqSkillInput.trim() && !requiredSkills.includes(reqSkillInput.trim())) {
@@ -134,11 +182,124 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* JD PDF Upload Dropzone (Primary AI Option) */}
+      <div className="clay-card p-6 rounded-[30px] bg-gradient-to-br from-[#FFFDF9] to-[#FFF6EA] border border-[#F0E4D3] space-y-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2.5">
+            <div className="w-8 h-8 rounded-xl bg-[#FFEDD5] clay-icon-blob text-[#EA580C] flex items-center justify-center">
+              <UploadCloud className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-sm font-extrabold text-[#2A1B0F] font-['Outfit']">
+                Upload Job Description (PDF / TXT)
+              </h3>
+              <p className="text-[11px] text-[#6B553F]">
+                AI will extract role title, company, skills, and experience criteria automatically
+              </p>
+            </div>
+          </div>
+          <span className="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-[#EA580C]/10 text-[#EA580C] border border-[#EA580C]/20">
+            AI Powered
+          </span>
+        </div>
+
+        {/* Drop Area */}
+        <div
+          onDragOver={(e) => {
+            e.preventDefault();
+            setIsJdDragOver(true);
+          }}
+          onDragLeave={() => setIsJdDragOver(false)}
+          onDrop={(e) => {
+            e.preventDefault();
+            setIsJdDragOver(false);
+            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+              handleJDUpload(e.dataTransfer.files[0]);
+            }
+          }}
+          onClick={() => jdFileInputRef.current?.click()}
+          className={`border-2 border-dashed rounded-[24px] p-6 text-center cursor-pointer transition-all duration-200 bg-white/70 ${
+            isJdDragOver
+              ? 'border-[#EA580C] bg-[#FFEDD5]/50 scale-[1.01]'
+              : 'border-[#FDBA74] hover:border-[#EA580C]'
+          }`}
+        >
+          <input
+            ref={jdFileInputRef}
+            type="file"
+            accept=".pdf,.txt,application/pdf,text/plain"
+            className="hidden"
+            onChange={(e) => {
+              if (e.target.files && e.target.files[0]) {
+                handleJDUpload(e.target.files[0]);
+              }
+            }}
+          />
+
+          {isParsingJD ? (
+            <div className="flex flex-col items-center justify-center py-2 space-y-2">
+              <Loader2 className="w-7 h-7 text-[#EA580C] animate-spin" />
+              <p className="text-xs font-bold text-[#EA580C]">
+                Analyzing Job Description PDF with AI...
+              </p>
+              <p className="text-[11px] text-[#8B7355]">
+                Extracting skills, experience, and role responsibilities
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-1 space-y-2">
+              <FileText className="w-7 h-7 text-[#EA580C]" />
+              <div>
+                <span className="text-xs font-extrabold text-[#2A1B0F]">
+                  Drag & drop your Job Description PDF here, or{' '}
+                </span>
+                <span className="text-xs font-extrabold text-[#EA580C] underline">
+                  browse files
+                </span>
+              </div>
+              <p className="text-[10px] text-[#8B7355]">
+                Supports text-based PDF or TXT files up to 10MB
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* Upload Status / Success / Error */}
+        {jdError && (
+          <div className="p-3 rounded-2xl bg-rose-50 border border-rose-200 text-xs text-rose-700 font-bold flex items-center justify-between">
+            <span>{jdError}</span>
+            <button
+              type="button"
+              onClick={() => setJdError(null)}
+              className="text-rose-500 hover:text-rose-700 ml-2"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        {parsedJDMsg && (
+          <div className="p-3.5 rounded-2xl bg-[#DCFCE7] border border-[#86EFAC] text-xs text-[#15803D] font-bold flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <CheckCircle2 className="w-4 h-4 text-[#16A34A] shrink-0" />
+              <span>{parsedJDMsg}</span>
+            </div>
+            <button
+              type="button"
+              onClick={() => setParsedJDMsg(null)}
+              className="text-[#15803D] hover:text-[#14532D] ml-2"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+      </div>
+
       {/* Quick Template Picker (Molded Warm Clay Container) */}
       <div className="clay-card p-5 rounded-[28px] space-y-3 bg-[#FFFCF7] border border-[#F0E4D3]">
         <div className="flex items-center space-x-2 text-xs text-[#6B553F]">
           <Sparkles className="w-4 h-4 text-[#EA580C]" />
-          <span className="font-extrabold text-[#2A1B0F]">Quick Demo Templates (Click to Auto-fill):</span>
+          <span className="font-extrabold text-[#2A1B0F]">Or choose a Demo Template (Auto-fill):</span>
         </div>
         <div className="flex flex-wrap items-center gap-2.5">
           <button
@@ -192,6 +353,7 @@ export const JobForm: React.FC<JobFormProps> = ({ onSubmit, isLoading }) => {
           </button>
         </div>
       </div>
+
 
       <div className="clay-card rounded-[32px] p-7 sm:p-8 space-y-6 bg-[#FFFCF7] border border-[#F0E4D3]">
         {/* Title & Company */}

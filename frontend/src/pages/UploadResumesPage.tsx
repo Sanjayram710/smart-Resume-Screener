@@ -66,6 +66,22 @@ export const UploadResumesPage: React.FC = () => {
     }
   };
 
+  const handleUploadAndScreen = async (files: File[]) => {
+    setIsUploading(true);
+    setIsScreening(true);
+    setError(null);
+    setSuccessMsg(null);
+    try {
+      await resumeService.uploadResumes(numericJobId, files);
+      await screeningService.screenJob(numericJobId);
+      navigate(`/jobs/${numericJobId}/rankings`);
+    } catch (err: any) {
+      setError(err.message || 'Upload & screening failed');
+      setIsScreening(false);
+      setIsUploading(false);
+    }
+  };
+
   const handleRunScreening = async () => {
     setIsScreening(true);
     setError(null);
@@ -134,11 +150,16 @@ export const UploadResumesPage: React.FC = () => {
 
       {error && <ErrorMessage message={error} />}
 
-      {/* Upload Dropzone */}
-      <ResumeDropzone onUpload={handleUpload} isUploading={isUploading} />
+      {/* Upload Dropzone with Instant Match capability */}
+      <ResumeDropzone
+        onUpload={handleUpload}
+        onUploadAndScreen={handleUploadAndScreen}
+        isUploading={isUploading || isScreening}
+      />
 
       {/* Resumes List */}
       <ResumeList resumes={resumes} />
     </div>
   );
 };
+

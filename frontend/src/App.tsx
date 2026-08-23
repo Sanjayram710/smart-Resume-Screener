@@ -7,6 +7,7 @@ import { JobDetailsPage } from './pages/JobDetailsPage';
 import { UploadResumesPage } from './pages/UploadResumesPage';
 import { CandidateRankingsPage } from './pages/CandidateRankingsPage';
 import { CandidateDetailsPage } from './pages/CandidateDetailsPage';
+import { QuickMatchPage } from './pages/QuickMatchPage';
 
 export const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ export const App: React.FC = () => {
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-6">
           <Routes>
             <Route path="/" element={<DashboardPage />} />
+            <Route path="/quick-match" element={<QuickMatchPage />} />
             <Route path="/jobs/create" element={<CreateJobPage />} />
             <Route path="/jobs/:jobId" element={<JobDetailsPage />} />
             <Route path="/jobs/:jobId/upload" element={<UploadResumesPage />} />
@@ -23,6 +25,7 @@ export const App: React.FC = () => {
             <Route path="/candidates/:candidateId" element={<CandidateDetailsPage />} />
           </Routes>
         </main>
+
 
         <footer className="border-t border-[#F0E4D3] bg-[#FAF3E7] py-6 mt-12">
           <div className="max-w-7xl mx-auto px-4 text-center text-xs text-[#6B553F] font-medium">
